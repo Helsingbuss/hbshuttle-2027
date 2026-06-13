@@ -14,20 +14,20 @@ const highlights: HighlightCard[] = [
   {
     title: "Köp nu – res när det passar dig",
     text: "Din biljett är flexibel och giltig på valfri avgång den dagen du valt. Ändra enkelt online.",
-    image: "/images/highlights/highlight-booking.jpg",
+    image: "/images/highlights/highlight-booking.png",
     href: "/start/biljetter",
     badge: "%",
   },
   {
     title: "Res ihop – smidigt för familj och vänner",
     text: "Barn åker till rabatterat pris och ni kan lägga till bagage. Smidig resa för hela sällskapet.",
-    image: "/images/highlights/highlight-family.jpg",
+    image: "/images/highlights/highlight-family.png",
     href: "/start/gruppresor",
   },
   {
     title: "Bekvämt ombord med Wi-Fi & plats",
     text: "Rymliga säten, gott om bagageutrymme, USB-uttag och gratis Wi-Fi ombord.",
-    image: "/images/highlights/highlight-onboard.jpg",
+    image: "/images/highlights/highlight-onboard.png",
     href: "/start/ombord",
   },
 ];
@@ -61,3 +61,4 @@ export default function TravelHighlights() {
     </section>
   );
 }
+
