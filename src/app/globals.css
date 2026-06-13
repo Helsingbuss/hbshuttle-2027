@@ -1,49 +1,1051 @@
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-html {
-  height: 100%;
-}
-
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
-}
-
-body {
-  min-height: 100%;
-  display: flex;
-  flex-direction: column;
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+﻿:root {
+  --bg: #031116;
+  --right: #061b21;
+  --right2: #031116;
+  --text: #f5f4f0;
+  --muted: rgba(245, 244, 240, 0.78);
+  --muted2: rgba(245, 244, 240, 0.60);
+  --line: rgba(255, 255, 255, 0.16);
+  --teal: #007764;
+  --teal2: #009f88;
+  --teal3: #22d2b9;
 }
 
 * {
   box-sizing: border-box;
-  padding: 0;
+}
+
+html,
+body {
   margin: 0;
+  min-height: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+}
+
+button,
+input {
+  font-family: inherit;
 }
 
 a {
   color: inherit;
-  text-decoration: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
+.page {
+  width: 100%;
+  min-height: 100vh;
+  background: #031116;
+}
+
+.landing {
+  width: 100vw;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 52% 48%;
+  background: #031116;
+}
+
+.hero {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  border-right: 1px solid rgba(255, 255, 255, 0.16);
+  background: #04151a;
+}
+
+.heroPhoto {
+  position: absolute;
+  inset: 0;
+  background-image: url("/images/hbshuttle-hero.png");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(0,0,0,0.02) 0%, rgba(0,0,0,0.08) 48%, rgba(0,0,0,0.44) 100%),
+    radial-gradient(circle at 45% 76%, rgba(0, 184, 157, 0.13), transparent 28%),
+    radial-gradient(circle at 70% 17%, rgba(255,255,255,0.08), transparent 15%);
+  pointer-events: none;
+}
+
+.heroMotion {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      112deg,
+      transparent 0%,
+      transparent 38%,
+      rgba(34, 210, 185, 0) 44%,
+      rgba(34, 210, 185, 0.13) 50%,
+      rgba(255, 255, 255, 0.08) 53%,
+      rgba(34, 210, 185, 0.10) 57%,
+      transparent 64%,
+      transparent 100%
+    );
+  mix-blend-mode: screen;
+  animation: lightSweep 7s linear infinite;
+  pointer-events: none;
+}
+
+.brand {
+  position: absolute;
+  top: 42px;
+  left: 42px;
+  z-index: 5;
+}
+
+.brandMain {
+  color: #f5f4f0;
+  font-size: clamp(40px, 3vw, 56px);
+  line-height: 0.95;
+  font-weight: 500;
+  letter-spacing: -1.4px;
+}
+
+.brandSub {
+  margin-top: 9px;
+  color: #f5f4f0;
+  font-size: 17px;
+  line-height: 1;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.45em;
+}
+
+.brandLine {
+  width: 160px;
+  height: 3px;
+  margin-top: 16px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--teal3), rgba(34, 210, 185, 0));
+  box-shadow: 0 0 18px rgba(34, 210, 185, 0.5);
+}
+
+.heroTitle {
+  position: absolute;
+  left: 42px;
+  bottom: 66px;
+  z-index: 5;
+}
+
+.heroTitle h1 {
+  margin: 0;
+  color: #f5f4f0;
+  font-size: clamp(34px, 2.75vw, 52px);
+  line-height: 1.12;
+  font-weight: 500;
+  letter-spacing: -1.1px;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.42);
+}
+
+.heroTitle span {
+  display: block;
+  margin-top: 8px;
+  color: var(--teal2);
+  font-weight: 500;
+}
+
+.routeBox {
+  position: absolute;
+  right: 38px;
+  bottom: 60px;
+  z-index: 6;
+  width: 380px;
+  display: grid;
+  grid-template-columns: 58px 1fr;
+  gap: 14px;
+  padding: 23px 24px 21px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 12px;
+  background: rgba(5, 24, 30, 0.82);
+  backdrop-filter: blur(12px);
+  box-shadow:
+    0 18px 42px rgba(0, 0, 0, 0.34),
+    inset 0 0 0 1px rgba(34, 210, 185, 0.04);
+}
+
+.routeIcon {
+  color: var(--teal3);
+  font-size: 36px;
+  line-height: 1;
+}
+
+.routeBox h2 {
+  margin: 0 0 12px;
+  color: #f5f4f0;
+  font-size: 15px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+}
+
+.routeBox ul {
+  margin: 0;
+  padding-left: 18px;
+  color: rgba(245,244,240,0.78);
+  font-size: 15px;
+  line-height: 1.9;
+}
+
+.routeBox li::marker {
+  color: var(--teal3);
+}
+
+.content {
+  position: relative;
+  min-height: 100vh;
+  padding: 38px 52px 28px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 96% 2%, rgba(0, 184, 157, 0.12), transparent 24%),
+    radial-gradient(circle at 45% 38%, rgba(0, 119, 100, 0.055), transparent 32%),
+    linear-gradient(180deg, var(--right) 0%, var(--right2) 100%);
+}
+
+.content::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(255,255,255,0.026) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(255,255,255,0.018) 1px, transparent 1px);
+  background-size: 58px 58px;
+  opacity: 0.28;
+  pointer-events: none;
+}
+
+.content > * {
+  position: relative;
+  z-index: 2;
+}
+
+.planeDecor {
+  position: absolute;
+  top: 40px;
+  right: 42px;
+  width: 270px;
+  height: 150px;
+  opacity: 0.14;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.planeDecor span {
+  position: absolute;
+  right: 0;
+  top: 0;
+  color: #d9eeee;
+  font-size: 61px;
+  transform: rotate(-12deg);
+  font-weight: 400;
+}
+
+.planeDecor i {
+  position: absolute;
+  right: 42px;
+  top: 72px;
+  width: 240px;
+  height: 82px;
+  border-top: 2px dashed rgba(217, 238, 238, 0.72);
+  border-radius: 80% 0 0 0;
+  transform: rotate(-14deg);
+}
+
+.betaBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 17px;
+  border: 1px solid rgba(34, 210, 185, 0.38);
+  border-radius: 6px;
+  color: var(--teal3);
+  background: rgba(0, 184, 157, 0.09);
+  font-size: 15px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.13em;
+}
+
+.intro {
+  margin-top: 24px;
+  max-width: 710px;
+}
+
+.intro h2 {
+  margin: 0;
+  color: #f5f4f0;
+  font-size: clamp(44px, 3.75vw, 68px);
+  line-height: 1.02;
+  font-weight: 500;
+  letter-spacing: -1.55px;
+}
+
+.intro h2 span {
+  color: var(--teal2);
+  font-weight: 500;
+}
+
+.pulseLine {
+  position: relative;
+  width: 470px;
+  max-width: 94%;
+  height: 24px;
+  margin: 14px 0 24px;
+}
+
+.pulseLine::before,
+.pulseLine::after {
+  content: "";
+  position: absolute;
+  top: 11px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--teal2), rgba(0, 184, 157, 0));
+}
+
+.pulseLine::before {
+  left: 0;
+  width: 46%;
+}
+
+.pulseLine::after {
+  right: 0;
+  width: 40%;
+  transform: scaleX(-1);
+}
+
+.pulseLine span {
+  position: absolute;
+  left: 45%;
+  top: 0;
+  width: 56px;
+  height: 20px;
+  border-bottom: 2px solid var(--teal2);
+  clip-path: polygon(0 56%, 20% 56%, 31% 8%, 47% 98%, 60% 56%, 100% 56%, 100% 76%, 0 76%);
+}
+
+.intro p {
+  max-width: 700px;
+  margin: 0 0 19px;
+  color: rgba(245, 244, 240, 0.82);
+  font-size: 16px;
+  line-height: 1.65;
+  font-weight: 400;
+}
+
+.forms {
+  margin-top: 28px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 34px;
+}
+
+.formBlockRight {
+  padding-left: 34px;
+  border-left: 1px solid rgba(255, 255, 255, 0.13);
+}
+
+.formHead {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  margin-bottom: 20px;
+}
+
+.formHead span {
+  color: var(--teal3);
+  font-size: 25px;
+  font-weight: 400;
+}
+
+.formHead h3 {
+  margin: 0;
+  color: #f5f4f0;
+  font-size: 15px;
+  line-height: 1.25;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.19em;
+}
+
+.formBlock label {
+  display: block;
+  margin-bottom: 10px;
+  color: rgba(245, 244, 240, 0.84);
+  font-size: 13px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.17em;
+}
+
+.formText {
+  min-height: 36px;
+  margin: -2px 0 13px;
+  color: rgba(245,244,240,0.76);
+  font-size: 15px;
+  line-height: 1.45;
+  font-weight: 400;
+}
+
+.inputWrap {
+  height: 52px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 5px;
+  background: rgba(3, 15, 20, 0.66);
+  overflow: hidden;
+}
+
+.inputWrap input {
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  padding: 0 17px;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: #f5f4f0;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.inputWrap input::placeholder {
+  color: rgba(245, 244, 240, 0.50);
+}
+
+.inputWrap span {
+  padding-right: 15px;
+  color: rgba(245, 244, 240, 0.58);
+}
+
+.formBlock button {
+  width: 100%;
+  height: 54px;
+  margin-top: 14px;
+  border: 0;
+  border-radius: 5px;
+  cursor: pointer;
+  color: #ffffff;
+  background: linear-gradient(180deg, #0ca991 0%, #007764 100%);
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.24em;
+  transition: 0.2s ease;
+}
+
+.formBlock button:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.07);
+}
+
+.helper {
+  margin: 15px 0 0;
+  color: rgba(245,244,240,0.70);
+  font-size: 15px;
+  line-height: 1.45;
+}
+
+.helper a {
+  color: var(--teal3);
+  text-underline-offset: 4px;
+}
+
+.message {
+  margin-top: 16px;
+  padding: 13px 15px;
+  border: 1px solid rgba(34, 210, 185, 0.25);
+  border-radius: 8px;
+  background: rgba(0, 184, 157, 0.10);
+  color: rgba(245, 244, 240, 0.88);
+  font-size: 15px;
+}
+
+.cards {
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.cards article {
+  min-height: 178px;
+  padding: 21px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 12px;
+  background:
+    linear-gradient(180deg, rgba(8, 35, 42, 0.72), rgba(4, 21, 27, 0.82));
+  box-shadow: inset 0 0 0 1px rgba(34, 210, 185, 0.035);
+}
+
+.cardIcon {
+  margin-bottom: 14px;
+  color: var(--teal3);
+  font-size: 32px;
+  line-height: 1;
+  font-weight: 400;
+}
+
+.cards h3 {
+  margin: 0 0 12px;
+  color: #f5f4f0;
+  font-size: 14px;
+  line-height: 1.25;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+}
+
+.cards p {
+  margin: 0;
+  color: rgba(245,244,240,0.76);
+  font-size: 15px;
+  line-height: 1.55;
+  font-weight: 400;
+}
+
+.cards strong {
+  display: block;
+  margin: 0 0 12px;
+  color: var(--teal2);
+  font-size: 38px;
+  line-height: 1;
+  font-weight: 500;
+}
+
+.cards a {
+  display: inline-block;
+  margin-top: 18px;
+  color: var(--teal3);
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.footer {
+  margin-top: 28px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.10);
+  display: grid;
+  grid-template-columns: auto auto 1fr;
+  align-items: center;
+  gap: 30px;
+  color: rgba(245,244,240,0.74);
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.social {
+  justify-self: end;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.social b {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(34, 210, 185, 0.38);
+  border-radius: 7px;
+  color: var(--teal3);
+  font-size: 15px;
+  font-weight: 600;
+}
+
+@keyframes lightSweep {
+  0% {
+    transform: translateX(-72%);
+    opacity: 0;
+  }
+
+  12% {
+    opacity: 0.85;
+  }
+
+  56% {
+    opacity: 0.85;
+  }
+
+  100% {
+    transform: translateX(72%);
+    opacity: 0;
+  }
+}
+
+@media (max-width: 1180px) {
+  .landing {
+    grid-template-columns: 1fr;
+  }
+
+  .hero {
+    min-height: 820px;
+  }
+
+  .content {
+    min-height: auto;
+  }
+}
+
+@media (max-width: 900px) {
+  .content {
+    padding: 30px 24px;
+  }
+
+  .forms,
+  .cards {
+    grid-template-columns: 1fr;
+  }
+
+  .formBlockRight {
+    padding-left: 0;
+    padding-top: 24px;
+    border-left: 0;
+    border-top: 1px solid rgba(255,255,255,0.12);
+  }
+
+  .footer {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .social {
+    justify-self: start;
+    flex-wrap: wrap;
+  }
+
+  .routeBox {
+    left: 28px;
+    right: 28px;
+    width: auto;
+  }
+}
+
+@media (max-width: 620px) {
+  .hero {
+    min-height: 700px;
+  }
+
+  .brand {
+    top: 26px;
+    left: 22px;
+  }
+
+  .brandMain {
+    font-size: 34px;
+  }
+
+  .brandSub {
+    font-size: 12px;
+    letter-spacing: 0.33em;
+  }
+
+  .heroTitle {
+    left: 22px;
+    right: 22px;
+    bottom: 178px;
+  }
+
+  .heroTitle h1 {
+    font-size: 31px;
+  }
+
+  .routeBox {
+    grid-template-columns: 1fr;
+    padding: 18px;
+    bottom: 24px;
+  }
+
+  .routeIcon {
+    display: none;
+  }
+
+  .content {
+    padding: 24px 16px;
+  }
+
+  .intro h2 {
+    font-size: 38px;
+    letter-spacing: -1.1px;
+  }
+
+  .planeDecor {
+    display: none;
+  }
+}
+
+/* === Final fix: crop hero image + color icons === */
+
+/* 1) Beskär vänsterbilden så den inte visar den tomma högersidan */
+.heroPhoto {
+  background-size: 200% 100% !important;
+  background-position: left center !important;
+  background-repeat: no-repeat !important;
+}
+
+/* Om du vill ha lite mer eller mindre av bussen:
+   prova left 2%, left 5% eller left center via background-position */
+
+/* 2) Gör alla ikoner turkosa */
+.routeIcon,
+.cardIcon,
+.formHead span,
+.betaBadge span,
+.footerIcon,
+.footer div span.icon,
+.planeDecor span {
+  color: #22d2b9 !important;
+}
+
+/* 3) Se till att symbolerna i rutorna verkligen syns tydligt */
+.routeIcon,
+.cardIcon,
+.formHead span,
+.betaBadge span {
+  text-shadow: 0 0 16px rgba(34, 210, 185, 0.18) !important;
+}
+
+/* 4) Lite snyggare ikonfärg i plane-decor uppe till höger */
+.planeDecor span,
+.planeDecor i {
+  color: rgba(34, 210, 185, 0.22) !important;
+  border-color: rgba(34, 210, 185, 0.22) !important;
+}
+
+/* 5) Om route-kortet hamnar lite fel efter beskärningen */
+.routeBox {
+  right: 28px !important;
+}
+
+/* 6) Om bussbilden fortfarande känns för långt åt vänster,
+   justera denna rad manuellt:
+   background-position: 4% center !important;
+*/
+
+/* === FINAL polish: fix dark text + nicer hero title === */
+
+/* Tvinga ljus text där svart fortfarande dyker upp */
+.content,
+.content p,
+.content h3,
+.content label,
+.content small,
+.content strong,
+.content a,
+.helper,
+.formText,
+.routeBox ul,
+.cards p,
+.cards h3,
+.footer,
+.footer div,
+.social span {
+  color: rgba(245, 244, 240, 0.84) !important;
+}
+
+/* Behåll viktiga accenter */
+.intro h2,
+.brandMain,
+.brandSub,
+.routeBox h2,
+.formHead h3,
+.cards h3 {
+  color: #f5f4f0 !important;
+}
+
+.intro h2 span,
+.helper a,
+.cards a,
+.cards strong,
+.routeIcon,
+.cardIcon,
+.formHead span,
+.betaBadge,
+.betaBadge span {
+  color: #22d2b9 !important;
+}
+
+/* Gör card-titlar lite tydligare */
+.cards h3,
+.routeBox h2,
+.formHead h3 {
+  font-weight: 600 !important;
+  letter-spacing: 0.18em !important;
+}
+
+/* Mjukare och snyggare titel */
+.intro {
+  max-width: 720px !important;
+}
+
+.intro h2 {
+  font-size: clamp(46px, 4vw, 74px) !important;
+  line-height: 0.98 !important;
+  font-weight: 600 !important;
+  letter-spacing: -2px !important;
+  color: #f5f4f0 !important;
+  text-shadow:
+    0 2px 12px rgba(0, 0, 0, 0.22),
+    0 0 28px rgba(255, 255, 255, 0.04) !important;
+}
+
+.intro h2 span {
+  display: inline-block !important;
+  color: #12bea6 !important;
+  text-shadow:
+    0 0 18px rgba(18, 190, 166, 0.16),
+    0 0 30px rgba(18, 190, 166, 0.06) !important;
+}
+
+/* Gör divider under titeln lite snyggare */
+.pulseLine::before,
+.pulseLine::after {
+  background: linear-gradient(90deg, #12bea6, rgba(18, 190, 166, 0)) !important;
+}
+
+.pulseLine span {
+  border-bottom-color: #12bea6 !important;
+}
+
+/* Småtexter under formulären */
+.helper,
+.formText,
+.intro p,
+.cards p,
+.routeBox ul,
+.footer,
+.footer div,
+.social span {
+  color: rgba(245, 244, 240, 0.76) !important;
+}
+
+/* Gör 2027 snyggare */
+.cards strong {
+  color: #12bea6 !important;
+  text-shadow: 0 0 16px rgba(18, 190, 166, 0.10) !important;
+  font-weight: 600 !important;
+}
+
+/* Ikoner lite tydligare */
+.routeIcon,
+.cardIcon,
+.formHead span {
+  text-shadow: 0 0 14px rgba(34, 210, 185, 0.14) !important;
+}
+
+/* Footer-ikoner */
+.social b {
+  color: #22d2b9 !important;
+  border-color: rgba(34, 210, 185, 0.42) !important;
+}
+
+/* Om någon input-text blir för mörk */
+.inputWrap input,
+.inputWrap input::placeholder {
+  color: #f5f4f0 !important;
+}
+
+.inputWrap input::placeholder {
+  opacity: 0.55 !important;
+}
+
+/* === Align beta + email forms perfectly === */
+
+.forms {
+  align-items: start !important;
+}
+
+.formBlock {
+  display: grid !important;
+  grid-template-rows: 48px 22px 52px 54px auto !important;
+  row-gap: 10px !important;
+}
+
+.formBlockRight {
+  padding-left: 34px !important;
+}
+
+/* Rubrikområdet blir lika högt på båda sidor */
+.formHead {
+  height: 48px !important;
+  margin-bottom: 0 !important;
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 13px !important;
+}
+
+/* Ikonerna hamnar snyggt i samma höjd */
+.formHead span {
+  width: 26px !important;
+  min-width: 26px !important;
+  display: inline-flex !important;
+  justify-content: center !important;
+  align-items: flex-start !important;
+  padding-top: 1px !important;
+}
+
+/* Rubrikerna blir jämna men får fortfarande radbrytas */
+.formHead h3 {
+  min-height: 38px !important;
+  margin: 0 !important;
+  display: flex !important;
+  align-items: flex-start !important;
+  color: #f5f4f0 !important;
+  font-size: 15px !important;
+  line-height: 1.25 !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.18em !important;
+}
+
+/* Label och informationstext tar samma plats */
+.formBlock label,
+.formText {
+  height: 22px !important;
+  margin: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+.formText {
+  color: rgba(245, 244, 240, 0.78) !important;
+  font-size: 15px !important;
+  line-height: 1.35 !important;
+}
+
+/* Input och knapp i exakt samma höjd */
+.inputWrap {
+  height: 52px !important;
+}
+
+.formBlock button {
+  height: 54px !important;
+  margin-top: 0 !important;
+}
+
+/* Hjälptexten under knapparna blir jämnare */
+.helper {
+  margin: 4px 0 0 !important;
+  min-height: 42px !important;
+  color: rgba(245, 244, 240, 0.78) !important;
+}
+
+/* Lite snyggare rubrik på höger så den inte känns för lång */
+.formBlockRight .formHead h3 {
+  max-width: 310px !important;
+}
+
+/* Mobil: låt formulären bete sig normalt */
+@media (max-width: 900px) {
+  .formBlock {
+    grid-template-rows: auto auto 52px 54px auto !important;
+  }
+
+  .formHead,
+  .formBlock label,
+  .formText {
+    height: auto !important;
+  }
+}
+
+
+
+/* === Small heading size adjustment === */
+.intro h2 {
+  font-size: clamp(42px, 3.6vw, 66px) !important;
+  line-height: 1 !important;
+}
+/* === Beta badge polish === */
+.betaBadge {
+  position: relative !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  padding: 12px 18px !important;
+  border-radius: 8px !important;
+  border: 1px solid rgba(34, 210, 185, 0.38) !important;
+  background: linear-gradient(180deg, rgba(6, 34, 40, 0.92), rgba(3, 20, 25, 0.88)) !important;
+  color: #22d2b9 !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.16em !important;
+  text-transform: uppercase !important;
+  box-shadow: 0 0 0 1px rgba(34, 210, 185, 0.04) inset, 0 8px 20px rgba(0, 0, 0, 0.22) !important;
+  backdrop-filter: blur(12px) !important;
+  overflow: hidden !important;
+}
+
+.betaBadge::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, transparent 0%, transparent 35%, rgba(255,255,255,0.09) 50%, transparent 65%, transparent 100%);
+  transform: translateX(-130%);
+  animation: betaBadgeShine 5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.betaBadge::after {
+  content: '';
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(34, 210, 185, 0.5), transparent);
+  opacity: 0.7;
+}
+
+.betaBadge span {
+  position: relative !important;
+  width: 16px !important;
+  height: 16px !important;
+  min-width: 16px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 0 !important;
+  border-radius: 4px !important;
+  border: 1px solid rgba(34, 210, 185, 0.55) !important;
+  background: rgba(34, 210, 185, 0.06) !important;
+  box-shadow: 0 0 10px rgba(34, 210, 185, 0.10) !important;
+}
+
+.betaBadge span::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 2px;
+  background: #22d2b9;
+  box-shadow: 0 0 10px rgba(34, 210, 185, 0.55);
+}
+
+@keyframes betaBadgeShine {
+  0% {
+    transform: translateX(-130%);
+    opacity: 0;
+  }
+  14% {
+    opacity: 0.7;
+  }
+  34% {
+    transform: translateX(130%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(130%);
+    opacity: 0;
   }
 }
