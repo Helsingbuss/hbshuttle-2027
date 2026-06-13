@@ -5,6 +5,12 @@ import { useRouter } from "next/navigation";
 import BetaHeader from "@/components/BetaHeader";
 import SeasonHero from "@/components/SeasonHero";
 import BookingSearch from "@/components/BookingSearch";
+import PopularAirports from "@/components/PopularAirports";
+import TravelHighlights from "@/components/TravelHighlights";
+import BusinessGroupSection from "@/components/BusinessGroupSection";
+import HelpAndAppGrid from "@/components/HelpAndAppGrid";
+import NewsletterBanner from "@/components/NewsletterBanner";
+import SiteFooter from "@/components/SiteFooter";
 
 export default function StartPage() {
   const router = useRouter();
@@ -29,8 +35,26 @@ export default function StartPage() {
       <main className="startPage">
         <SeasonHero />
         <BookingSearch />
+        <PopularAirports />
+        <TravelHighlights />
+        <BusinessGroupSection />
+        <HelpAndAppGrid />
+        <NewsletterBanner />
+        <SiteFooter />
       </main>
     </>
   );
 }
+
+
+
+
+
+
+
+
+
+
+
+
 

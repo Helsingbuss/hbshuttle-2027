@@ -4444,3 +4444,2107 @@ html body .betaHeader {
     margin-right: 210px !important;
   }
 }
+
+/* === ALIGN: Header, hero text and booking module on same grid === */
+
+@media (min-width: 901px) {
+  :root {
+    --hb-content-left: clamp(120px, 10.5vw, 210px);
+    --hb-content-right: clamp(56px, 6vw, 110px);
+  }
+
+  .seasonHeroCleanContent {
+    padding-left: var(--hb-content-left) !important;
+  }
+
+  .bookingSearchWrap {
+    margin-left: var(--hb-content-left) !important;
+    margin-right: var(--hb-content-right) !important;
+  }
+
+  .bookingSearchBox {
+    width: 100% !important;
+  }
+}
+
+@media (min-width: 1450px) {
+  :root {
+    --hb-content-left: clamp(145px, 10.8vw, 220px);
+    --hb-content-right: clamp(70px, 6vw, 120px);
+  }
+}
+
+@media (min-width: 1750px) {
+  :root {
+    --hb-content-left: 210px;
+    --hb-content-right: 120px;
+  }
+}
+
+/* === ALIGN: Header menu with hero and booking grid === */
+
+@media (min-width: 901px) {
+  .betaHeader {
+    padding-left: var(--hb-content-left) !important;
+    padding-right: var(--hb-content-right) !important;
+  }
+
+  .betaLogo {
+    margin-left: 0 !important;
+  }
+
+  .betaNav {
+    margin-right: 0 !important;
+  }
+}
+
+@media (min-width: 1450px) {
+  .betaHeader {
+    padding-left: var(--hb-content-left) !important;
+    padding-right: var(--hb-content-right) !important;
+  }
+}
+
+@media (min-width: 1750px) {
+  .betaHeader {
+    padding-left: var(--hb-content-left) !important;
+    padding-right: var(--hb-content-right) !important;
+  }
+}
+
+/* === Popular airports section === */
+
+.popularAirports {
+  width: auto !important;
+  margin: 54px var(--hb-content-right, 120px) 0 var(--hb-content-left, 210px) !important;
+}
+
+.popularAirportsHead {
+  margin-bottom: 22px !important;
+}
+
+.popularAirportsHead h2 {
+  margin: 0 !important;
+  color: #063547 !important;
+  font-size: 28px !important;
+  line-height: 1.1 !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.6px !important;
+}
+
+.popularAirportsHead span {
+  width: 68px !important;
+  height: 3px !important;
+  display: block !important;
+  margin-top: 14px !important;
+  border-radius: 999px !important;
+  background: linear-gradient(90deg, #007764, rgba(0, 119, 100, 0.12)) !important;
+}
+
+.airportCards {
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: 28px !important;
+}
+
+.airportCard {
+  position: relative !important;
+  min-height: 178px !important;
+  padding: 22px 22px 18px !important;
+  border-radius: 14px !important;
+  border: 1px solid rgba(6, 53, 71, 0.10) !important;
+  background: rgba(255, 255, 255, 0.94) !important;
+  box-shadow:
+    0 14px 34px rgba(6, 53, 71, 0.08),
+    0 2px 8px rgba(6, 53, 71, 0.05) !important;
+  overflow: hidden !important;
+}
+
+.airportCard::before {
+  content: "" !important;
+  position: absolute !important;
+  inset: 0 !important;
+  background:
+    radial-gradient(circle at 28% 18%, rgba(0, 119, 100, 0.08), transparent 34%),
+    linear-gradient(180deg, rgba(255,255,255,0.96), rgba(255,255,255,0.88)) !important;
+  pointer-events: none !important;
+}
+
+.airportCardSoon {
+  opacity: 0.74 !important;
+}
+
+.airportBadge {
+  position: absolute !important;
+  top: 14px !important;
+  right: 14px !important;
+  z-index: 3 !important;
+  padding: 5px 10px !important;
+  border-radius: 999px !important;
+  background: rgba(0, 119, 100, 0.78) !important;
+  color: #ffffff !important;
+  font-size: 12px !important;
+  font-weight: 800 !important;
+  line-height: 1 !important;
+}
+
+.airportArt {
+  position: relative !important;
+  z-index: 2 !important;
+  height: 72px !important;
+  display: flex !important;
+  align-items: flex-end !important;
+  color: #0d6571 !important;
+}
+
+.airportArt svg {
+  width: 158px !important;
+  height: 74px !important;
+  stroke: currentColor !important;
+  stroke-width: 3 !important;
+  stroke-linecap: round !important;
+  stroke-linejoin: round !important;
+  opacity: 0.72 !important;
+}
+
+.airportCardBottom {
+  position: relative !important;
+  z-index: 2 !important;
+  display: flex !important;
+  align-items: flex-end !important;
+  justify-content: space-between !important;
+  gap: 16px !important;
+  margin-top: 18px !important;
+}
+
+.airportCard h3 {
+  margin: 0 !important;
+  color: #063547 !important;
+  font-size: 19px !important;
+  line-height: 1.15 !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.25px !important;
+}
+
+.airportCard p {
+  margin: 6px 0 0 !important;
+  color: rgba(6, 53, 71, 0.72) !important;
+  font-size: 15px !important;
+  line-height: 1.2 !important;
+  font-weight: 600 !important;
+}
+
+.airportCardSoon p {
+  color: rgba(6, 53, 71, 0.52) !important;
+}
+
+.airportArrow {
+  width: 34px !important;
+  height: 34px !important;
+  min-width: 34px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 999px !important;
+  border: 2px solid rgba(6, 53, 71, 0.30) !important;
+  background: rgba(255,255,255,0.78) !important;
+  color: #0d6571 !important;
+  cursor: pointer !important;
+}
+
+.airportArrow svg {
+  width: 18px !important;
+  height: 18px !important;
+  stroke: currentColor !important;
+  stroke-width: 2.2 !important;
+  stroke-linecap: round !important;
+  stroke-linejoin: round !important;
+}
+
+.airportCard:not(.airportCardSoon):hover {
+  transform: translateY(-3px) !important;
+  box-shadow:
+    0 18px 44px rgba(6, 53, 71, 0.12),
+    0 3px 10px rgba(6, 53, 71, 0.06) !important;
+}
+
+.airportCard:not(.airportCardSoon):hover .airportArrow {
+  background: #007764 !important;
+  border-color: #007764 !important;
+  color: #ffffff !important;
+}
+
+@media (max-width: 1100px) {
+  .popularAirports {
+    margin: 44px 18px 0 !important;
+  }
+
+  .airportCards {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 16px !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .popularAirports {
+    margin-top: 34px !important;
+  }
+
+  .popularAirportsHead h2 {
+    font-size: 24px !important;
+  }
+
+  .airportCards {
+    grid-template-columns: 1fr !important;
+  }
+
+  .airportCard {
+    min-height: 158px !important;
+  }
+}
+
+/* === How it works section === */
+
+.howItWorks {
+  width: auto !important;
+  margin: 58px var(--hb-content-right, 120px) 0 var(--hb-content-left, 210px) !important;
+}
+
+.sectionTitle {
+  margin-bottom: 26px !important;
+}
+
+.sectionTitle h2 {
+  margin: 0 !important;
+  color: #063547 !important;
+  font-size: 28px !important;
+  line-height: 1.1 !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.6px !important;
+}
+
+.sectionTitle span {
+  width: 68px !important;
+  height: 3px !important;
+  display: block !important;
+  margin-top: 14px !important;
+  border-radius: 999px !important;
+  background: linear-gradient(90deg, #007764, rgba(0, 119, 100, 0.12)) !important;
+}
+
+.stepsLine {
+  position: relative !important;
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: 34px !important;
+  padding: 8px 0 22px !important;
+}
+
+.stepsLine::before {
+  content: "" !important;
+  position: absolute !important;
+  top: 35px !important;
+  left: 48px !important;
+  right: 48px !important;
+  height: 2px !important;
+  border-top: 2px dashed rgba(6, 53, 71, 0.18) !important;
+  z-index: 0 !important;
+}
+
+.stepItem {
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+.stepTop {
+  position: relative !important;
+  height: 70px !important;
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 16px !important;
+}
+
+.stepNumber {
+  width: 28px !important;
+  height: 28px !important;
+  min-width: 28px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 999px !important;
+  background: #007764 !important;
+  color: #ffffff !important;
+  font-size: 13px !important;
+  font-weight: 800 !important;
+  line-height: 1 !important;
+  box-shadow: 0 8px 18px rgba(0, 119, 100, 0.20) !important;
+}
+
+.stepIcon {
+  width: 58px !important;
+  height: 58px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 999px !important;
+  background: rgba(255, 255, 255, 0.88) !important;
+  border: 1px solid rgba(6, 53, 71, 0.10) !important;
+  color: #0d6571 !important;
+  box-shadow:
+    0 12px 30px rgba(6, 53, 71, 0.08),
+    inset 0 0 0 1px rgba(255,255,255,0.60) !important;
+}
+
+.stepIcon svg {
+  width: 34px !important;
+  height: 34px !important;
+  stroke: currentColor !important;
+  stroke-width: 1.9 !important;
+  stroke-linecap: round !important;
+  stroke-linejoin: round !important;
+}
+
+.stepText {
+  padding-left: 44px !important;
+  max-width: 260px !important;
+}
+
+.stepText h3 {
+  margin: 0 0 7px !important;
+  color: #063547 !important;
+  font-size: 17px !important;
+  line-height: 1.2 !important;
+  font-weight: 800 !important;
+}
+
+.stepText p {
+  margin: 0 !important;
+  color: rgba(6, 53, 71, 0.72) !important;
+  font-size: 14.5px !important;
+  line-height: 1.45 !important;
+  font-weight: 500 !important;
+}
+
+@media (max-width: 1100px) {
+  .howItWorks {
+    margin: 44px 18px 0 !important;
+  }
+
+  .stepsLine {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 28px 20px !important;
+  }
+
+  .stepsLine::before {
+    display: none !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .howItWorks {
+    margin-top: 38px !important;
+  }
+
+  .sectionTitle h2 {
+    font-size: 24px !important;
+  }
+
+  .stepsLine {
+    grid-template-columns: 1fr !important;
+    gap: 18px !important;
+  }
+
+  .stepItem {
+    display: grid !important;
+    grid-template-columns: 80px 1fr !important;
+    align-items: center !important;
+    gap: 12px !important;
+    padding: 16px !important;
+    border-radius: 16px !important;
+    background: rgba(255,255,255,0.92) !important;
+    border: 1px solid rgba(6, 53, 71, 0.09) !important;
+    box-shadow: 0 12px 26px rgba(6, 53, 71, 0.07) !important;
+  }
+
+  .stepTop {
+    height: auto !important;
+    gap: 8px !important;
+  }
+
+  .stepText {
+    padding-left: 0 !important;
+    max-width: none !important;
+  }
+}
+
+/* === TWEAK: smaller How it works heading === */
+
+.howItWorks .sectionTitle h2 {
+  font-size: 24px !important;
+  letter-spacing: -0.4px !important;
+}
+
+@media (max-width: 640px) {
+  .howItWorks .sectionTitle h2 {
+    font-size: 22px !important;
+  }
+}
+
+/* === Travel highlights section === */
+
+.travelHighlights {
+  width: auto !important;
+  margin: 34px var(--hb-content-right, 120px) 0 var(--hb-content-left, 210px) !important;
+}
+
+.travelHighlightGrid {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 28px !important;
+}
+
+.travelHighlightCard {
+  min-height: 220px !important;
+  display: grid !important;
+  grid-template-columns: 44% 56% !important;
+  overflow: hidden !important;
+  border-radius: 15px !important;
+  border: 1px solid rgba(6, 53, 71, 0.10) !important;
+  background: rgba(255, 255, 255, 0.96) !important;
+  box-shadow:
+    0 14px 34px rgba(6, 53, 71, 0.08),
+    0 2px 8px rgba(6, 53, 71, 0.05) !important;
+}
+
+.travelHighlightImageWrap {
+  position: relative !important;
+  min-height: 220px !important;
+  overflow: hidden !important;
+  background: #e9f1ef !important;
+}
+
+.travelHighlightImage {
+  width: 100% !important;
+  height: 100% !important;
+  display: block !important;
+  object-fit: cover !important;
+  object-position: center center !important;
+}
+
+.travelHighlightBadge {
+  position: absolute !important;
+  left: 22px !important;
+  bottom: 22px !important;
+  width: 58px !important;
+  height: 58px !important;
+  display: grid !important;
+  place-items: center !important;
+  border-radius: 999px !important;
+  background: linear-gradient(180deg, #13b79f, #007764) !important;
+  color: #ffffff !important;
+  font-size: 28px !important;
+  font-weight: 700 !important;
+  box-shadow: 0 12px 28px rgba(0, 119, 100, 0.30) !important;
+}
+
+.travelHighlightContent {
+  padding: 30px 28px 26px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+}
+
+.travelHighlightContent h3 {
+  margin: 0 !important;
+  color: #063547 !important;
+  font-size: 23px !important;
+  line-height: 1.22 !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.45px !important;
+}
+
+.travelHighlightContent p {
+  margin: 18px 0 0 !important;
+  color: rgba(6, 53, 71, 0.70) !important;
+  font-size: 15px !important;
+  line-height: 1.55 !important;
+  font-weight: 500 !important;
+}
+
+.travelHighlightLink {
+  width: fit-content !important;
+  margin-top: 22px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 9px !important;
+  color: #007764 !important;
+  text-decoration: none !important;
+  font-size: 15px !important;
+  font-weight: 800 !important;
+}
+
+.travelHighlightLink span {
+  transition: transform 0.18s ease !important;
+}
+
+.travelHighlightCard:hover {
+  transform: translateY(-3px) !important;
+  box-shadow:
+    0 18px 44px rgba(6, 53, 71, 0.12),
+    0 3px 10px rgba(6, 53, 71, 0.06) !important;
+}
+
+.travelHighlightCard:hover .travelHighlightImage {
+  transform: scale(1.04) !important;
+}
+
+.travelHighlightCard:hover .travelHighlightLink span {
+  transform: translateX(3px) !important;
+}
+
+@media (max-width: 1250px) {
+  .travelHighlights {
+    margin: 34px 18px 0 !important;
+  }
+
+  .travelHighlightGrid {
+    grid-template-columns: 1fr !important;
+    gap: 18px !important;
+  }
+
+  .travelHighlightCard {
+    grid-template-columns: 260px 1fr !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .travelHighlightCard {
+    grid-template-columns: 1fr !important;
+  }
+
+  .travelHighlightImageWrap {
+    min-height: 190px !important;
+  }
+
+  .travelHighlightContent {
+    padding: 24px 22px 22px !important;
+  }
+
+  .travelHighlightContent h3 {
+    font-size: 21px !important;
+  }
+}
+
+/* === Timetable and live bus info section === */
+
+.travelInfoGrid {
+  width: auto !important;
+  margin: 38px var(--hb-content-right, 120px) 0 var(--hb-content-left, 210px) !important;
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 28px !important;
+}
+
+.travelInfoCard {
+  min-height: 340px !important;
+  padding: 30px 32px !important;
+  border-radius: 16px !important;
+  border: 1px solid rgba(6, 53, 71, 0.10) !important;
+  background: rgba(255, 255, 255, 0.96) !important;
+  box-shadow:
+    0 14px 34px rgba(6, 53, 71, 0.08),
+    0 2px 8px rgba(6, 53, 71, 0.05) !important;
+}
+
+.travelInfoCard h2 {
+  margin: 0 0 24px !important;
+  color: #063547 !important;
+  font-size: 27px !important;
+  line-height: 1.1 !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.6px !important;
+}
+
+.timetableTable {
+  width: 100% !important;
+}
+
+.timetableHeader,
+.timetableRow {
+  display: grid !important;
+  grid-template-columns: 70px 1.7fr 1.1fr 0.9fr !important;
+  align-items: center !important;
+  gap: 12px !important;
+}
+
+.timetableHeader {
+  padding-bottom: 14px !important;
+  border-bottom: 1px solid rgba(6, 53, 71, 0.10) !important;
+}
+
+.timetableHeader span {
+  color: rgba(6, 53, 71, 0.66) !important;
+  font-size: 13px !important;
+  font-weight: 800 !important;
+}
+
+.timetableRow {
+  min-height: 48px !important;
+  border-bottom: 1px solid rgba(6, 53, 71, 0.07) !important;
+}
+
+.timetableRow span,
+.timetableRow strong {
+  color: #063547 !important;
+  font-size: 15px !important;
+  line-height: 1.3 !important;
+}
+
+.timetableRow span {
+  font-weight: 600 !important;
+}
+
+.timetableRow strong {
+  font-weight: 800 !important;
+}
+
+.travelInfoButton {
+  width: fit-content !important;
+  min-height: 48px !important;
+  margin-top: 24px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 12px !important;
+  padding: 0 26px !important;
+  border-radius: 10px !important;
+  background: linear-gradient(180deg, #13a990, #007764) !important;
+  color: #ffffff !important;
+  text-decoration: none !important;
+  font-size: 15px !important;
+  font-weight: 800 !important;
+  box-shadow: 0 12px 26px rgba(0, 119, 100, 0.22) !important;
+}
+
+.liveBusContent {
+  display: grid !important;
+  grid-template-columns: 1.15fr 0.85fr !important;
+  gap: 28px !important;
+  align-items: start !important;
+}
+
+.liveMap {
+  min-height: 220px !important;
+  border-radius: 12px !important;
+  overflow: hidden !important;
+  background:
+    linear-gradient(135deg, #e7f0ec, #f6faf8) !important;
+  border: 1px solid rgba(6, 53, 71, 0.08) !important;
+}
+
+.liveMapSvg {
+  width: 100% !important;
+  height: 220px !important;
+  display: block !important;
+}
+
+.mapBase {
+  fill: #edf5f1 !important;
+}
+
+.mapAreaOne {
+  fill: #dcebe5 !important;
+}
+
+.mapRoadSoft {
+  stroke: rgba(6, 53, 71, 0.16) !important;
+  stroke-width: 7 !important;
+  stroke-linecap: round !important;
+}
+
+.mapRoute {
+  stroke: #0d8790 !important;
+  stroke-width: 7 !important;
+  stroke-linecap: round !important;
+  stroke-dasharray: 0 !important;
+}
+
+.mapPoint {
+  fill: #ffffff !important;
+  stroke: #0d8790 !important;
+  stroke-width: 5 !important;
+}
+
+.mapBusPin circle {
+  fill: #007764 !important;
+  filter: drop-shadow(0 12px 18px rgba(0, 119, 100, 0.25)) !important;
+}
+
+.mapBusPin path {
+  stroke: #ffffff !important;
+  stroke-width: 2.2 !important;
+  stroke-linecap: round !important;
+  stroke-linejoin: round !important;
+}
+
+.liveBusText p {
+  margin: 0 0 22px !important;
+  color: rgba(6, 53, 71, 0.76) !important;
+  font-size: 15.5px !important;
+  line-height: 1.55 !important;
+  font-weight: 600 !important;
+}
+
+.liveBusText ul {
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: grid !important;
+  gap: 14px !important;
+}
+
+.liveBusText li {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  color: #063547 !important;
+  font-size: 15px !important;
+  font-weight: 700 !important;
+}
+
+.liveBusText li span {
+  width: 32px !important;
+  height: 32px !important;
+  min-width: 32px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 999px !important;
+  background: rgba(0, 119, 100, 0.08) !important;
+  color: #007764 !important;
+}
+
+.liveBusText li svg {
+  width: 19px !important;
+  height: 19px !important;
+  stroke: currentColor !important;
+  stroke-width: 2 !important;
+  stroke-linecap: round !important;
+  stroke-linejoin: round !important;
+}
+
+@media (max-width: 1250px) {
+  .travelInfoGrid {
+    margin: 34px 18px 0 !important;
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (max-width: 720px) {
+  .travelInfoCard {
+    padding: 24px 20px !important;
+  }
+
+  .travelInfoCard h2 {
+    font-size: 23px !important;
+  }
+
+  .timetableHeader {
+    display: none !important;
+  }
+
+  .timetableRow {
+    grid-template-columns: 54px 1fr !important;
+    gap: 8px 12px !important;
+    padding: 12px 0 !important;
+  }
+
+  .timetableRow span:nth-child(3),
+  .timetableRow strong:nth-child(4) {
+    grid-column: 2 !important;
+    color: rgba(6, 53, 71, 0.62) !important;
+  }
+
+  .liveBusContent {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* === Business and group travel section === */
+
+.businessGroupSection {
+  width: auto !important;
+  margin: 46px var(--hb-content-right, 120px) 0 var(--hb-content-left, 210px) !important;
+}
+
+.businessGroupHead {
+  margin-bottom: 22px !important;
+}
+
+.businessGroupHead h2 {
+  margin: 0 !important;
+  color: #063547 !important;
+  font-size: 24px !important;
+  line-height: 1.15 !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.45px !important;
+}
+
+.businessGroupHead p {
+  margin: 8px 0 0 !important;
+  color: rgba(6, 53, 71, 0.70) !important;
+  font-size: 15.5px !important;
+  line-height: 1.5 !important;
+  font-weight: 600 !important;
+}
+
+.businessGroupGrid {
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: 28px !important;
+}
+
+.businessGroupCard {
+  min-height: 144px !important;
+  display: grid !important;
+  grid-template-columns: 58px 1fr !important;
+  gap: 18px !important;
+  align-items: center !important;
+  padding: 24px 24px !important;
+  border-radius: 15px !important;
+  border: 1px solid rgba(6, 53, 71, 0.10) !important;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,255,255,0.92)) !important;
+  box-shadow:
+    0 14px 34px rgba(6, 53, 71, 0.07),
+    0 2px 8px rgba(6, 53, 71, 0.04) !important;
+}
+
+.businessGroupIcon {
+  width: 54px !important;
+  height: 54px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 14px !important;
+  background: rgba(0, 119, 100, 0.08) !important;
+  color: #0d6571 !important;
+}
+
+.businessGroupIcon svg {
+  width: 31px !important;
+  height: 31px !important;
+  stroke: currentColor !important;
+  stroke-width: 1.85 !important;
+  stroke-linecap: round !important;
+  stroke-linejoin: round !important;
+}
+
+.businessGroupText h3 {
+  margin: 0 !important;
+  color: #063547 !important;
+  font-size: 18px !important;
+  line-height: 1.2 !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.25px !important;
+}
+
+.businessGroupText p {
+  margin: 11px 0 0 !important;
+  color: rgba(6, 53, 71, 0.70) !important;
+  font-size: 14.5px !important;
+  line-height: 1.5 !important;
+  font-weight: 500 !important;
+}
+
+.businessGroupButton {
+  width: fit-content !important;
+  min-height: 38px !important;
+  margin-top: 14px !important;
+  padding: 0 18px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 10px !important;
+  border-radius: 999px !important;
+  border: 1px solid rgba(0, 119, 100, 0.24) !important;
+  background: rgba(255, 255, 255, 0.82) !important;
+  color: #007764 !important;
+  text-decoration: none !important;
+  font-size: 14px !important;
+  font-weight: 800 !important;
+}
+
+.businessGroupCard:hover {
+  transform: translateY(-3px) !important;
+  box-shadow:
+    0 18px 44px rgba(6, 53, 71, 0.11),
+    0 3px 10px rgba(6, 53, 71, 0.05) !important;
+}
+
+.businessGroupCard:hover .businessGroupIcon {
+  background: #007764 !important;
+  color: #ffffff !important;
+}
+
+.businessGroupCard:hover .businessGroupButton {
+  background: #007764 !important;
+  color: #ffffff !important;
+}
+
+@media (max-width: 1250px) {
+  .businessGroupSection {
+    margin: 38px 18px 0 !important;
+  }
+
+  .businessGroupGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 18px !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .businessGroupHead h2 {
+    font-size: 22px !important;
+  }
+
+  .businessGroupGrid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .businessGroupCard {
+    min-height: auto !important;
+    padding: 20px !important;
+  }
+}
+
+/* === Trust stats / launch facts section === */
+
+.trustStats {
+  width: auto !important;
+  margin: 42px var(--hb-content-right, 120px) 0 var(--hb-content-left, 210px) !important;
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: 28px !important;
+  padding: 10px 0 6px !important;
+}
+
+.trustStatItem {
+  display: grid !important;
+  grid-template-columns: 58px 1fr !important;
+  gap: 16px !important;
+  align-items: center !important;
+}
+
+.trustStatIcon {
+  width: 54px !important;
+  height: 54px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 999px !important;
+  border: 2px solid rgba(0, 119, 100, 0.18) !important;
+  background: rgba(255, 255, 255, 0.88) !important;
+  color: #0d6571 !important;
+  box-shadow: 0 10px 24px rgba(6, 53, 71, 0.06) !important;
+}
+
+.trustStatIcon svg {
+  width: 28px !important;
+  height: 28px !important;
+  stroke: currentColor !important;
+  stroke-width: 1.9 !important;
+  stroke-linecap: round !important;
+  stroke-linejoin: round !important;
+}
+
+.trustStatItem h3 {
+  margin: 0 !important;
+  color: #063547 !important;
+  font-size: 22px !important;
+  line-height: 1.15 !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.35px !important;
+}
+
+.trustStatItem p {
+  margin: 5px 0 0 !important;
+  color: rgba(6, 53, 71, 0.68) !important;
+  font-size: 14.5px !important;
+  line-height: 1.35 !important;
+  font-weight: 600 !important;
+}
+
+@media (max-width: 1100px) {
+  .trustStats {
+    margin: 36px 18px 0 !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 22px !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .trustStats {
+    grid-template-columns: 1fr !important;
+    gap: 18px !important;
+  }
+
+  .trustStatItem {
+    padding: 16px !important;
+    border-radius: 16px !important;
+    background: rgba(255,255,255,0.92) !important;
+    border: 1px solid rgba(6, 53, 71, 0.08) !important;
+  }
+
+  .trustStatItem h3 {
+    font-size: 20px !important;
+  }
+}
+
+/* === FAQ and mobile app promo section === */
+
+.helpAndAppGrid {
+  width: auto !important;
+  margin: 44px var(--hb-content-right, 120px) 0 var(--hb-content-left, 210px) !important;
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 28px !important;
+}
+
+.faqCard,
+.mobileAppPromo {
+  min-height: 380px !important;
+  border-radius: 16px !important;
+  border: 1px solid rgba(6, 53, 71, 0.10) !important;
+  background: rgba(255, 255, 255, 0.96) !important;
+  box-shadow:
+    0 14px 34px rgba(6, 53, 71, 0.08),
+    0 2px 8px rgba(6, 53, 71, 0.05) !important;
+}
+
+.faqCard {
+  padding: 30px 32px !important;
+}
+
+.faqCard h2,
+.mobileAppText h2 {
+  margin: 0 !important;
+  color: #063547 !important;
+  font-size: 26px !important;
+  line-height: 1.15 !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.55px !important;
+}
+
+.faqList {
+  margin-top: 22px !important;
+  display: grid !important;
+  gap: 9px !important;
+}
+
+.faqItem {
+  border-radius: 10px !important;
+  border: 1px solid rgba(6, 53, 71, 0.10) !important;
+  background: rgba(255, 255, 255, 0.78) !important;
+  overflow: hidden !important;
+}
+
+.faqQuestion {
+  width: 100% !important;
+  min-height: 46px !important;
+  padding: 0 16px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 14px !important;
+  border: 0 !important;
+  background: transparent !important;
+  color: #063547 !important;
+  font-family: inherit !important;
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  text-align: left !important;
+  cursor: pointer !important;
+}
+
+.faqChevron {
+  width: 18px !important;
+  height: 18px !important;
+  min-width: 18px !important;
+  stroke: rgba(6, 53, 71, 0.70) !important;
+  stroke-width: 2.2 !important;
+  stroke-linecap: round !important;
+  stroke-linejoin: round !important;
+  transition: transform 0.18s ease !important;
+}
+
+.faqChevron.open {
+  transform: rotate(180deg) !important;
+}
+
+.faqAnswer {
+  margin: 0 !important;
+  padding: 0 16px 15px !important;
+  color: rgba(6, 53, 71, 0.70) !important;
+  font-size: 14px !important;
+  line-height: 1.5 !important;
+  font-weight: 500 !important;
+}
+
+.mobileAppPromo {
+  display: grid !important;
+  grid-template-columns: 0.85fr 1.15fr !important;
+  gap: 26px !important;
+  align-items: center !important;
+  padding: 28px 34px !important;
+  overflow: hidden !important;
+}
+
+.phoneMockup {
+  display: flex !important;
+  justify-content: center !important;
+}
+
+.phoneFrame {
+  width: 168px !important;
+  height: 315px !important;
+  padding: 10px !important;
+  border-radius: 32px !important;
+  background: #07191f !important;
+  box-shadow:
+    0 20px 42px rgba(6, 53, 71, 0.22),
+    inset 0 0 0 2px rgba(255,255,255,0.10) !important;
+}
+
+.phoneTop {
+  width: 50px !important;
+  height: 5px !important;
+  margin: 0 auto 8px !important;
+  border-radius: 999px !important;
+  background: rgba(255,255,255,0.28) !important;
+}
+
+.phoneScreen {
+  height: calc(100% - 13px) !important;
+  border-radius: 23px !important;
+  overflow: hidden !important;
+  background: #f5f7f6 !important;
+}
+
+.phoneHeader {
+  padding: 15px !important;
+  background: linear-gradient(180deg, #0f7f76, #006f63) !important;
+  color: #ffffff !important;
+}
+
+.phoneHeader span {
+  display: block !important;
+  font-size: 13px !important;
+  font-weight: 800 !important;
+}
+
+.phoneHeader small {
+  display: block !important;
+  margin-top: 2px !important;
+  opacity: 0.78 !important;
+  font-size: 10px !important;
+}
+
+.phoneTicket {
+  margin: 14px !important;
+  padding: 14px !important;
+  border-radius: 16px !important;
+  background: #ffffff !important;
+  box-shadow: 0 10px 24px rgba(6, 53, 71, 0.10) !important;
+  text-align: center !important;
+}
+
+.qrMock {
+  width: 96px !important;
+  height: 96px !important;
+  margin: 0 auto 12px !important;
+  display: grid !important;
+  grid-template-columns: repeat(7, 1fr) !important;
+  gap: 3px !important;
+  padding: 8px !important;
+  background: #ffffff !important;
+  border: 1px solid rgba(6, 53, 71, 0.14) !important;
+}
+
+.qrMock span {
+  background: transparent !important;
+}
+
+.qrMock span.dark {
+  background: #063547 !important;
+}
+
+.phoneTicket p {
+  margin: 0 !important;
+  color: rgba(6, 53, 71, 0.62) !important;
+  font-size: 10px !important;
+  font-weight: 600 !important;
+}
+
+.phoneTicket strong {
+  display: block !important;
+  margin-top: 3px !important;
+  color: #063547 !important;
+  font-size: 12px !important;
+  line-height: 1.2 !important;
+}
+
+.phoneTicket button {
+  width: 100% !important;
+  height: 36px !important;
+  margin-top: 14px !important;
+  border: 0 !important;
+  border-radius: 10px !important;
+  background: #007764 !important;
+  color: #ffffff !important;
+  font-size: 12px !important;
+  font-weight: 800 !important;
+}
+
+.mobileAppText ul {
+  list-style: none !important;
+  margin: 24px 0 0 !important;
+  padding: 0 !important;
+  display: grid !important;
+  gap: 12px !important;
+}
+
+.mobileAppText li {
+  display: flex !important;
+  align-items: center !important;
+  gap: 11px !important;
+  color: #063547 !important;
+  font-size: 15px !important;
+  font-weight: 700 !important;
+}
+
+.mobileAppText li span {
+  width: 27px !important;
+  height: 27px !important;
+  min-width: 27px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 999px !important;
+  background: rgba(0, 119, 100, 0.10) !important;
+  color: #007764 !important;
+}
+
+.mobileAppText li svg {
+  width: 16px !important;
+  height: 16px !important;
+  stroke: currentColor !important;
+  stroke-width: 2.4 !important;
+  stroke-linecap: round !important;
+  stroke-linejoin: round !important;
+}
+
+.appStoreButtons {
+  margin-top: 24px !important;
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 12px !important;
+}
+
+.storeButton {
+  min-width: 132px !important;
+  height: 48px !important;
+  padding: 0 16px !important;
+  border: 0 !important;
+  border-radius: 9px !important;
+  background: #05090b !important;
+  color: #ffffff !important;
+  text-align: left !important;
+  cursor: pointer !important;
+}
+
+.storeButton small {
+  display: block !important;
+  font-size: 9px !important;
+  line-height: 1 !important;
+  opacity: 0.75 !important;
+}
+
+.storeButton strong {
+  display: block !important;
+  margin-top: 4px !important;
+  font-size: 15px !important;
+  line-height: 1 !important;
+}
+
+@media (max-width: 1250px) {
+  .helpAndAppGrid {
+    margin: 38px 18px 0 !important;
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (max-width: 700px) {
+  .faqCard,
+  .mobileAppPromo {
+    min-height: auto !important;
+  }
+
+  .faqCard {
+    padding: 24px 20px !important;
+  }
+
+  .mobileAppPromo {
+    grid-template-columns: 1fr !important;
+    padding: 24px 20px !important;
+  }
+
+  .phoneFrame {
+    width: 150px !important;
+    height: 285px !important;
+  }
+
+  .faqCard h2,
+  .mobileAppText h2 {
+    font-size: 23px !important;
+  }
+}
+
+/* === iPhone-like app promo mockup === */
+
+.phoneMockup {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+.hbPhone {
+  width: 190px !important;
+  height: 372px !important;
+  padding: 10px !important;
+  border-radius: 34px !important;
+  background: linear-gradient(180deg, #111111 0%, #050505 100%) !important;
+  box-shadow:
+    0 24px 44px rgba(0, 0, 0, 0.22),
+    0 10px 18px rgba(6, 53, 71, 0.12),
+    inset 0 0 0 2px rgba(255,255,255,0.08) !important;
+  position: relative !important;
+}
+
+.hbPhoneNotch {
+  position: absolute !important;
+  top: 10px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  width: 78px !important;
+  height: 18px !important;
+  border-radius: 0 0 14px 14px !important;
+  background: #0b0b0b !important;
+  z-index: 3 !important;
+}
+
+.hbPhoneScreen {
+  width: 100% !important;
+  height: 100% !important;
+  border-radius: 26px !important;
+  overflow: hidden !important;
+  background: #f5f6f7 !important;
+  position: relative !important;
+}
+
+.hbPhoneTopbar {
+  height: 74px !important;
+  padding: 18px 14px 12px !important;
+  display: flex !important;
+  align-items: flex-start !important;
+  justify-content: space-between !important;
+  background: linear-gradient(180deg, #0d8578 0%, #006f63 100%) !important;
+  color: #ffffff !important;
+}
+
+.hbPhoneBrand {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 8px !important;
+}
+
+.hbPhoneLogoDot {
+  width: 10px !important;
+  height: 10px !important;
+  border-radius: 999px !important;
+  background: rgba(255,255,255,0.95) !important;
+  margin-top: 4px !important;
+}
+
+.hbPhoneBrand strong {
+  display: block !important;
+  font-size: 11px !important;
+  line-height: 1.1 !important;
+  font-weight: 700 !important;
+}
+
+.hbPhoneBrand small {
+  display: block !important;
+  font-size: 9px !important;
+  line-height: 1.1 !important;
+  opacity: 0.82 !important;
+  margin-top: 2px !important;
+}
+
+.hbPhoneTopIcons {
+  display: flex !important;
+  gap: 6px !important;
+  margin-top: 2px !important;
+}
+
+.hbPhoneTopIcons span {
+  width: 8px !important;
+  height: 8px !important;
+  border-radius: 999px !important;
+  background: rgba(255,255,255,0.78) !important;
+}
+
+.hbTicketCard {
+  width: calc(100% - 24px) !important;
+  margin: 16px auto 0 !important;
+  padding: 14px 14px 12px !important;
+  border-radius: 16px !important;
+  background: #ffffff !important;
+  box-shadow:
+    0 10px 24px rgba(6, 53, 71, 0.10),
+    0 2px 5px rgba(6, 53, 71, 0.05) !important;
+  text-align: center !important;
+}
+
+.hbTicketHeader {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  margin-bottom: 14px !important;
+  color: #6a7980 !important;
+  font-size: 10px !important;
+  font-weight: 600 !important;
+}
+
+.hbTicketHeader strong {
+  color: #5d6b73 !important;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+}
+
+.hbQrWrap {
+  display: flex !important;
+  justify-content: center !important;
+  margin-bottom: 10px !important;
+}
+
+.hbQrCode {
+  width: 94px !important;
+  height: 94px !important;
+  display: grid !important;
+  grid-template-columns: repeat(9, 1fr) !important;
+  gap: 2px !important;
+  padding: 6px !important;
+  background: #ffffff !important;
+  border: 1px solid rgba(6, 53, 71, 0.15) !important;
+}
+
+.hbQrCode span {
+  background: transparent !important;
+}
+
+.hbQrCode span.dark {
+  background: #111111 !important;
+}
+
+.hbTicketCode {
+  color: #222222 !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  letter-spacing: 1px !important;
+  margin-bottom: 12px !important;
+}
+
+.hbTicketButton {
+  width: 100% !important;
+  height: 38px !important;
+  border: 0 !important;
+  border-radius: 10px !important;
+  background: linear-gradient(180deg, #0d8578 0%, #006f63 100%) !important;
+  color: #ffffff !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  cursor: pointer !important;
+}
+
+.hbTicketSubtext {
+  margin: 8px 0 0 !important;
+  color: #8d969b !important;
+  font-size: 10px !important;
+  font-weight: 500 !important;
+}
+
+@media (max-width: 700px) {
+  .hbPhone {
+    width: 170px !important;
+    height: 336px !important;
+  }
+
+  .hbPhoneNotch {
+    width: 72px !important;
+    height: 16px !important;
+  }
+
+  .hbTicketCard {
+    margin-top: 14px !important;
+  }
+
+  .hbQrCode {
+    width: 86px !important;
+    height: 86px !important;
+  }
+}
+
+/* === Newsletter banner === */
+
+.newsletterBanner {
+  position: relative !important;
+  width: auto !important;
+  min-height: 118px !important;
+  margin: 44px var(--hb-content-right, 120px) 0 var(--hb-content-left, 210px) !important;
+  padding: 24px 32px !important;
+  display: grid !important;
+  grid-template-columns: 68px 1fr minmax(360px, 520px) 130px !important;
+  gap: 20px !important;
+  align-items: center !important;
+  overflow: hidden !important;
+  border-radius: 16px !important;
+  background:
+    radial-gradient(circle at 12% 50%, rgba(34, 210, 185, 0.16), transparent 26%),
+    linear-gradient(135deg, #063547 0%, #075663 48%, #007764 100%) !important;
+  border: 1px solid rgba(245, 244, 240, 0.10) !important;
+  box-shadow:
+    0 18px 44px rgba(6, 53, 71, 0.16),
+    0 2px 8px rgba(6, 53, 71, 0.08) !important;
+  color: #ffffff !important;
+}
+
+.newsletterBanner::after {
+  content: "" !important;
+  position: absolute !important;
+  right: -80px !important;
+  bottom: -70px !important;
+  width: 360px !important;
+  height: 160px !important;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(255,255,255,0.22), transparent 55%) !important;
+  opacity: 0.55 !important;
+  pointer-events: none !important;
+}
+
+.newsletterIcon {
+  position: relative !important;
+  z-index: 2 !important;
+  width: 58px !important;
+  height: 58px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 999px !important;
+  background: rgba(255,255,255,0.12) !important;
+  color: #f5f4f0 !important;
+  border: 1px solid rgba(245,244,240,0.18) !important;
+}
+
+.newsletterIcon svg {
+  width: 30px !important;
+  height: 30px !important;
+  stroke: currentColor !important;
+  stroke-width: 1.8 !important;
+  stroke-linecap: round !important;
+  stroke-linejoin: round !important;
+}
+
+.newsletterText {
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+.newsletterText h2 {
+  margin: 0 !important;
+  color: #ffffff !important;
+  font-size: 25px !important;
+  line-height: 1.15 !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.45px !important;
+}
+
+.newsletterText p {
+  margin: 7px 0 0 !important;
+  color: rgba(245,244,240,0.78) !important;
+  font-size: 14.5px !important;
+  line-height: 1.45 !important;
+  font-weight: 500 !important;
+}
+
+.newsletterForm {
+  position: relative !important;
+  z-index: 3 !important;
+  display: grid !important;
+  grid-template-columns: 1fr 150px !important;
+  gap: 0 !important;
+  align-items: center !important;
+}
+
+.newsletterInputWrap {
+  height: 50px !important;
+  display: grid !important;
+  grid-template-columns: 42px 1fr !important;
+  align-items: center !important;
+  background: #ffffff !important;
+  border-radius: 10px 0 0 10px !important;
+  border: 1px solid rgba(255,255,255,0.65) !important;
+  overflow: hidden !important;
+}
+
+.newsletterInputWrap span {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  color: #007764 !important;
+}
+
+.newsletterInputWrap svg {
+  width: 20px !important;
+  height: 20px !important;
+  stroke: currentColor !important;
+  stroke-width: 1.9 !important;
+  stroke-linecap: round !important;
+  stroke-linejoin: round !important;
+}
+
+.newsletterInputWrap input {
+  width: 100% !important;
+  height: 100% !important;
+  border: 0 !important;
+  outline: none !important;
+  background: transparent !important;
+  color: #063547 !important;
+  font-family: inherit !important;
+  font-size: 14.5px !important;
+  font-weight: 600 !important;
+}
+
+.newsletterInputWrap input::placeholder {
+  color: rgba(6, 53, 71, 0.48) !important;
+}
+
+.newsletterForm button {
+  height: 50px !important;
+  border: 1px solid rgba(245,244,240,0.42) !important;
+  border-left: 0 !important;
+  border-radius: 0 10px 10px 0 !important;
+  background: linear-gradient(180deg, #13a990, #007764) !important;
+  color: #ffffff !important;
+  font-family: inherit !important;
+  font-size: 14.5px !important;
+  font-weight: 800 !important;
+  cursor: pointer !important;
+}
+
+.newsletterPlane {
+  position: relative !important;
+  z-index: 2 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  color: rgba(245,244,240,0.88) !important;
+}
+
+.newsletterPlane svg {
+  width: 128px !important;
+  height: 70px !important;
+  stroke: currentColor !important;
+  stroke-width: 3 !important;
+  stroke-linecap: round !important;
+  stroke-linejoin: round !important;
+}
+
+.newsletterPlane path:first-child {
+  stroke-dasharray: 7 8 !important;
+  opacity: 0.72 !important;
+}
+
+@media (max-width: 1250px) {
+  .newsletterBanner {
+    margin: 38px 18px 0 !important;
+    grid-template-columns: 58px 1fr !important;
+  }
+
+  .newsletterForm {
+    grid-column: 1 / -1 !important;
+  }
+
+  .newsletterPlane {
+    position: absolute !important;
+    right: 18px !important;
+    top: 18px !important;
+    opacity: 0.32 !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .newsletterBanner {
+    min-height: auto !important;
+    padding: 22px !important;
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+    border-radius: 18px !important;
+  }
+
+  .newsletterIcon {
+    width: 52px !important;
+    height: 52px !important;
+  }
+
+  .newsletterText h2 {
+    font-size: 22px !important;
+  }
+
+  .newsletterForm {
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+  }
+
+  .newsletterInputWrap,
+  .newsletterForm button {
+    border-radius: 10px !important;
+    border: 1px solid rgba(255,255,255,0.45) !important;
+  }
+
+  .newsletterPlane {
+    display: none !important;
+  }
+}
+
+/* === Site footer === */
+
+.siteFooter {
+  margin-top: 0 !important;
+  background:
+    radial-gradient(circle at 10% 20%, rgba(34, 210, 185, 0.10), transparent 28%),
+    linear-gradient(135deg, #063547 0%, #075663 52%, #00645b 100%) !important;
+  color: #f5f4f0 !important;
+}
+
+.siteFooterMain {
+  width: auto !important;
+  margin: 0 var(--hb-content-right, 120px) 0 var(--hb-content-left, 210px) !important;
+  padding: 42px 0 38px !important;
+  display: grid !important;
+  grid-template-columns: 1.25fr 1.05fr 0.75fr 0.75fr 120px !important;
+  gap: 48px !important;
+  align-items: start !important;
+}
+
+.footerLogo {
+  width: fit-content !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  color: #ffffff !important;
+  text-decoration: none !important;
+}
+
+.footerLogoMark {
+  width: 42px !important;
+  height: 42px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 999px !important;
+  border: 2px solid rgba(245, 244, 240, 0.75) !important;
+  color: #ffffff !important;
+  font-size: 20px !important;
+  font-weight: 800 !important;
+}
+
+.footerLogo strong {
+  display: block !important;
+  color: #ffffff !important;
+  font-size: 25px !important;
+  line-height: 1 !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.08em !important;
+}
+
+.footerLogo small {
+  display: block !important;
+  margin-top: 5px !important;
+  color: rgba(245, 244, 240, 0.74) !important;
+  font-size: 11px !important;
+  line-height: 1 !important;
+  font-weight: 600 !important;
+}
+
+.footerBrand p {
+  max-width: 280px !important;
+  margin: 24px 0 0 !important;
+  color: rgba(245, 244, 240, 0.78) !important;
+  font-size: 15px !important;
+  line-height: 1.55 !important;
+  font-weight: 500 !important;
+}
+
+.footerColumn h3 {
+  margin: 0 0 18px !important;
+  color: #ffffff !important;
+  font-size: 14px !important;
+  line-height: 1 !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+}
+
+.footerContactList,
+.footerQuickLinks {
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: grid !important;
+  gap: 11px !important;
+}
+
+.footerContactList li {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 10px !important;
+  color: rgba(245, 244, 240, 0.78) !important;
+  font-size: 14px !important;
+  line-height: 1.4 !important;
+  font-weight: 500 !important;
+}
+
+.footerContactList svg {
+  width: 18px !important;
+  height: 18px !important;
+  min-width: 18px !important;
+  margin-top: 1px !important;
+  stroke: #22d2b9 !important;
+  stroke-width: 1.9 !important;
+  stroke-linecap: round !important;
+  stroke-linejoin: round !important;
+}
+
+.footerQuickLinks a {
+  color: rgba(245, 244, 240, 0.82) !important;
+  text-decoration: none !important;
+  font-size: 14px !important;
+  line-height: 1.2 !important;
+  font-weight: 600 !important;
+}
+
+.footerQuickLinks a:hover {
+  color: #22d2b9 !important;
+}
+
+.footerSocials {
+  display: flex !important;
+  gap: 13px !important;
+}
+
+.footerSocials a {
+  width: 42px !important;
+  height: 42px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 999px !important;
+  border: 1px solid rgba(245, 244, 240, 0.42) !important;
+  color: #ffffff !important;
+  text-decoration: none !important;
+}
+
+.footerSocials a:hover {
+  background: rgba(255,255,255,0.10) !important;
+  border-color: rgba(245, 244, 240, 0.72) !important;
+}
+
+.footerSocials svg {
+  width: 21px !important;
+  height: 21px !important;
+  stroke: currentColor !important;
+  stroke-width: 1.9 !important;
+  stroke-linecap: round !important;
+  stroke-linejoin: round !important;
+}
+
+.footerStamp {
+  display: flex !important;
+  justify-content: flex-end !important;
+}
+
+.footerStamp > div {
+  width: 112px !important;
+  height: 112px !important;
+  display: grid !important;
+  place-items: center !important;
+  border-radius: 999px !important;
+  border: 2px solid rgba(245, 244, 240, 0.62) !important;
+  color: #ffffff !important;
+  text-align: center !important;
+  transform: rotate(-12deg) !important;
+}
+
+.footerStamp span {
+  display: block !important;
+  font-size: 10px !important;
+  line-height: 1 !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+}
+
+.footerStamp strong {
+  display: block !important;
+  margin: 4px 0 !important;
+  font-size: 34px !important;
+  line-height: 1 !important;
+  font-weight: 900 !important;
+}
+
+.siteFooterBottom {
+  width: auto !important;
+  margin: 0 var(--hb-content-right, 120px) 0 var(--hb-content-left, 210px) !important;
+  padding: 20px 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 22px !important;
+  border-top: 1px solid rgba(245, 244, 240, 0.16) !important;
+}
+
+.siteFooterBottom p {
+  margin: 0 !important;
+  color: rgba(245, 244, 240, 0.70) !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+}
+
+.siteFooterBottom div {
+  display: flex !important;
+  gap: 30px !important;
+  align-items: center !important;
+}
+
+.siteFooterBottom a {
+  color: rgba(245, 244, 240, 0.72) !important;
+  text-decoration: none !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+}
+
+.siteFooterBottom a:hover {
+  color: #22d2b9 !important;
+}
+
+@media (max-width: 1250px) {
+  .siteFooterMain,
+  .siteFooterBottom {
+    margin-left: 18px !important;
+    margin-right: 18px !important;
+  }
+
+  .siteFooterMain {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 34px !important;
+  }
+
+  .footerStamp {
+    justify-content: flex-start !important;
+  }
+}
+
+@media (max-width: 700px) {
+  .siteFooterMain {
+    grid-template-columns: 1fr !important;
+    padding: 34px 0 28px !important;
+  }
+
+  .footerLogo strong {
+    font-size: 21px !important;
+  }
+
+  .siteFooterBottom {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+
+  .siteFooterBottom div {
+    flex-wrap: wrap !important;
+    gap: 14px 22px !important;
+  }
+}
+
+/* === TWEAK: spacing between newsletter and footer === */
+
+.newsletterBanner {
+  margin-bottom: 64px !important;
+}
+
+.siteFooter {
+  margin-top: 0 !important;
+}
+
+@media (max-width: 700px) {
+  .newsletterBanner {
+    margin-bottom: 42px !important;
+  }
+}
+
+/* === FIX: Footer round stamp like reference === */
+
+.footerStamp {
+  display: flex !important;
+  justify-content: flex-end !important;
+  align-items: center !important;
+}
+
+.footerStampSvg {
+  width: 112px !important;
+  height: 112px !important;
+  transform: rotate(-10deg) !important;
+  overflow: visible !important;
+}
+
+.footerStampSvg circle {
+  fill: transparent !important;
+  stroke: rgba(245, 244, 240, 0.72) !important;
+  stroke-width: 3 !important;
+}
+
+.footerStampText {
+  fill: #ffffff !important;
+  font-size: 13px !important;
+  font-weight: 900 !important;
+  letter-spacing: 1.8px !important;
+  text-transform: uppercase !important;
+}
+
+.footerStampH {
+  fill: #ffffff !important;
+  font-size: 40px !important;
+  font-weight: 900 !important;
+  letter-spacing: 0 !important;
+}
+
+@media (max-width: 700px) {
+  .footerStamp {
+    justify-content: flex-start !important;
+  }
+
+  .footerStampSvg {
+    width: 96px !important;
+    height: 96px !important;
+  }
+}
