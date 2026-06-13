@@ -3341,3 +3341,1106 @@ a {
     display: inline-flex !important;
   }
 }
+
+/* === Seasonal hero section === */
+
+.seasonHero {
+  position: relative;
+  min-height: 560px;
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(245, 244, 240, 0.10);
+  background: #031116;
+}
+
+.seasonHeroImage {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  transform: scale(1.01);
+}
+
+.seasonHeroImage::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(3, 17, 22, 0.86) 0%, rgba(3, 17, 22, 0.58) 42%, rgba(3, 17, 22, 0.16) 100%),
+    linear-gradient(180deg, rgba(3, 17, 22, 0.18), rgba(3, 17, 22, 0.52));
+}
+
+.seasonHeroGlow {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 18% 72%, rgba(34, 210, 185, 0.16), transparent 30%),
+    radial-gradient(circle at 70% 18%, rgba(255, 255, 255, 0.08), transparent 24%);
+  animation: seasonGlow 5s ease-in-out infinite;
+}
+
+.seasonHeroContent {
+  position: relative;
+  z-index: 2;
+  width: min(760px, 100%);
+  padding: 78px 58px;
+}
+
+.seasonEyebrow {
+  width: fit-content;
+  margin: 0 0 20px;
+  padding: 10px 15px;
+  border: 1px solid rgba(34, 210, 185, 0.38);
+  border-radius: 8px;
+  background: rgba(0, 184, 157, 0.10);
+  color: #22d2b9;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.seasonHeroContent h1 {
+  margin: 0;
+  color: #f5f4f0;
+  font-size: clamp(44px, 5vw, 78px);
+  line-height: 0.98;
+  font-weight: 500;
+  letter-spacing: -2.2px;
+  text-shadow: 0 3px 24px rgba(0, 0, 0, 0.34);
+}
+
+.seasonHeroContent h1 span {
+  display: block;
+  margin-top: 8px;
+  color: #12bea6;
+}
+
+.seasonText {
+  max-width: 620px;
+  margin: 24px 0 0;
+  color: rgba(245, 244, 240, 0.82);
+  font-size: 17px;
+  line-height: 1.7;
+}
+
+.seasonActions {
+  margin-top: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.seasonPrimary,
+.seasonSecondary {
+  min-height: 52px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 24px;
+  border-radius: 999px;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.seasonPrimary {
+  background: linear-gradient(180deg, #12a890, #007764);
+  box-shadow: 0 14px 36px rgba(0, 119, 100, 0.28);
+}
+
+.seasonSecondary {
+  border: 1px solid rgba(245, 244, 240, 0.22);
+  background: rgba(245, 244, 240, 0.07);
+  color: #f5f4f0;
+}
+
+@keyframes seasonGlow {
+  0%,
+  100% {
+    opacity: 0.64;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 900px) {
+  .seasonHero {
+    min-height: 620px;
+  }
+
+  .seasonHeroImage::after {
+    background:
+      linear-gradient(180deg, rgba(3, 17, 22, 0.22) 0%, rgba(3, 17, 22, 0.54) 48%, rgba(3, 17, 22, 0.88) 100%);
+  }
+
+  .seasonHeroContent {
+    width: 100%;
+    padding: 260px 20px 42px;
+  }
+
+  .seasonHeroContent h1 {
+    font-size: 38px;
+    line-height: 1.03;
+    letter-spacing: -1.2px;
+  }
+
+  .seasonText {
+    font-size: 15px;
+    line-height: 1.65;
+  }
+
+  .seasonActions {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .seasonPrimary,
+  .seasonSecondary {
+    width: 100%;
+  }
+}
+
+@media (max-width: 520px) {
+  .seasonHero {
+    min-height: 590px;
+  }
+
+  .seasonHeroContent {
+    padding-top: 250px;
+  }
+
+  .seasonHeroContent h1 {
+    font-size: 34px;
+  }
+
+  .seasonEyebrow {
+    font-size: 11.5px;
+    letter-spacing: 0.12em;
+  }
+}
+
+/* === HB Shuttle start hero - clean airport style === */
+
+.startPage {
+  background: #f5f7f6 !important;
+  min-height: 100vh !important;
+}
+
+.seasonHeroClean {
+  position: relative !important;
+  height: 360px !important;
+  min-height: 360px !important;
+  overflow: visible !important;
+  background: #eef4f2 !important;
+  border-bottom: none !important;
+}
+
+.seasonHeroCleanBg {
+  position: absolute !important;
+  inset: 0 !important;
+  background-size: cover !important;
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+}
+
+.seasonHeroCleanOverlay {
+  position: absolute !important;
+  inset: 0 !important;
+  background:
+    linear-gradient(90deg, rgba(255,255,255,0.92) 0%, rgba(255,255,255,0.78) 27%, rgba(255,255,255,0.26) 52%, rgba(255,255,255,0.04) 100%) !important;
+}
+
+.seasonHeroCleanContent {
+  position: relative !important;
+  z-index: 2 !important;
+  width: min(520px, calc(100% - 48px)) !important;
+  padding: 54px 0 0 72px !important;
+}
+
+.seasonHeroCleanLabel {
+  margin: 0 0 10px !important;
+  color: #007764 !important;
+  font-size: 13px !important;
+  line-height: 1 !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+}
+
+.seasonHeroCleanContent h1 {
+  margin: 0 !important;
+  color: #063547 !important;
+  font-size: clamp(34px, 3.5vw, 48px) !important;
+  line-height: 1.08 !important;
+  font-weight: 600 !important;
+  letter-spacing: -1.4px !important;
+}
+
+.seasonHeroCleanContent p:not(.seasonHeroCleanLabel) {
+  max-width: 390px !important;
+  margin: 16px 0 0 !important;
+  color: rgba(6, 53, 71, 0.78) !important;
+  font-size: 16px !important;
+  line-height: 1.55 !important;
+  font-weight: 500 !important;
+}
+
+.seasonHeroCleanActions {
+  display: flex !important;
+  align-items: center !important;
+  gap: 14px !important;
+  margin-top: 26px !important;
+}
+
+.seasonHeroCleanPrimary,
+.seasonHeroCleanSecondary {
+  min-height: 46px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 10px !important;
+  padding: 0 25px !important;
+  border-radius: 999px !important;
+  text-decoration: none !important;
+  font-size: 15px !important;
+  font-weight: 600 !important;
+  white-space: nowrap !important;
+}
+
+.seasonHeroCleanPrimary {
+  background: linear-gradient(180deg, #13b79f, #007764) !important;
+  color: #ffffff !important;
+  box-shadow: 0 14px 30px rgba(0, 119, 100, 0.25) !important;
+}
+
+.seasonHeroCleanSecondary {
+  background: rgba(255,255,255,0.72) !important;
+  border: 2px solid rgba(0, 119, 100, 0.28) !important;
+  color: #063547 !important;
+  box-shadow: 0 10px 24px rgba(6, 53, 71, 0.08) !important;
+}
+
+@media (max-width: 900px) {
+  .seasonHeroClean {
+    height: 520px !important;
+    min-height: 520px !important;
+  }
+
+  .seasonHeroCleanBg {
+    background-position: center top !important;
+  }
+
+  .seasonHeroCleanOverlay {
+    background:
+      linear-gradient(180deg, rgba(255,255,255,0.14) 0%, rgba(255,255,255,0.42) 38%, rgba(255,255,255,0.94) 73%, rgba(255,255,255,1) 100%) !important;
+  }
+
+  .seasonHeroCleanContent {
+    width: calc(100% - 36px) !important;
+    padding: 285px 18px 0 !important;
+  }
+
+  .seasonHeroCleanContent h1 {
+    font-size: 34px !important;
+    line-height: 1.06 !important;
+    letter-spacing: -1px !important;
+  }
+
+  .seasonHeroCleanContent p:not(.seasonHeroCleanLabel) {
+    max-width: 100% !important;
+    font-size: 15px !important;
+  }
+
+  .seasonHeroCleanActions {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 10px !important;
+  }
+
+  .seasonHeroCleanPrimary,
+  .seasonHeroCleanSecondary {
+    width: 100% !important;
+    padding: 0 14px !important;
+  }
+}
+
+@media (max-width: 430px) {
+  .seasonHeroClean {
+    height: 545px !important;
+    min-height: 545px !important;
+  }
+
+  .seasonHeroCleanContent {
+    padding-top: 295px !important;
+  }
+
+  .seasonHeroCleanContent h1 {
+    font-size: 30px !important;
+  }
+
+  .seasonHeroCleanActions {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* === FIX: Season hero image as real image with fallback === */
+
+.startPage {
+  background: #f5f7f6 !important;
+  min-height: 100vh !important;
+  padding: 0 !important;
+}
+
+.startPage .seasonHeroClean {
+  position: relative !important;
+  width: 100% !important;
+  max-width: none !important;
+  height: 380px !important;
+  min-height: 380px !important;
+  margin: 0 !important;
+  overflow: visible !important;
+  background: #eef4f2 !important;
+  border: 0 !important;
+}
+
+.seasonHeroCleanImg {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center center !important;
+  display: block !important;
+  z-index: 0 !important;
+}
+
+.seasonHeroCleanOverlay {
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 1 !important;
+  background:
+    linear-gradient(90deg, rgba(255,255,255,0.94) 0%, rgba(255,255,255,0.80) 28%, rgba(255,255,255,0.34) 55%, rgba(255,255,255,0.05) 100%) !important;
+}
+
+.seasonHeroCleanContent {
+  position: relative !important;
+  z-index: 2 !important;
+  width: min(560px, calc(100% - 80px)) !important;
+  padding: 58px 0 0 78px !important;
+}
+
+.seasonHeroCleanContent h1 {
+  max-width: 520px !important;
+  margin: 0 !important;
+  color: #063547 !important;
+  font-size: clamp(38px, 3.3vw, 52px) !important;
+  line-height: 1.05 !important;
+  font-weight: 600 !important;
+  letter-spacing: -1.5px !important;
+}
+
+.seasonHeroCleanContent p:not(.seasonHeroCleanLabel) {
+  max-width: 430px !important;
+}
+
+@media (max-width: 900px) {
+  .startPage .seasonHeroClean {
+    height: 540px !important;
+    min-height: 540px !important;
+  }
+
+  .seasonHeroCleanImg {
+    height: 62% !important;
+    object-position: center top !important;
+  }
+
+  .seasonHeroCleanOverlay {
+    background:
+      linear-gradient(180deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.36) 38%, rgba(255,255,255,0.96) 70%, #ffffff 100%) !important;
+  }
+
+  .seasonHeroCleanContent {
+    width: calc(100% - 36px) !important;
+    padding: 300px 18px 0 !important;
+  }
+
+  .seasonHeroCleanContent h1 {
+    font-size: 32px !important;
+  }
+}
+
+/* === FIX: Season hero desktop position and image visibility === */
+
+@media (min-width: 901px) {
+  .startPage .seasonHeroClean {
+    width: 100% !important;
+    height: 380px !important;
+    min-height: 380px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+  }
+
+  .seasonHeroCleanImg {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center center !important;
+    display: block !important;
+    opacity: 1 !important;
+  }
+
+  .seasonHeroCleanContent {
+    padding: 54px 0 0 78px !important;
+  }
+}
+
+/* === FIX: remove white gap above start hero === */
+
+.startPage {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+  background: #f5f7f6 !important;
+}
+
+.startPage > .seasonHeroClean:first-child {
+  margin-top: 0 !important;
+}
+
+body:has(.startPage) {
+  background: #f5f7f6 !important;
+}
+
+@media (min-width: 901px) {
+  .startPage .seasonHeroClean {
+    margin-top: 0 !important;
+    top: 0 !important;
+  }
+}
+
+/* === FIX: make beta header connect directly to page content === */
+
+.betaHeader {
+  margin-bottom: 0 !important;
+}
+
+.betaHeader + .startPage {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+.betaHeader + .startPage .seasonHeroClean {
+  margin-top: 0 !important;
+}
+
+/* === HARD FIX: remove old start page spacing above hero === */
+
+html body main.startPage,
+html body .startPage,
+html body .betaHeader + main.startPage {
+  display: block !important;
+  place-items: unset !important;
+  align-items: unset !important;
+  justify-content: unset !important;
+  width: 100% !important;
+  max-width: none !important;
+  min-height: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  padding-top: 0 !important;
+  background: #f5f7f6 !important;
+}
+
+html body main.startPage > .seasonHeroClean,
+html body .startPage > .seasonHeroClean,
+html body .betaHeader + main.startPage > .seasonHeroClean {
+  margin: 0 !important;
+  margin-top: 0 !important;
+  padding: 0 !important;
+  top: auto !important;
+  transform: none !important;
+}
+
+html body .seasonHeroClean {
+  margin-top: 0 !important;
+}
+
+html body .betaHeader {
+  margin-bottom: 0 !important;
+}
+
+/* === IMPROVE: Season hero height and text position === */
+
+@media (min-width: 901px) {
+  .startPage .seasonHeroClean {
+    height: 460px !important;
+    min-height: 460px !important;
+    overflow: hidden !important;
+  }
+
+  .seasonHeroCleanImg {
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center center !important;
+  }
+
+  .seasonHeroCleanOverlay {
+    background:
+      linear-gradient(
+        90deg,
+        rgba(255,255,255,0.96) 0%,
+        rgba(255,255,255,0.88) 24%,
+        rgba(255,255,255,0.44) 48%,
+        rgba(255,255,255,0.08) 100%
+      ) !important;
+  }
+
+  .seasonHeroCleanContent {
+    width: 520px !important;
+    max-width: 520px !important;
+    padding: 78px 0 0 118px !important;
+  }
+
+  .seasonHeroCleanLabel {
+    margin-bottom: 12px !important;
+  }
+
+  .seasonHeroCleanContent h1 {
+    max-width: 500px !important;
+    font-size: 50px !important;
+    line-height: 1.06 !important;
+    letter-spacing: -1.3px !important;
+  }
+
+  .seasonHeroCleanContent p:not(.seasonHeroCleanLabel) {
+    max-width: 420px !important;
+    font-size: 16px !important;
+    line-height: 1.55 !important;
+  }
+
+  .seasonHeroCleanActions {
+    margin-top: 24px !important;
+  }
+}
+
+@media (min-width: 1400px) {
+  .seasonHeroCleanContent {
+    padding-left: 132px !important;
+  }
+}
+
+/* === HERO: match full-page concept, avoid stretched image === */
+
+@media (min-width: 901px) {
+  .startPage {
+    background: #f5f7f6 !important;
+  }
+
+  .startPage .seasonHeroClean {
+    width: min(100% - 96px, 1680px) !important;
+    max-width: 1680px !important;
+    height: 430px !important;
+    min-height: 430px !important;
+    margin: 0 auto !important;
+    border-radius: 0 0 16px 16px !important;
+    overflow: hidden !important;
+    background: #eef4f2 !important;
+  }
+
+  .seasonHeroCleanImg {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center center !important;
+  }
+
+  .seasonHeroCleanOverlay {
+    background:
+      linear-gradient(
+        90deg,
+        rgba(255,255,255,0.95) 0%,
+        rgba(255,255,255,0.86) 25%,
+        rgba(255,255,255,0.42) 48%,
+        rgba(255,255,255,0.08) 100%
+      ) !important;
+  }
+
+  .seasonHeroCleanContent {
+    width: 520px !important;
+    max-width: 520px !important;
+    padding: 64px 0 0 62px !important;
+  }
+
+  .seasonHeroCleanContent h1 {
+    max-width: 500px !important;
+    font-size: 46px !important;
+    line-height: 1.08 !important;
+    letter-spacing: -1.2px !important;
+  }
+
+  .seasonHeroCleanContent p:not(.seasonHeroCleanLabel) {
+    max-width: 390px !important;
+    font-size: 15.5px !important;
+    line-height: 1.55 !important;
+  }
+
+  .seasonHeroCleanActions {
+    margin-top: 22px !important;
+  }
+}
+
+@media (min-width: 1500px) {
+  .startPage .seasonHeroClean {
+    width: min(100% - 112px, 1680px) !important;
+  }
+}
+
+@media (max-width: 900px) {
+  .startPage .seasonHeroClean {
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+  }
+}
+
+/* === HERO: full width image but text moved inward === */
+
+@media (min-width: 901px) {
+  .startPage .seasonHeroClean {
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+    height: 440px !important;
+    min-height: 440px !important;
+  }
+
+  .seasonHeroCleanContent {
+    width: 540px !important;
+    max-width: 540px !important;
+    padding: 70px 0 0 150px !important;
+  }
+
+  .seasonHeroCleanContent h1 {
+    max-width: 520px !important;
+    font-size: 48px !important;
+    line-height: 1.07 !important;
+  }
+
+  .seasonHeroCleanContent p:not(.seasonHeroCleanLabel) {
+    max-width: 410px !important;
+  }
+}
+
+@media (min-width: 1450px) {
+  .seasonHeroCleanContent {
+    padding-left: 180px !important;
+  }
+}
+
+@media (min-width: 1750px) {
+  .seasonHeroCleanContent {
+    padding-left: 220px !important;
+  }
+}
+
+/* === FIX: Hero text layout and readability === */
+
+@media (min-width: 901px) {
+  .seasonHeroCleanContent {
+    width: 640px !important;
+    max-width: 640px !important;
+    padding: 78px 0 0 145px !important;
+  }
+
+  .seasonHeroCleanContent h1 {
+    max-width: 620px !important;
+    font-size: 46px !important;
+    line-height: 1.08 !important;
+    letter-spacing: -1.1px !important;
+    font-weight: 600 !important;
+  }
+
+  .seasonHeroCleanContent p:not(.seasonHeroCleanLabel) {
+    max-width: 470px !important;
+    font-size: 16px !important;
+    line-height: 1.5 !important;
+    margin-top: 16px !important;
+  }
+
+  .seasonHeroCleanActions {
+    margin-top: 24px !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 14px !important;
+  }
+
+  .seasonHeroCleanPrimary,
+  .seasonHeroCleanSecondary {
+    min-height: 48px !important;
+    padding: 0 28px !important;
+    font-size: 15px !important;
+  }
+}
+
+@media (min-width: 1450px) {
+  .seasonHeroCleanContent {
+    padding-left: 160px !important;
+  }
+}
+
+@media (min-width: 1750px) {
+  .seasonHeroCleanContent {
+    padding-left: 180px !important;
+  }
+}
+
+/* === Booking search module - design only === */
+
+.bookingSearchWrap {
+  position: relative !important;
+  z-index: 8 !important;
+  width: min(100% - 96px, 1680px) !important;
+  margin: -48px auto 0 !important;
+}
+
+.bookingSearchBox {
+  width: 100% !important;
+  min-height: 112px !important;
+  display: grid !important;
+  grid-template-columns: 1.2fr 1.2fr 1fr 1fr 0.9fr !important;
+  gap: 22px !important;
+  align-items: end !important;
+  padding: 22px 26px !important;
+  border-radius: 16px !important;
+  background: rgba(255, 255, 255, 0.96) !important;
+  border: 1px solid rgba(6, 53, 71, 0.10) !important;
+  box-shadow:
+    0 18px 45px rgba(6, 53, 71, 0.16),
+    0 3px 10px rgba(6, 53, 71, 0.08) !important;
+  backdrop-filter: blur(14px) !important;
+}
+
+.bookingSearchField {
+  min-width: 0 !important;
+}
+
+.bookingSearchField label {
+  display: block !important;
+  margin: 0 0 8px !important;
+  color: #063547 !important;
+  font-size: 13px !important;
+  line-height: 1 !important;
+  font-weight: 700 !important;
+}
+
+.bookingSearchInput {
+  width: 100% !important;
+  height: 54px !important;
+  display: grid !important;
+  grid-template-columns: 26px 1fr 18px !important;
+  align-items: center !important;
+  gap: 10px !important;
+  padding: 0 15px !important;
+  border-radius: 12px !important;
+  border: 1px solid rgba(6, 53, 71, 0.12) !important;
+  background: #ffffff !important;
+  color: rgba(6, 53, 71, 0.72) !important;
+  font-family: inherit !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  text-align: left !important;
+  cursor: pointer !important;
+  box-shadow: inset 0 0 0 1px rgba(245, 247, 246, 0.7) !important;
+}
+
+.bookingSearchInput:hover {
+  border-color: rgba(0, 119, 100, 0.28) !important;
+}
+
+.bookingSearchIcon {
+  width: 26px !important;
+  height: 26px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  color: #007764 !important;
+}
+
+.bookingSearchIcon svg {
+  width: 22px !important;
+  height: 22px !important;
+  stroke: currentColor !important;
+  stroke-width: 1.9 !important;
+  stroke-linecap: round !important;
+  stroke-linejoin: round !important;
+}
+
+.bookingSearchArrow {
+  color: rgba(6, 53, 71, 0.62) !important;
+  font-size: 18px !important;
+  line-height: 1 !important;
+  transform: translateY(-2px) !important;
+}
+
+.bookingSearchButton {
+  height: 54px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 12px !important;
+  padding: 0 28px !important;
+  border: 0 !important;
+  border-radius: 12px !important;
+  background: linear-gradient(180deg, #13a990, #007764) !important;
+  color: #ffffff !important;
+  font-family: inherit !important;
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  cursor: pointer !important;
+  box-shadow: 0 14px 28px rgba(0, 119, 100, 0.24) !important;
+}
+
+.bookingSearchButton svg {
+  width: 21px !important;
+  height: 21px !important;
+  stroke: currentColor !important;
+  stroke-width: 2 !important;
+  stroke-linecap: round !important;
+  stroke-linejoin: round !important;
+}
+
+.bookingSearchButton:hover {
+  transform: translateY(-1px) !important;
+  box-shadow: 0 18px 34px rgba(0, 119, 100, 0.28) !important;
+}
+
+@media (max-width: 1100px) {
+  .bookingSearchWrap {
+    width: calc(100% - 36px) !important;
+  }
+
+  .bookingSearchBox {
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  .bookingSearchButton {
+    grid-column: 1 / -1 !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .bookingSearchWrap {
+    width: calc(100% - 24px) !important;
+    margin-top: -34px !important;
+  }
+
+  .bookingSearchBox {
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+    padding: 18px !important;
+    border-radius: 18px !important;
+  }
+
+  .bookingSearchInput,
+  .bookingSearchButton {
+    height: 52px !important;
+  }
+}
+
+/* === IMPROVE: Smaller booking search module and nicer arrows === */
+
+@media (min-width: 901px) {
+  .bookingSearchWrap {
+    width: min(100% - 150px, 1520px) !important;
+    margin: -38px auto 0 !important;
+  }
+
+  .bookingSearchBox {
+    min-height: 92px !important;
+    grid-template-columns: 1.18fr 1.18fr 1fr 1fr 0.88fr !important;
+    gap: 18px !important;
+    align-items: end !important;
+    padding: 18px 22px !important;
+    border-radius: 14px !important;
+    box-shadow:
+      0 16px 36px rgba(6, 53, 71, 0.13),
+      0 4px 12px rgba(6, 53, 71, 0.07) !important;
+  }
+
+  .bookingSearchField label {
+    margin-bottom: 7px !important;
+    font-size: 12.5px !important;
+    font-weight: 700 !important;
+  }
+
+  .bookingSearchInput {
+    height: 46px !important;
+    grid-template-columns: 24px 1fr 18px !important;
+    gap: 8px !important;
+    padding: 0 13px !important;
+    border-radius: 10px !important;
+    font-size: 13.5px !important;
+  }
+
+  .bookingSearchIcon {
+    width: 24px !important;
+    height: 24px !important;
+  }
+
+  .bookingSearchIcon svg {
+    width: 20px !important;
+    height: 20px !important;
+  }
+
+  .bookingSearchArrow {
+    width: 18px !important;
+    height: 18px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    color: rgba(6, 53, 71, 0.58) !important;
+    transform: none !important;
+  }
+
+  .bookingSearchArrow svg {
+    width: 17px !important;
+    height: 17px !important;
+    stroke: currentColor !important;
+    stroke-width: 2.1 !important;
+    stroke-linecap: round !important;
+    stroke-linejoin: round !important;
+  }
+
+  .bookingSearchInput:hover .bookingSearchArrow {
+    color: #007764 !important;
+  }
+
+  .bookingSearchButton {
+    height: 46px !important;
+    min-width: 170px !important;
+    padding: 0 24px !important;
+    border-radius: 10px !important;
+    font-size: 14px !important;
+    gap: 10px !important;
+  }
+
+  .bookingSearchButton svg {
+    width: 19px !important;
+    height: 19px !important;
+  }
+}
+
+@media (min-width: 1500px) {
+  .bookingSearchWrap {
+    width: min(100% - 180px, 1520px) !important;
+  }
+}
+
+@media (max-width: 900px) {
+  .bookingSearchWrap {
+    margin-top: -30px !important;
+  }
+
+  .bookingSearchBox {
+    padding: 16px !important;
+    gap: 12px !important;
+  }
+
+  .bookingSearchInput,
+  .bookingSearchButton {
+    height: 50px !important;
+  }
+
+  .bookingSearchArrow {
+    width: 18px !important;
+    height: 18px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .bookingSearchArrow svg {
+    width: 17px !important;
+    height: 17px !important;
+    stroke: currentColor !important;
+    stroke-width: 2.1 !important;
+    stroke-linecap: round !important;
+    stroke-linejoin: round !important;
+  }
+}
+
+/* === ALIGN: Hero image, text and booking search module === */
+
+@media (min-width: 901px) {
+  .startPage .seasonHeroClean {
+    height: 520px !important;
+    min-height: 520px !important;
+    overflow: hidden !important;
+  }
+
+  .seasonHeroCleanImg {
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center center !important;
+  }
+
+  .seasonHeroCleanContent {
+    width: 640px !important;
+    max-width: 640px !important;
+    padding: 82px 0 0 170px !important;
+  }
+
+  .seasonHeroCleanContent h1 {
+    max-width: 620px !important;
+    font-size: 46px !important;
+    line-height: 1.08 !important;
+  }
+
+  .seasonHeroCleanContent p:not(.seasonHeroCleanLabel) {
+    max-width: 450px !important;
+  }
+
+  .bookingSearchWrap {
+    width: auto !important;
+    max-width: none !important;
+    margin: -58px 170px 0 170px !important;
+  }
+
+  .bookingSearchBox {
+    min-height: 88px !important;
+    padding: 17px 20px !important;
+  }
+}
+
+@media (min-width: 1450px) {
+  .seasonHeroCleanContent {
+    padding-left: 190px !important;
+  }
+
+  .bookingSearchWrap {
+    margin-left: 190px !important;
+    margin-right: 190px !important;
+  }
+}
+
+@media (min-width: 1750px) {
+  .seasonHeroCleanContent {
+    padding-left: 210px !important;
+  }
+
+  .bookingSearchWrap {
+    margin-left: 210px !important;
+    margin-right: 210px !important;
+  }
+}
