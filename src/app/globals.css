@@ -1325,3 +1325,257 @@ a {
     letter-spacing: 0.20em !important;
   }
 }
+
+/* === MOBILE FIX FINAL === */
+@media (max-width: 900px) {
+  .landing {
+    display: block !important;
+    width: 100% !important;
+    min-height: 100vh !important;
+  }
+
+  .hero {
+    width: 100% !important;
+    min-height: 640px !important;
+    border-right: 0 !important;
+    border-bottom: 1px solid rgba(255,255,255,0.12) !important;
+  }
+
+  .heroPhoto {
+    background-size: cover !important;
+    background-position: 34% center !important;
+    background-repeat: no-repeat !important;
+  }
+
+  .heroOverlay,
+  .heroMotion {
+    inset: 0 !important;
+  }
+
+  .brand {
+    top: 24px !important;
+    left: 22px !important;
+  }
+
+  .brandMain {
+    font-size: 34px !important;
+    line-height: 1 !important;
+    letter-spacing: -0.8px !important;
+  }
+
+  .brandSub {
+    font-size: 12px !important;
+    letter-spacing: 0.32em !important;
+    margin-top: 6px !important;
+  }
+
+  .brandLine {
+    width: 126px !important;
+    margin-top: 12px !important;
+  }
+
+  .heroTitle {
+    left: 22px !important;
+    right: 22px !important;
+    bottom: 195px !important;
+  }
+
+  .heroTitle h1 {
+    font-size: 30px !important;
+    line-height: 1.12 !important;
+    letter-spacing: -0.6px !important;
+    max-width: 310px !important;
+  }
+
+  .routeBox {
+    left: 22px !important;
+    right: 22px !important;
+    bottom: 24px !important;
+    width: auto !important;
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+    padding: 18px !important;
+  }
+
+  .routeIcon {
+    display: none !important;
+  }
+
+  .routeBox h2 {
+    font-size: 12.5px !important;
+    margin: 0 0 8px !important;
+    letter-spacing: 0.16em !important;
+  }
+
+  .routeBox ul {
+    font-size: 13.5px !important;
+    line-height: 1.7 !important;
+    padding-left: 18px !important;
+  }
+
+  .content {
+    width: 100% !important;
+    min-height: auto !important;
+    padding: 24px 18px 28px !important;
+  }
+
+  .planeDecor {
+    display: none !important;
+  }
+
+  .betaBadge {
+    font-size: 12.5px !important;
+    padding: 10px 14px !important;
+  }
+
+  .intro {
+    margin-top: 22px !important;
+    max-width: 100% !important;
+  }
+
+  .intro h2 {
+    font-size: 34px !important;
+    line-height: 1.04 !important;
+    letter-spacing: -1px !important;
+  }
+
+  .pulseLine {
+    width: 100% !important;
+    max-width: 320px !important;
+    margin: 12px 0 20px !important;
+  }
+
+  .intro p {
+    font-size: 15px !important;
+    line-height: 1.62 !important;
+    max-width: 100% !important;
+  }
+
+  .forms {
+    grid-template-columns: 1fr !important;
+    gap: 22px !important;
+    margin-top: 26px !important;
+  }
+
+  .formBlock {
+    display: block !important;
+  }
+
+  .formBlockRight {
+    padding-left: 0 !important;
+    padding-top: 22px !important;
+    border-left: 0 !important;
+    border-top: 1px solid rgba(255,255,255,0.12) !important;
+  }
+
+  .formHead {
+    height: auto !important;
+    margin-bottom: 14px !important;
+  }
+
+  .formHead h3 {
+    min-height: auto !important;
+    font-size: 13.5px !important;
+    line-height: 1.35 !important;
+    letter-spacing: 0.14em !important;
+  }
+
+  .formBlock label,
+  .formText {
+    height: auto !important;
+    margin-bottom: 10px !important;
+    display: block !important;
+  }
+
+  .inputWrap {
+    height: 52px !important;
+  }
+
+  .formBlock button {
+    height: 54px !important;
+    margin-top: 14px !important;
+  }
+
+  .helper {
+    min-height: auto !important;
+    margin-top: 12px !important;
+    font-size: 14px !important;
+  }
+
+  .cards {
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+    margin-top: 30px !important;
+  }
+
+  .cards article {
+    min-height: auto !important;
+    padding: 18px !important;
+  }
+
+  .footer {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+    margin-top: 24px !important;
+    padding-top: 18px !important;
+  }
+
+  .social {
+    justify-self: start !important;
+    flex-wrap: wrap !important;
+  }
+}
+
+@media (max-width: 520px) {
+  .hero {
+    min-height: 590px !important;
+  }
+
+  .heroPhoto {
+    background-size: cover !important;
+    background-position: 32% center !important;
+  }
+
+  .brandMain {
+    font-size: 30px !important;
+  }
+
+  .brandSub {
+    font-size: 11px !important;
+    letter-spacing: 0.28em !important;
+  }
+
+  .heroTitle {
+    bottom: 185px !important;
+  }
+
+  .heroTitle h1 {
+    font-size: 27px !important;
+    max-width: 280px !important;
+  }
+
+  .routeBox {
+    padding: 16px !important;
+  }
+
+  .content {
+    padding: 22px 16px 26px !important;
+  }
+
+  .intro h2 {
+    font-size: 32px !important;
+  }
+
+  .intro p {
+    font-size: 14.5px !important;
+  }
+
+  .inputWrap input {
+    font-size: 15px !important;
+  }
+
+  .formBlock button {
+    font-size: 14.5px !important;
+    letter-spacing: 0.18em !important;
+  }
+}
