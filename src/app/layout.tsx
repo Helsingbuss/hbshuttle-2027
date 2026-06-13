@@ -1,6 +1,7 @@
 ﻿import type { Metadata } from "next";
 import { Open_Sans } from "next/font/google";
 import "./globals.css";
+import AppDownloadNotice from "@/components/AppDownloadNotice";
 
 const openSans = Open_Sans({
   subsets: ["latin"],
@@ -21,7 +22,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="sv">
-      <body className={openSans.className}>{children}</body>
+      <body className={openSans.className}><AppDownloadNotice />{children}</body>
     </html>
   );
 }
+
