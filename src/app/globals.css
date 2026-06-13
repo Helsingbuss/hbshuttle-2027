@@ -1533,7 +1533,7 @@ a {
 
   .heroPhoto {
     background-size: cover !important;
-    background-position: 32% center !important;
+    background-position: 40% center !important;
   }
 
   .brandMain {
@@ -1579,3 +1579,4 @@ a {
     letter-spacing: 0.18em !important;
   }
 }
+
