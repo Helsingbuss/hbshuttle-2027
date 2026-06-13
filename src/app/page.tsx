@@ -1,6 +1,7 @@
 ﻿"use client";
 
 import { FormEvent, useState } from "react";
+import { useRouter } from "next/navigation";
 
 const routes = [
   "Helsingborg – Ängelholm",
@@ -8,7 +9,11 @@ const routes = [
   "Båstad – Ängelholm",
 ];
 
+const BETA_CODE = "HBSHUTTLE2027";
+
 export default function Home() {
+  const router = useRouter();
+
   const [betaCode, setBetaCode] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
@@ -16,13 +21,20 @@ export default function Home() {
   function submitBeta(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
-    if (!betaCode.trim()) {
+    const cleanedCode = betaCode.trim().toUpperCase();
+
+    if (!cleanedCode) {
       setMessage("Fyll i din åtkomstkod först.");
       return;
     }
 
-    setMessage("Beta-inloggningen är mottagen. Funktionen kopplas snart till portalen.");
-    setBetaCode("");
+    if (cleanedCode !== BETA_CODE) {
+      setMessage("Koden stämmer inte. Kontrollera att du skrivit rätt kod.");
+      return;
+    }
+
+    localStorage.setItem("hbshuttle_beta_access", "true");
+    router.push("/start");
   }
 
   function submitEmail(e: FormEvent<HTMLFormElement>) {

@@ -1849,3 +1849,91 @@ a {
     font-size: 36px !important;
   }
 }
+
+/* === Beta start page === */
+
+.startPage {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(34, 210, 185, 0.14), transparent 28%),
+    radial-gradient(circle at 80% 10%, rgba(0, 119, 100, 0.18), transparent 26%),
+    linear-gradient(135deg, #031116 0%, #061b21 100%);
+  color: #f5f4f0;
+}
+
+.startCard {
+  width: min(720px, 100%);
+  padding: 38px;
+  border-radius: 24px;
+  border: 1px solid rgba(245, 244, 240, 0.15);
+  background: rgba(5, 24, 30, 0.78);
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.38);
+  backdrop-filter: blur(16px);
+}
+
+.startBadge {
+  width: fit-content;
+  margin: 0 0 22px;
+  padding: 10px 15px;
+  border-radius: 8px;
+  border: 1px solid rgba(34, 210, 185, 0.38);
+  color: #22d2b9;
+  background: rgba(0, 184, 157, 0.08);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.startCard h1 {
+  margin: 0;
+  font-size: clamp(34px, 4vw, 56px);
+  line-height: 1.05;
+  font-weight: 500;
+  letter-spacing: -1.4px;
+}
+
+.startCard p {
+  max-width: 620px;
+  margin: 20px 0 0;
+  color: rgba(245, 244, 240, 0.78);
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.startActions {
+  margin-top: 28px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.startButton {
+  margin-top: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 22px;
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+  background: linear-gradient(180deg, #0ca991 0%, #007764 100%);
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  letter-spacing: 0.06em;
+}
+
+.startActions .startButton {
+  margin-top: 0;
+}
+
+.startButton.secondary {
+  background: rgba(245, 244, 240, 0.08);
+  border: 1px solid rgba(245, 244, 240, 0.16);
+}
