@@ -1580,3 +1580,90 @@ a {
   }
 }
 
+
+/* === FINAL MOBILE HERO CROP FIX === */
+@media (max-width: 900px) {
+  .heroPhoto {
+    background-size: 200% 100% !important;
+    background-position: 10% center !important;
+    background-repeat: no-repeat !important;
+  }
+}
+
+@media (max-width: 520px) {
+  .heroPhoto {
+    background-size: 200% 100% !important;
+    background-position: 10% center !important;
+    background-repeat: no-repeat !important;
+  }
+}
+
+
+/* === Mobile headline polish === */
+@media (max-width: 900px) {
+  .content {
+    padding-top: 22px !important;
+  }
+
+  .intro {
+    margin-top: 20px !important;
+  }
+
+  .intro h2 {
+    max-width: 340px !important;
+    font-size: 31px !important;
+    line-height: 1.03 !important;
+    letter-spacing: -0.8px !important;
+    font-weight: 500 !important;
+  }
+
+  .intro h2 span {
+    display: block !important;
+    margin-top: 4px !important;
+    font-size: 32px !important;
+    line-height: 1.02 !important;
+    color: #12bea6 !important;
+  }
+
+  .pulseLine {
+    width: 100% !important;
+    max-width: 290px !important;
+    height: 18px !important;
+    margin: 12px 0 20px !important;
+  }
+
+  .pulseLine::before,
+  .pulseLine::after {
+    top: 9px !important;
+  }
+
+  .pulseLine::before {
+    width: 42% !important;
+  }
+
+  .pulseLine::after {
+    width: 35% !important;
+  }
+
+  .pulseLine span {
+    left: 43% !important;
+    width: 48px !important;
+    height: 17px !important;
+  }
+}
+
+@media (max-width: 520px) {
+  .intro h2 {
+    max-width: 315px !important;
+    font-size: 29px !important;
+    line-height: 1.04 !important;
+  }
+
+  .intro h2 span {
+    font-size: 30px !important;
+  }
+
+  .pulseLine {
+    max-width: 270px !important;
+  }
+}
