@@ -2,14 +2,21 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import BetaHeader from "@/components/BetaHeader";
 
 export default function StartPage() {
   const [hasAccess, setHasAccess] = useState(false);
+  const [checkedAccess, setCheckedAccess] = useState(false);
 
   useEffect(() => {
     const access = localStorage.getItem("hbshuttle_beta_access");
     setHasAccess(access === "true");
+    setCheckedAccess(true);
   }, []);
+
+  if (!checkedAccess) {
+    return null;
+  }
 
   if (!hasAccess) {
     return (
@@ -18,7 +25,8 @@ export default function StartPage() {
           <p className="startBadge">Beta Access</p>
           <h1>Åtkomst krävs</h1>
           <p>
-            Du behöver logga in med betakoden för att komma vidare till startsidan.
+            Du behöver logga in med betakoden för att komma vidare till
+            beta-startsidan.
           </p>
           <Link href="/" className="startButton">
             Tillbaka till inloggning
@@ -29,29 +37,28 @@ export default function StartPage() {
   }
 
   return (
-    <main className="startPage">
-      <section className="startCard">
-        <p className="startBadge">Helsingbuss Airport Shuttle</p>
-        <h1>Välkommen till beta-startsidan</h1>
-        <p>
-          Du är nu inloggad med beta-access. Här bygger vi snart startsidan med
-          sök resa, planerade linjer, avgångar och bokning.
-        </p>
+    <main className="betaApp">
+      <BetaHeader />
 
-        <div className="startActions">
-          <Link href="/" className="startButton secondary">
-            Tillbaka
-          </Link>
+      <section className="betaHero">
+        <div className="betaHeroContent">
+          <p className="startBadge">Beta Access</p>
+          <h1>Välkommen till HB Shuttle</h1>
+          <p>
+            Här bygger vi den kommande startsidan för Helsingbuss Airport
+            Shuttle. Nästa steg blir köpflöde, tidtabell, hållplatser och
+            trafikinfo.
+          </p>
 
-          <button
-            className="startButton"
-            onClick={() => {
-              localStorage.removeItem("hbshuttle_beta_access");
-              window.location.href = "/";
-            }}
-          >
-            Logga ut
-          </button>
+          <div className="betaHeroActions">
+            <Link href="/start" className="startButton">
+              Köp resa
+            </Link>
+
+            <Link href="/start/tidtabell" className="startButton secondary">
+              Se tidtabell
+            </Link>
+          </div>
         </div>
       </section>
     </main>

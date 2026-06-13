@@ -61,7 +61,7 @@ a {
 .heroPhoto {
   position: absolute;
   inset: 0;
-  background-image: url("/images/hbshuttle-hero.png");
+  background-image: url("/images/hbshuttle-menu.jpg");
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
@@ -1936,4 +1936,1265 @@ a {
 .startButton.secondary {
   background: rgba(245, 244, 240, 0.08);
   border: 1px solid rgba(245, 244, 240, 0.16);
+}
+
+/* === HB Shuttle beta header/navigation === */
+
+.betaApp {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 18% 14%, rgba(34, 210, 185, 0.12), transparent 26%),
+    linear-gradient(135deg, #031116 0%, #061b21 100%);
+  color: #f5f4f0;
+}
+
+.betaHeader {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  height: 78px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 28px;
+  padding: 0 54px;
+  border-bottom: 1px solid rgba(245, 244, 240, 0.10);
+  background:
+    linear-gradient(180deg, rgba(8, 54, 58, 0.94), rgba(5, 31, 36, 0.92));
+  backdrop-filter: blur(16px);
+  box-shadow: 0 16px 44px rgba(0, 0, 0, 0.24);
+}
+
+.betaLogo {
+  display: inline-flex;
+  align-items: center;
+  gap: 13px;
+  color: #f5f4f0;
+  text-decoration: none;
+}
+
+.betaLogoMark {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  border: 2px solid rgba(245, 244, 240, 0.82);
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.betaLogoTitle {
+  font-size: 22px;
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.betaLogoSub {
+  margin-top: 4px;
+  font-size: 11px;
+  color: rgba(245, 244, 240, 0.72);
+}
+
+.betaNav {
+  justify-self: center;
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.betaNav a,
+.languageButton,
+.menuButton {
+  position: relative;
+  border: 0;
+  background: transparent;
+  color: rgba(245, 244, 240, 0.88);
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.betaNav a:hover,
+.languageButton:hover,
+.menuButton:hover {
+  color: #ffffff;
+}
+
+.betaNav a:first-child::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -9px;
+  height: 2px;
+  border-radius: 99px;
+  background: #f5f4f0;
+}
+
+.clubButton {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 0 20px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #16b79d, #007764);
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 700;
+  box-shadow: 0 10px 30px rgba(0, 119, 100, 0.28);
+}
+
+.mobileMenuButton {
+  display: none;
+  min-height: 42px;
+  padding: 0 17px;
+  border: 1px solid rgba(34, 210, 185, 0.34);
+  border-radius: 999px;
+  background: rgba(0, 184, 157, 0.08);
+  color: #22d2b9;
+  font-weight: 700;
+}
+
+.menuBackdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 140;
+  background: rgba(0, 0, 0, 0.48);
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.24s ease;
+}
+
+.menuBackdrop.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.offcanvasMenu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 150;
+  width: min(420px, 92vw);
+  height: 100vh;
+  padding: 28px;
+  transform: translateX(105%);
+  transition: 0.28s ease;
+  background:
+    radial-gradient(circle at 80% 0%, rgba(34, 210, 185, 0.12), transparent 30%),
+    linear-gradient(180deg, #061b21, #031116);
+  border-left: 1px solid rgba(245, 244, 240, 0.14);
+  box-shadow: -30px 0 80px rgba(0, 0, 0, 0.42);
+}
+
+.offcanvasMenu.open {
+  transform: translateX(0);
+}
+
+.offcanvasTop {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.offcanvasTitle {
+  font-size: 32px;
+  font-weight: 500;
+  letter-spacing: -0.8px;
+}
+
+.offcanvasSub {
+  margin-top: 4px;
+  color: rgba(245, 244, 240, 0.62);
+  font-size: 14px;
+}
+
+.offcanvasTop button {
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(245, 244, 240, 0.16);
+  border-radius: 999px;
+  background: rgba(245, 244, 240, 0.06);
+  color: #f5f4f0;
+  font-size: 26px;
+  cursor: pointer;
+}
+
+.offcanvasLinks {
+  margin-top: 34px;
+  display: grid;
+  gap: 10px;
+}
+
+.offcanvasLinks a {
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 0 16px;
+  border: 1px solid rgba(245, 244, 240, 0.12);
+  border-radius: 12px;
+  background: rgba(245, 244, 240, 0.045);
+  color: #f5f4f0;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.offcanvasLinks a span {
+  color: #22d2b9;
+}
+
+.offcanvasFooter {
+  margin-top: 28px;
+  padding: 18px;
+  border-radius: 14px;
+  background: rgba(0, 184, 157, 0.08);
+  border: 1px solid rgba(34, 210, 185, 0.18);
+}
+
+.offcanvasFooter a {
+  color: #22d2b9;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.offcanvasFooter p {
+  margin: 10px 0 0;
+  color: rgba(245, 244, 240, 0.68);
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.betaHero {
+  min-height: calc(100vh - 78px);
+  display: grid;
+  place-items: center;
+  padding: 48px 24px;
+}
+
+.betaHeroContent {
+  width: min(880px, 100%);
+  padding: 42px;
+  border-radius: 28px;
+  border: 1px solid rgba(245, 244, 240, 0.15);
+  background: rgba(5, 24, 30, 0.72);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.32);
+}
+
+.betaHeroContent h1 {
+  margin: 0;
+  font-size: clamp(42px, 5vw, 72px);
+  line-height: 1;
+  font-weight: 500;
+  letter-spacing: -2px;
+}
+
+.betaHeroContent p {
+  max-width: 680px;
+  margin: 22px 0 0;
+  color: rgba(245, 244, 240, 0.76);
+  font-size: 17px;
+  line-height: 1.7;
+}
+
+.betaHeroActions {
+  margin-top: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+@media (max-width: 1050px) {
+  .betaHeader {
+    grid-template-columns: auto auto;
+    justify-content: space-between;
+    padding: 0 22px;
+  }
+
+  .betaNav,
+  .clubButton {
+    display: none;
+  }
+
+  .mobileMenuButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 560px) {
+  .betaHeader {
+    height: 70px;
+    padding: 0 16px;
+  }
+
+  .betaLogoMark {
+    width: 36px;
+    height: 36px;
+    font-size: 17px;
+  }
+
+  .betaLogoTitle {
+    font-size: 17px;
+  }
+
+  .betaLogoSub {
+    font-size: 10px;
+  }
+
+  .betaHeroContent {
+    padding: 28px 20px;
+  }
+
+  .betaHeroContent h1 {
+    font-size: 38px;
+  }
+}
+
+/* === Header layout polish like reference === */
+
+.betaHeader {
+  height: 74px !important;
+  display: grid !important;
+  grid-template-columns: auto 1fr auto !important;
+  align-items: center !important;
+  gap: 34px !important;
+  padding: 0 58px !important;
+  background:
+    linear-gradient(90deg, rgba(8, 58, 62, 0.96), rgba(5, 48, 54, 0.94), rgba(8, 72, 68, 0.94)) !important;
+}
+
+.betaLogo {
+  min-width: 260px !important;
+}
+
+.betaLogoMark {
+  width: 42px !important;
+  height: 42px !important;
+  font-size: 20px !important;
+}
+
+.betaLogoTitle {
+  font-size: 23px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.055em !important;
+}
+
+.betaLogoSub {
+  font-size: 11px !important;
+  margin-top: 3px !important;
+}
+
+.betaNav {
+  justify-self: end !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 31px !important;
+  margin-right: 14px !important;
+}
+
+.betaNav a,
+.languageButton,
+.menuButton {
+  color: rgba(245, 244, 240, 0.92) !important;
+  font-size: 15px !important;
+  font-weight: 600 !important;
+  white-space: nowrap !important;
+}
+
+.betaNav a:first-child::after {
+  bottom: -10px !important;
+  height: 2px !important;
+  background: #f5f4f0 !important;
+}
+
+.menuButton {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+.menuButtonIcon {
+  width: 18px !important;
+  height: 14px !important;
+  display: inline-grid !important;
+  gap: 3px !important;
+}
+
+.menuButtonIcon i {
+  display: block !important;
+  width: 18px !important;
+  height: 2px !important;
+  border-radius: 999px !important;
+  background: #22d2b9 !important;
+  box-shadow: 0 0 10px rgba(34, 210, 185, 0.25) !important;
+}
+
+.clubButton {
+  min-height: 44px !important;
+  padding: 0 21px !important;
+  border-radius: 999px !important;
+  background: linear-gradient(180deg, #17b99f, #007764) !important;
+  color: #ffffff !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  white-space: nowrap !important;
+}
+
+.mobileMenuButton {
+  align-items: center !important;
+  gap: 9px !important;
+}
+
+/* Lite bättre offcanvas */
+.offcanvasMenu {
+  background:
+    radial-gradient(circle at 80% 0%, rgba(34, 210, 185, 0.16), transparent 30%),
+    linear-gradient(180deg, #062229, #031116) !important;
+}
+
+@media (max-width: 1180px) {
+  .betaHeader {
+    padding: 0 28px !important;
+    gap: 22px !important;
+  }
+
+  .betaLogo {
+    min-width: 230px !important;
+  }
+
+  .betaNav {
+    gap: 20px !important;
+  }
+
+  .betaNav a,
+  .languageButton,
+  .menuButton {
+    font-size: 14px !important;
+  }
+
+  .clubButton {
+    padding: 0 16px !important;
+  }
+}
+
+@media (max-width: 1050px) {
+  .betaHeader {
+    grid-template-columns: auto auto !important;
+    justify-content: space-between !important;
+    padding: 0 20px !important;
+  }
+
+  .betaLogo {
+    min-width: auto !important;
+  }
+
+  .betaNav,
+  .clubButton {
+    display: none !important;
+  }
+
+  .mobileMenuButton {
+    display: inline-flex !important;
+  }
+}
+
+/* === HB Shuttle mega menu === */
+
+.megaBackdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 180;
+  background: rgba(0, 0, 0, 0.50);
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.22s ease;
+  backdrop-filter: blur(2px);
+}
+
+.megaBackdrop.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.megaMenu {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 74px;
+  z-index: 190;
+  min-height: 500px;
+  transform: translateY(-16px);
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.24s ease;
+  background:
+    radial-gradient(circle at 76% 12%, rgba(34, 210, 185, 0.10), transparent 28%),
+    radial-gradient(circle at 18% 90%, rgba(0, 119, 100, 0.18), transparent 30%),
+    linear-gradient(135deg, #062229 0%, #092f36 42%, #05181e 100%);
+  border-bottom: 1px solid rgba(245, 244, 240, 0.12);
+  box-shadow: 0 28px 90px rgba(0, 0, 0, 0.42);
+}
+
+.megaMenu.open {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.megaMenuInner {
+  width: min(1480px, 100%);
+  margin: 0 auto;
+  padding: 28px 58px 34px;
+}
+
+.megaMenuTop {
+  display: none;
+}
+
+.megaMenuGrid {
+  display: grid;
+  grid-template-columns: 420px 1px 1fr;
+  gap: 70px;
+  align-items: stretch;
+}
+
+.megaMenuLinks {
+  display: grid;
+  gap: 13px;
+  align-content: start;
+  padding-top: 2px;
+}
+
+.megaMenuLinks a {
+  min-height: 54px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 0 18px;
+  border-radius: 14px;
+  color: #f5f4f0;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 700;
+  border: 1px solid transparent;
+  transition: 0.18s ease;
+}
+
+.megaMenuLinks a:hover,
+.megaMenuLinks a.active {
+  border-color: rgba(245, 244, 240, 0.32);
+  background:
+    linear-gradient(180deg, rgba(245, 244, 240, 0.075), rgba(245, 244, 240, 0.035));
+  box-shadow:
+    inset 0 0 0 1px rgba(34, 210, 185, 0.08),
+    0 0 0 1px rgba(245, 244, 240, 0.05);
+}
+
+.megaIcon {
+  width: 28px;
+  min-width: 28px;
+  display: inline-flex;
+  justify-content: center;
+  color: #22d2b9;
+  font-size: 24px;
+  font-weight: 400;
+  text-shadow: 0 0 16px rgba(34, 210, 185, 0.22);
+}
+
+.megaLoginLine {
+  height: 1px;
+  margin: 70px 0 6px;
+  background: rgba(245, 244, 240, 0.18);
+}
+
+.megaDivider {
+  width: 1px;
+  background: linear-gradient(180deg, transparent, rgba(245, 244, 240, 0.32), transparent);
+}
+
+.megaFeature {
+  align-self: start;
+  width: min(760px, 100%);
+}
+
+.megaImage {
+  position: relative;
+  height: 210px;
+  overflow: hidden;
+  border-radius: 24px;
+  background:
+    radial-gradient(circle at 68% 30%, rgba(255, 255, 255, 0.18), transparent 18%),
+    linear-gradient(135deg, rgba(34, 210, 185, 0.18), rgba(3, 17, 22, 0.34)),
+    url("/images/hbshuttle-menu.jpg");
+  background-size: cover;
+  background-position: center center;
+  border: 1px solid rgba(245, 244, 240, 0.10);
+  box-shadow: 0 18px 46px rgba(0, 0, 0, 0.28);
+}
+
+.megaImage::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.40)),
+    linear-gradient(90deg, rgba(0, 119, 100, 0.16), transparent);
+}
+
+.megaImage span {
+  position: absolute;
+  left: 22px;
+  bottom: 20px;
+  z-index: 2;
+  color: #f5f4f0;
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.megaBusGlow {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    110deg,
+    transparent 0%,
+    transparent 38%,
+    rgba(34, 210, 185, 0.00) 42%,
+    rgba(34, 210, 185, 0.16) 50%,
+    rgba(255, 255, 255, 0.10) 54%,
+    transparent 64%
+  );
+  mix-blend-mode: screen;
+  animation: lightSweep 7s linear infinite;
+}
+
+.megaFeature h2 {
+  max-width: 720px;
+  margin: 26px 0 0;
+  color: #f5f4f0;
+  font-size: clamp(32px, 2.7vw, 48px);
+  line-height: 1.18;
+  font-weight: 600;
+  letter-spacing: -1.2px;
+}
+
+.megaFeature p {
+  max-width: 760px;
+  margin: 18px 0 0;
+  color: rgba(245, 244, 240, 0.80);
+  font-size: 18px;
+  line-height: 1.55;
+  font-weight: 400;
+}
+
+.megaReadMore {
+  margin-top: 28px;
+  min-height: 54px;
+  width: min(100%, 760px);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(245, 244, 240, 0.34);
+  color: #f5f4f0;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 700;
+  background: rgba(245, 244, 240, 0.035);
+  transition: 0.18s ease;
+}
+
+.megaReadMore:hover {
+  border-color: rgba(34, 210, 185, 0.55);
+  background: rgba(0, 184, 157, 0.10);
+}
+
+.megaReadMore span {
+  color: #22d2b9;
+  font-size: 25px;
+}
+
+@media (max-width: 1050px) {
+  .megaMenu {
+    top: 70px;
+    min-height: calc(100vh - 70px);
+    overflow-y: auto;
+  }
+
+  .megaMenuInner {
+    padding: 22px 18px 28px;
+  }
+
+  .megaMenuTop {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    margin-bottom: 22px;
+  }
+
+  .megaMenuBrand {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .megaClose {
+    width: 42px;
+    height: 42px;
+    border: 1px solid rgba(245, 244, 240, 0.16);
+    border-radius: 999px;
+    background: rgba(245, 244, 240, 0.06);
+    color: #f5f4f0;
+    font-size: 26px;
+    cursor: pointer;
+  }
+
+  .megaMenuGrid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .megaDivider {
+    display: none;
+  }
+
+  .megaLoginLine {
+    margin: 22px 0 6px;
+  }
+
+  .megaMenuLinks a {
+    min-height: 52px;
+    font-size: 16px;
+  }
+
+  .megaFeature {
+    width: 100%;
+  }
+
+  .megaImage {
+    height: 170px;
+    border-radius: 18px;
+  }
+
+  .megaFeature h2 {
+    font-size: 30px;
+  }
+
+  .megaFeature p {
+    font-size: 15.5px;
+  }
+
+  .megaReadMore {
+    font-size: 16px;
+  }
+}
+
+/* === Menu button open state === */
+
+.menuButton.isOpen,
+.mobileMenuButton.isOpen {
+  color: #22d2b9 !important;
+}
+
+.closeMenuIcon {
+  width: 18px !important;
+  height: 18px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  color: #22d2b9 !important;
+  font-size: 24px !important;
+  line-height: 1 !important;
+  font-weight: 400 !important;
+  text-shadow: 0 0 12px rgba(34, 210, 185, 0.28) !important;
+}
+
+/* === Flygbussarna-inspired open mega menu, HB Shuttle colors === */
+
+.betaHeader.menuIsOpen {
+  background:
+    radial-gradient(circle at 8% 0%, rgba(34, 210, 185, 0.12), transparent 26%),
+    linear-gradient(90deg, rgba(5, 38, 44, 0.98), rgba(6, 52, 57, 0.98), rgba(4, 31, 37, 0.98)) !important;
+  box-shadow: none !important;
+}
+
+.betaHeader.menuIsOpen .clubButton {
+  display: none !important;
+}
+
+.betaHeader.menuIsOpen .betaNav {
+  justify-self: end !important;
+}
+
+.betaHeader.menuIsOpen .betaNav a,
+.betaHeader.menuIsOpen .languageButton,
+.betaHeader.menuIsOpen .menuButton {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+.betaHeader.menuIsOpen .menuButton {
+  padding: 0 16px !important;
+  min-height: 40px !important;
+  border-radius: 12px !important;
+  background: rgba(245, 244, 240, 0.10) !important;
+  color: #f5f4f0 !important;
+}
+
+.betaHeader.menuIsOpen .menuButton::before {
+  content: none !important;
+}
+
+.megaMenu.flyStyle {
+  top: 74px !important;
+  min-height: 520px !important;
+  background:
+    radial-gradient(circle at 84% 8%, rgba(34, 210, 185, 0.10), transparent 28%),
+    linear-gradient(135deg, #263136 0%, #15262b 46%, #071b21 100%) !important;
+}
+
+.megaMenu.flyStyle .megaMenuInner {
+  width: min(1500px, 100%) !important;
+  padding: 34px 70px 38px !important;
+}
+
+.megaMenu.flyStyle .megaMenuGrid {
+  grid-template-columns: 430px 1px 1fr !important;
+  gap: 72px !important;
+}
+
+.megaMenu.flyStyle .megaMenuLinks {
+  padding-top: 0 !important;
+  gap: 14px !important;
+}
+
+.megaMenu.flyStyle .megaMenuLinks a {
+  width: 100% !important;
+  min-height: 58px !important;
+  padding: 0 22px !important;
+  border-radius: 14px !important;
+  color: #ffffff !important;
+  font-size: 18px !important;
+  font-weight: 700 !important;
+  background: transparent !important;
+}
+
+.megaMenu.flyStyle .megaMenuLinks a.active,
+.megaMenu.flyStyle .megaMenuLinks a:hover {
+  border-color: rgba(245, 244, 240, 0.38) !important;
+  background: rgba(245, 244, 240, 0.06) !important;
+  box-shadow:
+    inset 0 0 0 1px rgba(245, 244, 240, 0.14),
+    0 0 0 1px rgba(34, 210, 185, 0.04) !important;
+}
+
+.megaMenu.flyStyle .megaIcon {
+  color: #f5f4f0 !important;
+  font-size: 24px !important;
+  text-shadow: none !important;
+}
+
+.megaMenu.flyStyle .megaLoginLine {
+  margin: 74px 0 6px !important;
+  background: rgba(245, 244, 240, 0.24) !important;
+}
+
+.megaMenu.flyStyle .megaDivider {
+  background: rgba(245, 244, 240, 0.30) !important;
+}
+
+.megaMenu.flyStyle .megaFeature {
+  width: min(770px, 100%) !important;
+}
+
+.megaMenu.flyStyle .megaImage {
+  height: 215px !important;
+  border-radius: 24px !important;
+  background-image:
+    linear-gradient(180deg, rgba(0,0,0,0.06), rgba(0,0,0,0.24)),
+    url("/images/hbshuttle-menu.jpg") !important;
+  background-size: cover !important;
+  background-position: center center !important;
+}
+
+.megaMenu.flyStyle .megaImage span {
+  color: #f5f4f0 !important;
+}
+
+.megaMenu.flyStyle .megaFeature h2 {
+  margin-top: 26px !important;
+  max-width: 700px !important;
+  color: #ffffff !important;
+  font-size: clamp(32px, 2.5vw, 46px) !important;
+  line-height: 1.18 !important;
+  font-weight: 700 !important;
+  letter-spacing: -1.2px !important;
+}
+
+.megaMenu.flyStyle .megaFeature p {
+  max-width: 760px !important;
+  color: rgba(255, 255, 255, 0.92) !important;
+  font-size: 18px !important;
+  line-height: 1.55 !important;
+  font-weight: 500 !important;
+}
+
+.megaMenu.flyStyle .megaReadMore {
+  min-height: 54px !important;
+  border-color: rgba(245, 244, 240, 0.40) !important;
+  background: rgba(245, 244, 240, 0.04) !important;
+  color: #ffffff !important;
+  font-size: 18px !important;
+  font-weight: 700 !important;
+}
+
+.megaMenu.flyStyle .megaReadMore:hover {
+  border-color: rgba(34, 210, 185, 0.65) !important;
+  background: rgba(0, 184, 157, 0.12) !important;
+}
+
+@media (max-width: 1050px) {
+  .megaMenu.flyStyle {
+    top: 70px !important;
+    min-height: calc(100vh - 70px) !important;
+  }
+
+  .megaMenu.flyStyle .megaMenuInner {
+    padding: 24px 18px 30px !important;
+  }
+
+  .megaMenu.flyStyle .megaMenuGrid {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+  }
+
+  .megaMenu.flyStyle .megaDivider {
+    display: none !important;
+  }
+
+  .megaMenu.flyStyle .megaLoginLine {
+    margin: 24px 0 6px !important;
+  }
+
+  .megaMenu.flyStyle .megaFeature h2 {
+    font-size: 30px !important;
+  }
+
+  .megaMenu.flyStyle .megaFeature p {
+    font-size: 15.5px !important;
+  }
+}
+
+/* === Mega menu should go all the way up behind header === */
+
+.betaHeader.menuIsOpen {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 260 !important;
+  background:
+    linear-gradient(90deg, rgba(4, 38, 44, 0.96), rgba(5, 50, 55, 0.96), rgba(4, 31, 37, 0.96)) !important;
+  backdrop-filter: blur(18px) !important;
+  border-bottom: 1px solid rgba(245, 244, 240, 0.10) !important;
+}
+
+.megaBackdrop.open {
+  z-index: 170 !important;
+}
+
+.megaMenu.flyStyle {
+  top: 0 !important;
+  z-index: 190 !important;
+  min-height: 620px !important;
+  padding-top: 74px !important;
+  background:
+    radial-gradient(circle at 82% 10%, rgba(34, 210, 185, 0.12), transparent 30%),
+    radial-gradient(circle at 18% 88%, rgba(0, 119, 100, 0.18), transparent 32%),
+    linear-gradient(135deg, #263136 0%, #15262b 46%, #071b21 100%) !important;
+}
+
+.megaMenu.flyStyle .megaMenuInner {
+  padding-top: 34px !important;
+  padding-bottom: 42px !important;
+}
+
+/* Tar bort känslan av att menyn börjar för långt ner */
+.megaMenu.flyStyle .megaMenuGrid {
+  align-items: start !important;
+}
+
+/* Lite mer Flygbussarna-känsla: mindre tom yta längst upp */
+.megaMenu.flyStyle .megaMenuLinks {
+  padding-top: 0 !important;
+}
+
+.megaMenu.flyStyle .megaFeature {
+  padding-top: 0 !important;
+}
+
+/* Mobil */
+@media (max-width: 1050px) {
+  .betaHeader.menuIsOpen {
+    z-index: 260 !important;
+  }
+
+  .megaMenu.flyStyle {
+    top: 0 !important;
+    padding-top: 70px !important;
+    min-height: 100vh !important;
+  }
+
+  .megaMenu.flyStyle .megaMenuInner {
+    padding-top: 22px !important;
+  }
+}
+
+/* === FINAL: softer typography for beta header and mega menu === */
+
+/* Header: mindre fet, mer jämn */
+.betaHeader,
+.betaHeader a,
+.betaHeader button,
+.betaLogoTitle,
+.betaLogoSub,
+.clubButton {
+  font-weight: 500 !important;
+}
+
+.betaLogoTitle {
+  font-size: 21px !important;
+  letter-spacing: 0.045em !important;
+  font-weight: 600 !important;
+}
+
+.betaLogoSub {
+  font-size: 10.5px !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.01em !important;
+}
+
+.betaNav a,
+.languageButton,
+.menuButton {
+  font-size: 14.5px !important;
+  font-weight: 500 !important;
+  letter-spacing: 0 !important;
+}
+
+.clubButton {
+  font-size: 14px !important;
+  font-weight: 500 !important;
+}
+
+/* Mega menu: samma känsla som Flygbussarna, inte för fett */
+.megaMenu.flyStyle .megaMenuLinks a {
+  font-size: 17px !important;
+  font-weight: 500 !important;
+  letter-spacing: 0 !important;
+}
+
+.megaMenu.flyStyle .megaIcon {
+  font-size: 22px !important;
+  font-weight: 400 !important;
+}
+
+/* Högerdelen i megamenyn */
+.megaMenu.flyStyle .megaFeature h2 {
+  font-size: 34px !important;
+  line-height: 1.22 !important;
+  font-weight: 500 !important;
+  letter-spacing: -0.7px !important;
+}
+
+.megaMenu.flyStyle .megaFeature p {
+  font-size: 16px !important;
+  line-height: 1.55 !important;
+  font-weight: 400 !important;
+}
+
+.megaMenu.flyStyle .megaReadMore {
+  font-size: 16px !important;
+  font-weight: 500 !important;
+}
+
+/* Startsidans beta-hero efter login */
+.betaHeroContent h1 {
+  font-weight: 500 !important;
+}
+
+.betaHeroContent p {
+  font-weight: 400 !important;
+}
+
+/* X Stäng ska inte kännas tung */
+.closeMenuIcon {
+  font-weight: 300 !important;
+}
+
+.menuButton.isOpen,
+.mobileMenuButton.isOpen {
+  font-weight: 500 !important;
+}
+
+/* Mobil */
+@media (max-width: 1050px) {
+  .megaMenu.flyStyle .megaMenuLinks a {
+    font-size: 16px !important;
+    font-weight: 500 !important;
+  }
+
+  .megaMenu.flyStyle .megaFeature h2 {
+    font-size: 28px !important;
+    font-weight: 500 !important;
+  }
+
+  .megaMenu.flyStyle .megaFeature p {
+    font-size: 15px !important;
+    font-weight: 400 !important;
+  }
+}
+
+/* === Keep HB Shuttle Club visible when menu is open === */
+
+.betaHeader.menuIsOpen .clubButton {
+  display: inline-flex !important;
+}
+
+.betaHeader.menuIsOpen {
+  grid-template-columns: auto 1fr auto !important;
+}
+
+.betaHeader.menuIsOpen .betaNav {
+  justify-self: end !important;
+  margin-right: 14px !important;
+}
+
+.betaHeader.menuIsOpen .clubButton {
+  min-height: 44px !important;
+  padding: 0 21px !important;
+  border-radius: 999px !important;
+  background: linear-gradient(180deg, #17b99f, #007764) !important;
+  color: #ffffff !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  white-space: nowrap !important;
+  box-shadow: 0 10px 30px rgba(0, 119, 100, 0.26) !important;
+}
+
+/* === Improve mega menu feature image === */
+
+.megaMenu.flyStyle .megaImage,
+.megaImage {
+  height: 220px !important;
+  border-radius: 24px !important;
+  background-size: cover !important;
+  background-position: 34% center !important;
+  border: 1px solid rgba(245, 244, 240, 0.10) !important;
+  box-shadow: 0 18px 46px rgba(0, 0, 0, 0.28) !important;
+  overflow: hidden !important;
+}
+
+.megaMenu.flyStyle .megaImage::after,
+.megaImage::after {
+  content: "" !important;
+  position: absolute !important;
+  inset: 0 !important;
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.02), rgba(0, 0, 0, 0.34)),
+    linear-gradient(90deg, rgba(0, 119, 100, 0.10), transparent 45%) !important;
+}
+
+.megaMenu.flyStyle .megaImage span,
+.megaImage span {
+  position: absolute !important;
+  left: 22px !important;
+  bottom: 18px !important;
+  z-index: 2 !important;
+  color: #f5f4f0 !important;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.01em !important;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.45) !important;
+}
+
+@media (max-width: 1050px) {
+  .megaMenu.flyStyle .megaImage,
+  .megaImage {
+    height: 185px !important;
+    background-position: 38% center !important;
+  }
+
+  .megaMenu.flyStyle .megaImage span,
+  .megaImage span {
+    font-size: 14px !important;
+    left: 18px !important;
+    bottom: 16px !important;
+  }
+}
+
+
+/* === Better mega menu SVG icons === */
+
+.megaIcon svg {
+  width: 24px !important;
+  height: 24px !important;
+  display: block !important;
+  stroke: #22d2b9 !important;
+  stroke-width: 1.8 !important;
+  stroke-linecap: round !important;
+  stroke-linejoin: round !important;
+}
+
+.megaMenu.flyStyle .megaIcon svg {
+  stroke: #f5f4f0 !important;
+}
+
+.megaMenu.flyStyle .megaMenuLinks a:hover .megaIcon svg,
+.megaMenu.flyStyle .megaMenuLinks a.active .megaIcon svg {
+  stroke: #22d2b9 !important;
+}
+
+.megaMenu.flyStyle .megaMenuLinks a {
+  gap: 16px !important;
+}
+
+.megaMenu.flyStyle .megaMenuLinks a.active {
+  border-color: rgba(245, 244, 240, 0.32) !important;
+}
+
+/* === HB Shuttle Club button SVG icon === */
+
+.clubButtonIcon {
+  width: 19px !important;
+  height: 19px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.clubButtonIcon svg {
+  width: 19px !important;
+  height: 19px !important;
+  stroke: #ffffff !important;
+  stroke-width: 1.9 !important;
+  stroke-linecap: round !important;
+  stroke-linejoin: round !important;
+}
+
+.clubButton:hover .clubButtonIcon svg {
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.22));
 }
