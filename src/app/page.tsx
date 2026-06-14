@@ -37,16 +37,46 @@ export default function Home() {
     router.push("/start");
   }
 
-  function submitEmail(e: FormEvent<HTMLFormElement>) {
+  async function submitEmail(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
-    if (!email.trim()) {
+    const cleanedEmail = email.trim().toLowerCase();
+
+    if (!cleanedEmail) {
       setMessage("Fyll i din e-postadress först.");
       return;
     }
 
-    setMessage("Tack! Vi meddelar dig när Helsingbuss Airport Shuttle öppnar.");
-    setEmail("");
+    try {
+      const baseUrl =
+        process.env.NEXT_PUBLIC_PORTAL_API_URL || "https://login.helsingbuss.se";
+
+      const response = await fetch(
+        `${baseUrl.replace(/\/$/, "")}/api/public/shuttle/interest`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: cleanedEmail,
+          }),
+        }
+      );
+
+      const data = await response.json().catch(() => null);
+
+      if (!response.ok) {
+        setMessage(data?.error || "Kunde inte spara din e-post just nu. Försök igen.");
+        return;
+      }
+
+      setMessage(data?.message || "Tack! Vi meddelar dig när Helsingbuss Airport Shuttle öppnar.");
+      setEmail("");
+    } catch (error) {
+      console.error("Could not submit email interest:", error);
+      setMessage("Kunde inte spara din e-post just nu. Försök igen.");
+    }
   }
 
   return (
