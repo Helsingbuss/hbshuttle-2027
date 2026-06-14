@@ -17,12 +17,7 @@ export default function TravelHighlights() {
   useEffect(() => {
     async function loadHighlights() {
       try {
-        const baseUrl = process.env.NEXT_PUBLIC_PORTAL_API_URL;
-
-        if (!baseUrl) {
-          setHighlights([]);
-          return;
-        }
+        const baseUrl = process.env.NEXT_PUBLIC_PORTAL_API_URL || "https://login.helsingbuss.se";
 
         const cleanBaseUrl = baseUrl.replace(/\/$/, "");
 
