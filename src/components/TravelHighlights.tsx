@@ -1,5 +1,6 @@
-﻿"use client";
+"use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
 
 type HighlightCard = {
@@ -10,7 +11,7 @@ type HighlightCard = {
   badge?: string;
 };
 
-const highlights: HighlightCard[] = [
+const fallbackHighlights: HighlightCard[] = [
   {
     title: "Köp nu – res när det passar dig",
     text: "Din biljett är flexibel och giltig på valfri avgång den dagen du valt. Ändra enkelt online.",
@@ -33,6 +34,43 @@ const highlights: HighlightCard[] = [
 ];
 
 export default function TravelHighlights() {
+  const [highlights, setHighlights] = useState<HighlightCard[]>(fallbackHighlights);
+
+  useEffect(() => {
+    async function loadHighlights() {
+      try {
+        const baseUrl =
+          process.env.NEXT_PUBLIC_PORTAL_API_URL || "http://localhost:3000";
+
+        const response = await fetch(`${baseUrl}/api/public/shuttle/highlights`, {
+          cache: "no-store",
+        });
+
+        if (!response.ok) return;
+
+        const data = await response.json();
+
+        if (Array.isArray(data.cards) && data.cards.length > 0) {
+          const connectedHighlights: HighlightCard[] = data.cards
+            .slice(0, 3)
+            .map((card: any, index: number) => ({
+              title: card.title || fallbackHighlights[index]?.title || "",
+              text: card.text || fallbackHighlights[index]?.text || "",
+              image: card.image || fallbackHighlights[index]?.image || "",
+              href: card.buttonLink || fallbackHighlights[index]?.href || "/start",
+              badge: index === 0 ? "%" : undefined,
+            }));
+
+          setHighlights(connectedHighlights);
+        }
+      } catch (error) {
+        console.error("Could not load shuttle highlights:", error);
+      }
+    }
+
+    loadHighlights();
+  }, []);
+
   return (
     <section className="travelHighlights">
       <div className="travelHighlightGrid">
@@ -61,4 +99,3 @@ export default function TravelHighlights() {
     </section>
   );
 }
-

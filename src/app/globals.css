@@ -6548,3 +6548,767 @@ html body .betaHeader {
     height: 96px !important;
   }
 }
+
+/* === Timetable page === */
+
+.timetablePage {
+  min-height: 100vh !important;
+  background: #f5f7f6 !important;
+  padding: 76px var(--hb-content-right, 120px) 70px var(--hb-content-left, 210px) !important;
+}
+
+.timetableHero {
+  text-align: center !important;
+  max-width: 820px !important;
+  margin: 0 auto 34px !important;
+}
+
+.timetableEyebrow {
+  width: fit-content !important;
+  margin: 0 auto 14px !important;
+  padding: 8px 13px !important;
+  border-radius: 999px !important;
+  background: rgba(0, 119, 100, 0.08) !important;
+  color: #007764 !important;
+  font-size: 12px !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+}
+
+.timetableHero h1 {
+  margin: 0 !important;
+  color: #063547 !important;
+  font-size: clamp(40px, 4vw, 58px) !important;
+  line-height: 1.05 !important;
+  font-weight: 700 !important;
+  letter-spacing: -1.4px !important;
+}
+
+.timetableHero p {
+  margin: 18px 0 0 !important;
+  color: rgba(6, 53, 71, 0.72) !important;
+  font-size: 17px !important;
+  line-height: 1.6 !important;
+  font-weight: 500 !important;
+}
+
+.timetableLayout {
+  display: grid !important;
+  grid-template-columns: minmax(360px, 520px) 1fr !important;
+  gap: 32px !important;
+  align-items: start !important;
+}
+
+.timetableSearchCard,
+.timetableResultCard {
+  border-radius: 18px !important;
+  border: 1px solid rgba(6, 53, 71, 0.10) !important;
+  background: rgba(255,255,255,0.96) !important;
+  box-shadow:
+    0 16px 40px rgba(6, 53, 71, 0.08),
+    0 2px 8px rgba(6, 53, 71, 0.05) !important;
+}
+
+.timetableSearchCard {
+  padding: 30px !important;
+}
+
+.timetableSearchCard h2 {
+  margin: 0 0 14px !important;
+  color: #063547 !important;
+  font-size: 21px !important;
+  line-height: 1.2 !important;
+  font-weight: 800 !important;
+}
+
+.routePicker {
+  position: relative !important;
+  border-radius: 14px !important;
+  border: 1px solid rgba(6, 53, 71, 0.22) !important;
+  overflow: hidden !important;
+  background: #ffffff !important;
+}
+
+.routeField {
+  width: 100% !important;
+  min-height: 64px !important;
+  display: grid !important;
+  grid-template-columns: 28px 1fr !important;
+  gap: 10px !important;
+  align-items: center !important;
+  padding: 12px 18px !important;
+  border: 0 !important;
+  background: transparent !important;
+  text-align: left !important;
+  font-family: inherit !important;
+  cursor: pointer !important;
+}
+
+.routeField + .routeField {
+  border-top: 1px solid rgba(6, 53, 71, 0.16) !important;
+}
+
+.routeDot,
+.routePin {
+  width: 18px !important;
+  height: 18px !important;
+  border-radius: 999px !important;
+  border: 5px solid #007764 !important;
+}
+
+.routePin {
+  border-radius: 999px 999px 999px 0 !important;
+  transform: rotate(-45deg) !important;
+}
+
+.routeField small {
+  display: block !important;
+  color: rgba(6, 53, 71, 0.58) !important;
+  font-size: 12px !important;
+  line-height: 1 !important;
+  font-weight: 700 !important;
+}
+
+.routeField strong {
+  display: block !important;
+  margin-top: 4px !important;
+  color: #063547 !important;
+  font-size: 16px !important;
+  line-height: 1.15 !important;
+  font-weight: 700 !important;
+}
+
+.routeSwap {
+  position: absolute !important;
+  right: 14px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  width: 42px !important;
+  height: 42px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border: 0 !important;
+  border-radius: 999px !important;
+  background: #007764 !important;
+  color: #ffffff !important;
+  cursor: pointer !important;
+  box-shadow: 0 10px 22px rgba(0, 119, 100, 0.24) !important;
+}
+
+.routeSwap svg {
+  width: 22px !important;
+  height: 22px !important;
+  stroke: currentColor !important;
+  stroke-width: 2 !important;
+  stroke-linecap: round !important;
+  stroke-linejoin: round !important;
+}
+
+.routeDetails {
+  margin-top: 26px !important;
+}
+
+.routeDetailsHead {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  margin-bottom: 14px !important;
+}
+
+.routeDetailsHead h3 {
+  margin: 0 !important;
+  color: #063547 !important;
+  font-size: 16px !important;
+  font-weight: 800 !important;
+}
+
+.routeDetails ol {
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.routeDetails li {
+  position: relative !important;
+  min-height: 32px !important;
+  display: grid !important;
+  grid-template-columns: 20px 1fr !important;
+  gap: 12px !important;
+  align-items: start !important;
+}
+
+.routeDetails li::after {
+  content: "" !important;
+  position: absolute !important;
+  left: 8px !important;
+  top: 18px !important;
+  bottom: -10px !important;
+  width: 2px !important;
+  background: rgba(0, 119, 100, 0.22) !important;
+}
+
+.routeDetails li.last::after {
+  display: none !important;
+}
+
+.routeDetails li span {
+  width: 17px !important;
+  height: 17px !important;
+  margin-top: 1px !important;
+  border-radius: 999px !important;
+  background: #007764 !important;
+}
+
+.routeDetails li.last span {
+  background: #ffffff !important;
+  border: 4px solid #007764 !important;
+}
+
+.routeDetails li p {
+  margin: 0 !important;
+  color: #063547 !important;
+  font-size: 14.5px !important;
+  line-height: 1.35 !important;
+  font-weight: 600 !important;
+}
+
+.travelWhenTitle {
+  margin-top: 34px !important;
+}
+
+.timetableSelect {
+  width: 100% !important;
+  height: 56px !important;
+  margin-top: 8px !important;
+  padding: 0 18px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  border-radius: 13px !important;
+  border: 1px solid rgba(6, 53, 71, 0.20) !important;
+  background: #ffffff !important;
+  color: #063547 !important;
+  font-family: inherit !important;
+  font-size: 15.5px !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+}
+
+.timetableSelect svg {
+  width: 19px !important;
+  height: 19px !important;
+  stroke: currentColor !important;
+  stroke-width: 2.2 !important;
+  stroke-linecap: round !important;
+  stroke-linejoin: round !important;
+}
+
+.dateTimeGrid {
+  margin-top: 12px !important;
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 12px !important;
+}
+
+.dateTimeField {
+  height: 58px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 12px !important;
+  border-radius: 13px !important;
+  border: 1px solid rgba(6, 53, 71, 0.18) !important;
+  background: #ffffff !important;
+  color: #063547 !important;
+  font-family: inherit !important;
+  cursor: pointer !important;
+}
+
+.dateTimeField svg {
+  width: 20px !important;
+  height: 20px !important;
+  stroke: #007764 !important;
+  stroke-width: 1.9 !important;
+  stroke-linecap: round !important;
+  stroke-linejoin: round !important;
+}
+
+.dateTimeField small {
+  display: block !important;
+  color: rgba(6, 53, 71, 0.58) !important;
+  font-size: 11px !important;
+  line-height: 1 !important;
+  font-weight: 700 !important;
+}
+
+.dateTimeField strong {
+  display: block !important;
+  margin-top: 3px !important;
+  color: #063547 !important;
+  font-size: 17px !important;
+  line-height: 1 !important;
+  font-weight: 700 !important;
+}
+
+.showTimetableButton {
+  min-width: 160px !important;
+  height: 54px !important;
+  margin: 34px auto 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border: 0 !important;
+  border-radius: 999px !important;
+  background: linear-gradient(180deg, #13a990, #007764) !important;
+  color: #ffffff !important;
+  font-family: inherit !important;
+  font-size: 15px !important;
+  font-weight: 800 !important;
+  cursor: pointer !important;
+  box-shadow: 0 14px 30px rgba(0, 119, 100, 0.24) !important;
+}
+
+.stationLink {
+  width: fit-content !important;
+  margin: 22px auto 0 !important;
+  display: block !important;
+  color: #007764 !important;
+  text-decoration: underline !important;
+  text-underline-offset: 4px !important;
+  font-size: 15px !important;
+  font-weight: 600 !important;
+}
+
+.timetableResultCard {
+  min-height: 520px !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+}
+
+.emptyTimetable {
+  min-height: 520px !important;
+  display: grid !important;
+  place-items: center !important;
+  padding: 44px !important;
+  text-align: center !important;
+}
+
+.emptyIllustration svg {
+  width: 260px !important;
+  height: 190px !important;
+}
+
+.emptyIllustration path:nth-child(1),
+.emptyIllustration path:nth-child(2),
+.emptyIllustration path:nth-child(3),
+.emptyIllustration path:nth-child(4) {
+  stroke: #007764 !important;
+  stroke-width: 8 !important;
+  stroke-linecap: round !important;
+  stroke-linejoin: round !important;
+}
+
+.emptyIllustration path:nth-child(5),
+.emptyIllustration path:nth-child(6),
+.emptyIllustration path:nth-child(7) {
+  stroke: #22d2b9 !important;
+  stroke-width: 8 !important;
+  stroke-linecap: round !important;
+  stroke-linejoin: round !important;
+  opacity: 0.55 !important;
+}
+
+.emptyTimetable h2 {
+  margin: 10px 0 0 !important;
+  color: #063547 !important;
+  font-size: 30px !important;
+  line-height: 1.15 !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.6px !important;
+}
+
+.emptyTimetable p {
+  max-width: 520px !important;
+  margin: 12px auto 0 !important;
+  color: rgba(6, 53, 71, 0.68) !important;
+  font-size: 16px !important;
+  line-height: 1.55 !important;
+  font-weight: 500 !important;
+}
+
+.resultHeader {
+  padding: 30px 34px 22px !important;
+  text-align: center !important;
+  border-bottom: 1px solid rgba(6, 53, 71, 0.10) !important;
+}
+
+.resultHeader h2 {
+  margin: 0 !important;
+  color: #063547 !important;
+  font-size: 28px !important;
+  line-height: 1.15 !important;
+  font-weight: 800 !important;
+}
+
+.resultHeader h2 span {
+  margin: 0 16px !important;
+  color: #007764 !important;
+}
+
+.resultHeader p {
+  margin: 8px 0 0 !important;
+  color: rgba(6, 53, 71, 0.62) !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+}
+
+.departureTable {
+  padding: 0 34px !important;
+}
+
+.departureHead,
+.departureRow {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr 0.8fr !important;
+  align-items: center !important;
+}
+
+.departureHead {
+  min-height: 54px !important;
+  color: rgba(6, 53, 71, 0.70) !important;
+  font-size: 14px !important;
+  font-weight: 800 !important;
+  border-bottom: 1px dashed rgba(6, 53, 71, 0.18) !important;
+}
+
+.departureRow {
+  min-height: 56px !important;
+  border-bottom: 1px solid rgba(6, 53, 71, 0.08) !important;
+  color: #063547 !important;
+  font-size: 16px !important;
+}
+
+.departureRow strong {
+  font-weight: 800 !important;
+}
+
+.departureRow span {
+  font-weight: 600 !important;
+}
+
+.ticketInfoBox {
+  margin: 26px 34px 34px !important;
+  padding: 28px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 28px !important;
+  border-radius: 16px !important;
+  background: rgba(0, 119, 100, 0.10) !important;
+}
+
+.ticketInfoBox h3 {
+  margin: 0 !important;
+  color: #063547 !important;
+  font-size: 24px !important;
+  line-height: 1.15 !important;
+  font-weight: 800 !important;
+}
+
+.ticketInfoBox p {
+  margin: 8px 0 0 !important;
+  color: rgba(6, 53, 71, 0.74) !important;
+  font-size: 15px !important;
+  font-weight: 600 !important;
+}
+
+.ticketInfoBox ul {
+  margin: 18px 0 0 !important;
+  padding-left: 20px !important;
+  color: #063547 !important;
+  font-size: 15px !important;
+  font-weight: 600 !important;
+}
+
+.ticketInfoBox button {
+  min-width: 130px !important;
+  height: 52px !important;
+  border-radius: 999px !important;
+  border: 1px solid rgba(6, 53, 71, 0.12) !important;
+  background: #ffffff !important;
+  color: #063547 !important;
+  font-family: inherit !important;
+  font-size: 15px !important;
+  font-weight: 800 !important;
+  cursor: pointer !important;
+}
+
+@media (max-width: 1100px) {
+  .timetablePage {
+    padding: 54px 18px 54px !important;
+  }
+
+  .timetableLayout {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .timetableHero h1 {
+    font-size: 36px !important;
+  }
+
+  .timetableSearchCard {
+    padding: 22px !important;
+  }
+
+  .dateTimeGrid,
+  .ticketInfoBox {
+    grid-template-columns: 1fr !important;
+  }
+
+  .ticketInfoBox {
+    display: grid !important;
+  }
+
+  .resultHeader h2 {
+    font-size: 23px !important;
+  }
+
+  .departureTable {
+    padding: 0 20px !important;
+  }
+
+  .ticketInfoBox {
+    margin: 22px 20px !important;
+    padding: 22px !important;
+  }
+}
+
+/* === FIX: timetable travel time selector back to compact button === */
+
+.timetableSelect {
+  height: 56px !important;
+  min-height: 56px !important;
+  max-height: 56px !important;
+  display: grid !important;
+  grid-template-columns: 1fr auto !important;
+  align-items: center !important;
+  gap: 12px !important;
+  margin-top: 8px !important;
+  padding: 0 18px !important;
+}
+
+.timetableSelect span {
+  color: #063547 !important;
+  font-size: 15.5px !important;
+  font-weight: 700 !important;
+  line-height: 1 !important;
+}
+
+.timetableSelect small {
+  display: none !important;
+}
+
+.timetableSelect svg {
+  width: 19px !important;
+  height: 19px !important;
+  stroke: #063547 !important;
+  stroke-width: 2.2 !important;
+  stroke-linecap: round !important;
+  stroke-linejoin: round !important;
+}
+
+.timetableSelectWrap {
+  display: none !important;
+}
+
+/* === FIX: custom timetable dropdown === */
+
+.timetableDropdown {
+  position: relative !important;
+  width: 100% !important;
+  margin-top: 8px !important;
+}
+
+.timetableDropdown .timetableSelect {
+  width: 100% !important;
+  height: 56px !important;
+  min-height: 56px !important;
+  max-height: 56px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 14px !important;
+  padding: 0 18px !important;
+  border-radius: 13px !important;
+  border: 1px solid rgba(6, 53, 71, 0.20) !important;
+  background: #ffffff !important;
+  color: #063547 !important;
+  font-family: inherit !important;
+  cursor: pointer !important;
+}
+
+.timetableDropdown .timetableSelect span {
+  color: #063547 !important;
+  font-size: 15.5px !important;
+  font-weight: 700 !important;
+  line-height: 1 !important;
+}
+
+.timetableDropdown .timetableSelect svg {
+  width: 19px !important;
+  height: 19px !important;
+  min-width: 19px !important;
+  stroke: #063547 !important;
+  stroke-width: 2.2 !important;
+  stroke-linecap: round !important;
+  stroke-linejoin: round !important;
+}
+
+.timetableDropdownMenu {
+  position: absolute !important;
+  left: 0 !important;
+  right: 0 !important;
+  top: calc(100% + 8px) !important;
+  z-index: 50 !important;
+  padding: 8px !important;
+  border-radius: 14px !important;
+  border: 1px solid rgba(6, 53, 71, 0.12) !important;
+  background: #ffffff !important;
+  box-shadow:
+    0 18px 40px rgba(6, 53, 71, 0.14),
+    0 4px 10px rgba(6, 53, 71, 0.06) !important;
+}
+
+.timetableDropdownMenu button {
+  width: 100% !important;
+  height: 46px !important;
+  padding: 0 14px !important;
+  border: 0 !important;
+  border-radius: 10px !important;
+  background: transparent !important;
+  color: #063547 !important;
+  font-family: inherit !important;
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  text-align: left !important;
+  cursor: pointer !important;
+}
+
+.timetableDropdownMenu button:hover,
+.timetableDropdownMenu button.active {
+  background: rgba(0, 119, 100, 0.09) !important;
+  color: #007764 !important;
+}
+
+/* === TWEAK: more spacing above "När vill du resa?" === */
+
+.travelWhenTitle {
+  margin-top: 46px !important;
+}
+
+.routeDetails + .travelWhenTitle {
+  margin-top: 50px !important;
+}
+
+@media (max-width: 640px) {
+  .travelWhenTitle {
+    margin-top: 38px !important;
+  }
+
+  .routeDetails + .travelWhenTitle {
+    margin-top: 42px !important;
+  }
+}
+
+/* === FIX: spacing around "När vill du resa?" === */
+
+.timetableSearchCard h2.travelWhenTitle {
+  margin-top: 30px !important;
+  margin-bottom: 14px !important;
+}
+
+.timetableSearchCard .routePicker + h2.travelWhenTitle {
+  margin-top: 30px !important;
+}
+
+.timetableSearchCard .timetableDropdown {
+  margin-top: 0 !important;
+}
+
+@media (max-width: 640px) {
+  .timetableSearchCard h2.travelWhenTitle {
+    margin-top: 28px !important;
+    margin-bottom: 14px !important;
+  }
+}
+
+/* === Timetable empty state with image === */
+
+.emptyTimetableWithImage {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important;
+  padding: 34px !important;
+  text-align: center !important;
+}
+
+.timetableEmptyImageWrap {
+  width: 100% !important;
+  max-height: 280px !important;
+  overflow: hidden !important;
+  border-radius: 18px !important;
+  background: #eef4f2 !important;
+  margin-bottom: 34px !important;
+}
+
+.timetableEmptyImage {
+  width: 100% !important;
+  height: 280px !important;
+  display: block !important;
+  object-fit: cover !important;
+  object-position: center center !important;
+}
+
+.timetableEmptyText {
+  max-width: 560px !important;
+  margin: 0 auto !important;
+}
+
+.timetableEmptyText h2 {
+  margin: 0 !important;
+  color: #063547 !important;
+  font-size: 34px !important;
+  line-height: 1.15 !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.7px !important;
+}
+
+.timetableEmptyText p {
+  margin: 16px 0 0 !important;
+  color: rgba(6, 53, 71, 0.68) !important;
+  font-size: 16.5px !important;
+  line-height: 1.6 !important;
+  font-weight: 500 !important;
+}
+
+@media (max-width: 640px) {
+  .emptyTimetableWithImage {
+    padding: 22px !important;
+  }
+
+  .timetableEmptyImage {
+    height: 210px !important;
+  }
+
+  .timetableEmptyText h2 {
+    font-size: 26px !important;
+  }
+
+  .timetableEmptyText p {
+    font-size: 15px !important;
+  }
+}
