@@ -3,7 +3,7 @@
 import Link from "next/link";
 import BetaHeader from "../../../components/BetaHeader";
 import { useSearchParams } from "next/navigation";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 type Comfort = "economy" | "plus";
 
@@ -194,7 +194,7 @@ export default function ChooseDeparturePage() {
                 </svg>
               </span>
               <div>
-                <small>Från</small>
+                <small>{from.toLowerCase().includes("airport") || from.toLowerCase().includes("flygplats") ? "Från flygplats" : "Från"}</small>
                 <strong>{from}</strong>
               </div>
             </div>
@@ -214,7 +214,7 @@ export default function ChooseDeparturePage() {
                 </svg>
               </span>
               <div>
-                <small>Till flygplats</small>
+                <small>{from.toLowerCase().includes("airport") || from.toLowerCase().includes("flygplats") ? "Till hållplats" : "Till flygplats"}</small>
                 <strong>{to}</strong>
               </div>
             </div>
@@ -254,6 +254,9 @@ export default function ChooseDeparturePage() {
           {departures.map((departure) => {
             const isOpen = openDepartureId === departure.id;
             const isSelected = selectedDepartureId === departure.id;
+
+            const displayFrom = from || departure.from;
+            const displayTo = to || departure.to;
 
             return (
               <article
@@ -309,7 +312,7 @@ export default function ChooseDeparturePage() {
                         <span />
                         <div>
                           <strong>{departure.departureTime}</strong>
-                          <p>{departure.from}</p>
+                          <p>{displayFrom}</p>
                         </div>
                       </div>
 
@@ -360,7 +363,7 @@ export default function ChooseDeparturePage() {
                         <span />
                         <div>
                           <strong>{departure.arrivalTime}</strong>
-                          <p>{departure.to}</p>
+                          <p>{displayTo}</p>
                         </div>
                       </div>
                     </div>
