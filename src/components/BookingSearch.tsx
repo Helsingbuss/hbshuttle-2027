@@ -68,6 +68,12 @@ function CustomDropdown({
         <span className={selected ? "bookingDropdownValue" : "bookingDropdownPlaceholder"}>
           {loading ? "Laddar hållplatser..." : selected?.label || placeholder}
         </span>
+
+        <span className={open ? "bookingDropdownArrow bookingDropdownArrowOpen" : "bookingDropdownArrow"}>
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="m7 10 5 5 5-5" />
+          </svg>
+        </span>
       </button>
 
       {open ? (
@@ -195,7 +201,7 @@ export default function BookingSearch() {
     if (date) params.set("date", date);
     if (travelers) params.set("travelers", travelers);
 
-    window.location.href = `/start?${params.toString()}`;
+    window.location.href = `/start/valj-avgang?${params.toString()}`;
   }
 
   return (
@@ -220,11 +226,6 @@ export default function BookingSearch() {
               onChange={setFromStop}
             />
 
-            <span className="bookingSearchArrow">
-              <svg viewBox="0 0 24 24" fill="none">
-                <path d="m7 10 5 5 5-5" />
-              </svg>
-            </span>
           </div>
         </div>
 
@@ -246,11 +247,6 @@ export default function BookingSearch() {
               onChange={setAirport}
             />
 
-            <span className="bookingSearchArrow">
-              <svg viewBox="0 0 24 24" fill="none">
-                <path d="m7 10 5 5 5-5" />
-              </svg>
-            </span>
           </div>
         </div>
 
@@ -300,11 +296,6 @@ export default function BookingSearch() {
               onChange={setTravelers}
             />
 
-            <span className="bookingSearchArrow">
-              <svg viewBox="0 0 24 24" fill="none">
-                <path d="m7 10 5 5 5-5" />
-              </svg>
-            </span>
           </div>
         </div>
 
