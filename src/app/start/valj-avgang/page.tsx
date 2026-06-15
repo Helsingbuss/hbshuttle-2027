@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import BetaHeader from "../../../components/BetaHeader";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { Suspense, useEffect, useMemo, useState } from "react";
 
 type Comfort = "economy" | "plus";
@@ -152,6 +152,7 @@ function isDepartureDeparted(selectedDate: string, departureTime: string, status
 
 function ChooseDepartureContent() {
   const searchParams = useSearchParams();
+  const router = useRouter();
 
   const from = searchParams.get("from") || "Helsingborg C";
   const to = searchParams.get("to") || "Ängelholm Helsingborg Airport";
@@ -240,6 +241,34 @@ function ChooseDepartureContent() {
 
     loadDepartures();
   }, [from, to, date]);
+
+  function goToAddons(departure: Departure, selectedComfort: Comfort) {
+    if (isDepartureDeparted(date, departure.departureTime, departure.status)) {
+      return;
+    }
+
+    const params = new URLSearchParams(searchParams.toString());
+
+    params.set("from", from || departure.from);
+    params.set("to", to || departure.to);
+    params.set("date", date);
+    params.set("departureId", departure.id);
+    params.set("departureTime", departure.departureTime);
+    params.set("arrivalTime", departure.arrivalTime);
+    params.set("line", departure.line);
+    params.set("vehicle", departure.vehicle);
+    params.set("comfort", selectedComfort);
+    params.set("ticketType", "Enkel");
+
+    const price =
+      selectedComfort === "plus"
+        ? departure.pricePlus
+        : departure.priceEconomy;
+
+    params.set("ticketPrice", String(price));
+
+    router.push(`/start/tillagg?${params.toString()}`);
+  }
 
   function chooseDeparture(departure: Departure, selectedComfort: Comfort) {
     if (isDepartureDeparted(date, departure.departureTime, departure.status)) {
@@ -464,7 +493,7 @@ function ChooseDepartureContent() {
                             ? "comfortOption active"
                             : "comfortOption"
                         }
-                        onClick={() => chooseDeparture(departure, "plus")}
+                        onClick={() => goToAddons(departure, "plus")}
                         disabled={isDeparted}
                       >
                         <div className="comfortTop">
@@ -487,7 +516,7 @@ function ChooseDepartureContent() {
                             ? "comfortOption active"
                             : "comfortOption"
                         }
-                        onClick={() => chooseDeparture(departure, "economy")}
+                        onClick={() => goToAddons(departure, "economy")}
                         disabled={isDeparted}
                       >
                         <div className="comfortTop">
