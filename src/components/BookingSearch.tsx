@@ -55,7 +55,6 @@ function CustomDropdown({
   loading?: boolean;
 }) {
   const [open, setOpen] = useState(false);
-
   const selected = items.find((item) => item.label === value);
 
   return (
@@ -111,7 +110,7 @@ function CustomDropdown({
 export default function BookingSearch() {
   const [stops, setStops] = useState<NormalizedStop[]>([]);
   const [fromStop, setFromStop] = useState("");
-  const [airport, setAirport] = useState("Ängelholm Helsingborg Airport");
+  const [toStop, setToStop] = useState("Ängelholm Helsingborg Airport");
   const [date, setDate] = useState("");
   const [travelers, setTravelers] = useState("1 resenär");
   const [loading, setLoading] = useState(true);
@@ -141,6 +140,16 @@ export default function BookingSearch() {
           : [];
 
         setStops(normalized);
+
+        const firstAirport =
+          normalized.find((stop) => stop.isAirport) ||
+          normalized.find((stop) =>
+            stop.name.toLowerCase().includes("ängelholm")
+          );
+
+        if (firstAirport) {
+          setToStop(firstAirport.name);
+        }
       } catch (error) {
         console.error("Could not load shuttle stops:", error);
         setStops([]);
@@ -152,37 +161,39 @@ export default function BookingSearch() {
     loadStops();
   }, []);
 
-  const departureStops = useMemo(() => {
-    return stops
-      .filter((stop) => !stop.isAirport)
-      .map((stop) => ({
-        id: stop.id,
-        label: stop.name,
-        subLabel: stop.city,
-      }));
-  }, [stops]);
+  const selectedFrom = useMemo(() => {
+    return stops.find((stop) => stop.name === fromStop) || null;
+  }, [stops, fromStop]);
 
-  const airports = useMemo(() => {
-    const foundAirports = stops.filter((stop) => stop.isAirport);
-
-    const list =
-      foundAirports.length > 0
-        ? foundAirports
-        : [
-            {
-              id: "angelholm-airport",
-              name: "Ängelholm Helsingborg Airport",
-              city: "Ängelholm",
-              isAirport: true,
-            },
-          ];
-
-    return list.map((stop) => ({
+  const fromItems = useMemo(() => {
+    return stops.map((stop) => ({
       id: stop.id,
       label: stop.name,
-      subLabel: stop.city,
+      subLabel: stop.isAirport ? "Flygplats" : stop.city,
     }));
   }, [stops]);
+
+  const toItems = useMemo(() => {
+    const filtered = stops.filter((stop) => stop.name !== fromStop);
+
+    if (selectedFrom?.isAirport) {
+      return filtered
+        .filter((stop) => !stop.isAirport)
+        .map((stop) => ({
+          id: stop.id,
+          label: stop.name,
+          subLabel: stop.city,
+        }));
+    }
+
+    return filtered.map((stop) => ({
+      id: stop.id,
+      label: stop.name,
+      subLabel: stop.isAirport ? "Flygplats" : stop.city,
+    }));
+  }, [stops, fromStop, selectedFrom]);
+
+  const toLabel = selectedFrom?.isAirport ? "Till hållplats" : "Till flygplats";
 
   const travelerOptions = [
     { id: "1", label: "1 resenär" },
@@ -197,7 +208,7 @@ export default function BookingSearch() {
     const params = new URLSearchParams();
 
     if (fromStop) params.set("from", fromStop);
-    if (airport) params.set("to", airport);
+    if (toStop) params.set("to", toStop);
     if (date) params.set("date", date);
     if (travelers) params.set("travelers", travelers);
 
@@ -221,16 +232,21 @@ export default function BookingSearch() {
             <CustomDropdown
               value={fromStop}
               placeholder="Välj avgångsort"
-              items={departureStops}
+              items={fromItems}
               loading={loading}
-              onChange={setFromStop}
-            />
+              onChange={(value) => {
+                setFromStop(value);
 
+                if (value === toStop) {
+                  setToStop("");
+                }
+              }}
+            />
           </div>
         </div>
 
         <div className="bookingSearchField">
-          <label>Till flygplats</label>
+          <label>{toLabel}</label>
 
           <div className="bookingSearchInput">
             <span className="bookingSearchIcon">
@@ -241,12 +257,11 @@ export default function BookingSearch() {
             </span>
 
             <CustomDropdown
-              value={airport}
-              placeholder="Välj flygplats"
-              items={airports}
-              onChange={setAirport}
+              value={toStop}
+              placeholder={selectedFrom?.isAirport ? "Välj hållplats" : "Välj flygplats"}
+              items={toItems}
+              onChange={setToStop}
             />
-
           </div>
         </div>
 
@@ -295,7 +310,6 @@ export default function BookingSearch() {
               items={travelerOptions}
               onChange={setTravelers}
             />
-
           </div>
         </div>
 
