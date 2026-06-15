@@ -7,6 +7,38 @@ import { Suspense, useEffect, useMemo, useState } from "react";
 
 type Comfort = "economy" | "plus";
 
+type PassengerCounts = {
+  adults: number;
+  children: number;
+  youth: number;
+  seniors: number;
+};
+
+function formatPassengerSummary(passengers: PassengerCounts) {
+  const total =
+    passengers.adults + passengers.children + passengers.youth + passengers.seniors;
+
+  if (total <= 0) return "1 vuxen";
+
+  const parts: string[] = [];
+
+  if (passengers.adults === 1) parts.push("1 vuxen");
+  if (passengers.adults > 1) parts.push(`${passengers.adults} vuxna`);
+
+  if (passengers.children === 1) parts.push("1 barn");
+  if (passengers.children > 1) parts.push(`${passengers.children} barn`);
+
+  if (passengers.youth === 1) parts.push("1 ungdom");
+  if (passengers.youth > 1) parts.push(`${passengers.youth} ungdomar`);
+
+  if (passengers.seniors === 1) parts.push("1 senior");
+  if (passengers.seniors > 1) parts.push(`${passengers.seniors} seniorer`);
+
+  if (parts.length <= 2) return parts.join(", ");
+
+  return `${total} resenärer`;
+}
+
 type Departure = {
   id: string;
   departureTime: string;
@@ -89,13 +121,52 @@ const fallbackDepartures: Departure[] = [
   },
 ];
 
+function isDepartureDeparted(selectedDate: string, departureTime: string, status?: string) {
+  if (status === "departed") return true;
+
+  if (!selectedDate || !departureTime) return false;
+
+  const now = new Date();
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+
+  const selected = new Date(selectedDate + "T00:00:00");
+
+  if (selected < today) return true;
+  if (selected > today) return false;
+
+  const [hours, minutes] = departureTime.split(":").map(Number);
+
+  if (Number.isNaN(hours) || Number.isNaN(minutes)) return false;
+
+  const departureDateTime = new Date(
+    now.getFullYear(),
+    now.getMonth(),
+    now.getDate(),
+    hours,
+    minutes,
+    0
+  );
+
+  return departureDateTime < now;
+}
+
 function ChooseDepartureContent() {
   const searchParams = useSearchParams();
 
   const from = searchParams.get("from") || "Helsingborg C";
   const to = searchParams.get("to") || "Ängelholm Helsingborg Airport";
   const date = searchParams.get("date") || "";
-  const travelers = searchParams.get("travelers") || "1 resenär";
+  const adults = Number(searchParams.get("adults") || "1");
+  const children = Number(searchParams.get("children") || "0");
+  const youth = Number(searchParams.get("youth") || "0");
+  const seniors = Number(searchParams.get("seniors") || "0");
+
+  const travelers = formatPassengerSummary({
+    adults,
+    children,
+    youth,
+    seniors,
+  });
 
   const [openDepartureId, setOpenDepartureId] = useState<string | null>(null);
   const [selectedDepartureId, setSelectedDepartureId] = useState<string | null>(null);
@@ -171,6 +242,10 @@ function ChooseDepartureContent() {
   }, [from, to, date]);
 
   function chooseDeparture(departure: Departure, selectedComfort: Comfort) {
+    if (isDepartureDeparted(date, departure.departureTime, departure.status)) {
+      return;
+    }
+
     setSelectedDepartureId(departure.id);
     setOpenDepartureId(departure.id);
     setComfort(selectedComfort);
@@ -178,7 +253,7 @@ function ChooseDepartureContent() {
 
   return (
     <>
-      <BetaHeader />
+      <BetaHeader sticky />
       <main className="departurePage">
       <section className="departureHero">
         <div className="departureHeroInner">
@@ -254,6 +329,11 @@ function ChooseDepartureContent() {
           {departures.map((departure) => {
             const isOpen = openDepartureId === departure.id;
             const isSelected = selectedDepartureId === departure.id;
+            const isDeparted = isDepartureDeparted(
+              date,
+              departure.departureTime,
+              departure.status
+            );
 
             const displayFrom = from || departure.from;
             const displayTo = to || departure.to;
@@ -261,7 +341,13 @@ function ChooseDepartureContent() {
             return (
               <article
                 key={departure.id}
-                className={isOpen ? "departureItem departureItemOpen" : "departureItem"}
+                className={
+                  isDeparted
+                    ? "departureItem departureItemDeparted"
+                    : isOpen
+                      ? "departureItem departureItemOpen"
+                      : "departureItem"
+                }
               >
                 <button
                   type="button"
@@ -288,7 +374,7 @@ function ChooseDepartureContent() {
                   </div>
 
                   <div className="departurePrice">
-                    {departure.status === "departed" ? (
+                    {isDeparted ? (
                       <span className="departureDeparted">Avgått</span>
                     ) : (
                       <>
@@ -379,7 +465,7 @@ function ChooseDepartureContent() {
                             : "comfortOption"
                         }
                         onClick={() => chooseDeparture(departure, "plus")}
-                        disabled={departure.status === "departed"}
+                        disabled={isDeparted}
                       >
                         <div className="comfortTop">
                           <span className="comfortRadio" />
@@ -402,7 +488,7 @@ function ChooseDepartureContent() {
                             : "comfortOption"
                         }
                         onClick={() => chooseDeparture(departure, "economy")}
-                        disabled={departure.status === "departed"}
+                        disabled={isDeparted}
                       >
                         <div className="comfortTop">
                           <span className="comfortRadio" />

@@ -26,6 +26,13 @@ type DropdownItem = {
   subLabel?: string;
 };
 
+type PassengerCounts = {
+  adults: number;
+  children: number;
+  youth: number;
+  seniors: number;
+};
+
 function normalizeStop(stop: ShuttleStop): NormalizedStop {
   const name = String(stop.name || stop.title || stop.stop_name || "").trim();
 
@@ -39,6 +46,31 @@ function normalizeStop(stop: ShuttleStop): NormalizedStop {
       name.toLowerCase().includes("airport") ||
       name.toLowerCase().includes("flygplats"),
   };
+}
+
+function formatPassengerSummary(passengers: PassengerCounts) {
+  const total =
+    passengers.adults + passengers.children + passengers.youth + passengers.seniors;
+
+  if (total <= 0) return "1 vuxen";
+
+  const parts: string[] = [];
+
+  if (passengers.adults === 1) parts.push("1 vuxen");
+  if (passengers.adults > 1) parts.push(`${passengers.adults} vuxna`);
+
+  if (passengers.children === 1) parts.push("1 barn");
+  if (passengers.children > 1) parts.push(`${passengers.children} barn`);
+
+  if (passengers.youth === 1) parts.push("1 ungdom");
+  if (passengers.youth > 1) parts.push(`${passengers.youth} ungdomar`);
+
+  if (passengers.seniors === 1) parts.push("1 senior");
+  if (passengers.seniors > 1) parts.push(`${passengers.seniors} seniorer`);
+
+  if (parts.length <= 2) return parts.join(", ");
+
+  return `${total} resenärer`;
 }
 
 function CustomDropdown({
@@ -107,12 +139,118 @@ function CustomDropdown({
   );
 }
 
+function PassengerSelector({
+  passengers,
+  onChange,
+}: {
+  passengers: PassengerCounts;
+  onChange: (passengers: PassengerCounts) => void;
+}) {
+  const [open, setOpen] = useState(false);
+  const summary = formatPassengerSummary(passengers);
+
+  const rows = [
+    { key: "adults", title: "Vuxen", subtitle: "26–64 år" },
+    { key: "children", title: "Barn", subtitle: "" },
+    { key: "youth", title: "Ungdom", subtitle: "16–25 år" },
+    { key: "seniors", title: "Senior", subtitle: "65+ år" },
+  ] as const;
+
+  function updatePassenger(key: keyof PassengerCounts, direction: "minus" | "plus") {
+    const total =
+      passengers.adults + passengers.children + passengers.youth + passengers.seniors;
+
+    const current = passengers[key];
+
+    if (direction === "minus") {
+      if (current <= 0) return;
+      if (total <= 1) return;
+
+      onChange({
+        ...passengers,
+        [key]: current - 1,
+      });
+
+      return;
+    }
+
+    onChange({
+      ...passengers,
+      [key]: current + 1,
+    });
+  }
+
+  return (
+    <div className="passengerSelector">
+      <button
+        type="button"
+        className="passengerSelectorButton"
+        onClick={() => setOpen((current) => !current)}
+      >
+        <span>{summary}</span>
+
+        <span className={open ? "bookingDropdownArrow bookingDropdownArrowOpen" : "bookingDropdownArrow"}>
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="m7 10 5 5 5-5" />
+          </svg>
+        </span>
+      </button>
+
+      {open ? (
+        <div className="passengerSelectorPanel">
+          {rows.map((row) => {
+            const count = passengers[row.key];
+
+            return (
+              <div className="passengerSelectorRow" key={row.key}>
+                <div>
+                  <strong>{row.title}</strong>
+                  {row.subtitle ? <small>{row.subtitle}</small> : null}
+                </div>
+
+                <div className="passengerCounter">
+                  <button
+                    type="button"
+                    onClick={() => updatePassenger(row.key, "minus")}
+                    disabled={count <= 0 || (count === 1 && passengers.adults + passengers.children + passengers.youth + passengers.seniors <= 1)}
+                  >
+                    −
+                  </button>
+
+                  <span>{count}</span>
+
+                  <button type="button" onClick={() => updatePassenger(row.key, "plus")}>
+                    +
+                  </button>
+                </div>
+              </div>
+            );
+          })}
+
+          <button
+            type="button"
+            className="passengerSelectorDone"
+            onClick={() => setOpen(false)}
+          >
+            Klart
+          </button>
+        </div>
+      ) : null}
+    </div>
+  );
+}
+
 export default function BookingSearch() {
   const [stops, setStops] = useState<NormalizedStop[]>([]);
   const [fromStop, setFromStop] = useState("");
   const [toStop, setToStop] = useState("Ängelholm Helsingborg Airport");
   const [date, setDate] = useState("");
-  const [travelers, setTravelers] = useState("1 resenär");
+  const [passengers, setPassengers] = useState<PassengerCounts>({
+    adults: 1,
+    children: 0,
+    youth: 0,
+    seniors: 0,
+  });
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -162,7 +300,7 @@ export default function BookingSearch() {
   }, []);
 
   const selectedFrom = useMemo(() => {
-    return stops.find((stop) => stop.name === fromStop) || null;
+    return stops.find((stop: NormalizedStop) => stop.name === fromStop) || null;
   }, [stops, fromStop]);
 
   const fromItems = useMemo(() => {
@@ -195,22 +333,17 @@ export default function BookingSearch() {
 
   const toLabel = selectedFrom?.isAirport ? "Till hållplats" : "Till flygplats";
 
-  const travelerOptions = [
-    { id: "1", label: "1 resenär" },
-    { id: "2", label: "2 resenärer" },
-    { id: "3", label: "3 resenärer" },
-    { id: "4", label: "4 resenärer" },
-    { id: "5", label: "5 resenärer" },
-    { id: "6", label: "6 resenärer" },
-  ];
-
   function searchTrip() {
     const params = new URLSearchParams();
 
     if (fromStop) params.set("from", fromStop);
     if (toStop) params.set("to", toStop);
     if (date) params.set("date", date);
-    if (travelers) params.set("travelers", travelers);
+
+    params.set("adults", String(passengers.adults));
+    params.set("children", String(passengers.children));
+    params.set("youth", String(passengers.youth));
+    params.set("seniors", String(passengers.seniors));
 
     window.location.href = `/start/valj-avgang?${params.toString()}`;
   }
@@ -304,12 +437,7 @@ export default function BookingSearch() {
               </svg>
             </span>
 
-            <CustomDropdown
-              value={travelers}
-              placeholder="1 resenär"
-              items={travelerOptions}
-              onChange={setTravelers}
-            />
+            <PassengerSelector passengers={passengers} onChange={setPassengers} />
           </div>
         </div>
 
