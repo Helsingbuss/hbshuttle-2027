@@ -3,7 +3,7 @@
 import Link from "next/link";
 import BetaHeader from "../../../components/BetaHeader";
 import { useSearchParams } from "next/navigation";
-import { useEffect, useMemo, useState } from "react";
+import { Suspense, useEffect, useMemo, useState } from "react";
 
 type Comfort = "economy" | "plus";
 
@@ -89,7 +89,7 @@ const fallbackDepartures: Departure[] = [
   },
 ];
 
-export default function ChooseDeparturePage() {
+function ChooseDepartureContent() {
   const searchParams = useSearchParams();
 
   const from = searchParams.get("from") || "Helsingborg C";
@@ -439,5 +439,25 @@ export default function ChooseDeparturePage() {
       </section>
       </main>
     </>
+  );
+}
+
+
+export default function ChooseDeparturePage() {
+  return (
+    <Suspense
+      fallback={
+        <main className="departurePage">
+          <section className="departureHero">
+            <div className="departureHeroInner">
+              <p className="departureEyebrow">Helsingbuss Airport Shuttle</p>
+              <h1>Välj avgång</h1>
+            </div>
+          </section>
+        </main>
+      }
+    >
+      <ChooseDepartureContent />
+    </Suspense>
   );
 }
