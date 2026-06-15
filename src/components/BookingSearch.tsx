@@ -133,7 +133,7 @@ export default function BookingSearch() {
 
         const data = await response.json();
 
-        const normalized = Array.isArray(data.stops)
+        const normalized: NormalizedStop[] = Array.isArray(data.stops)
           ? data.stops
               .map(normalizeStop)
               .filter((stop: NormalizedStop) => stop.name)
@@ -142,8 +142,8 @@ export default function BookingSearch() {
         setStops(normalized);
 
         const firstAirport =
-          normalized.find((stop) => stop.isAirport) ||
-          normalized.find((stop) =>
+          normalized.find((stop: NormalizedStop) => stop.isAirport) ||
+          normalized.find((stop: NormalizedStop) =>
             stop.name.toLowerCase().includes("ängelholm")
           );
 
@@ -166,7 +166,7 @@ export default function BookingSearch() {
   }, [stops, fromStop]);
 
   const fromItems = useMemo(() => {
-    return stops.map((stop) => ({
+    return stops.map((stop: NormalizedStop) => ({
       id: stop.id,
       label: stop.name,
       subLabel: stop.isAirport ? "Flygplats" : stop.city,
@@ -174,19 +174,19 @@ export default function BookingSearch() {
   }, [stops]);
 
   const toItems = useMemo(() => {
-    const filtered = stops.filter((stop) => stop.name !== fromStop);
+    const filtered = stops.filter((stop: NormalizedStop) => stop.name !== fromStop);
 
     if (selectedFrom?.isAirport) {
       return filtered
-        .filter((stop) => !stop.isAirport)
-        .map((stop) => ({
+        .filter((stop: NormalizedStop) => !stop.isAirport)
+        .map((stop: NormalizedStop) => ({
           id: stop.id,
           label: stop.name,
           subLabel: stop.city,
         }));
     }
 
-    return filtered.map((stop) => ({
+    return filtered.map((stop: NormalizedStop) => ({
       id: stop.id,
       label: stop.name,
       subLabel: stop.isAirport ? "Flygplats" : stop.city,
