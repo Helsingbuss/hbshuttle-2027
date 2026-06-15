@@ -157,7 +157,7 @@ export default function BetaHeader({ sticky = false }: { sticky?: boolean } = {}
 
   return (
     <>
-      <header className={sticky ? "bookingStickyHeader" : undefined} className={menuOpen ? "betaHeader menuIsOpen" : "betaHeader"}>
+      <header className={`${sticky ? "bookingStickyHeader " : ""}${menuOpen ? "betaHeader menuIsOpen" : "betaHeader"}`}>
         <Link href="/start" className="betaLogo" aria-label="HB Shuttle startsida">
           <div className="betaLogoMark">H</div>
           <div>
