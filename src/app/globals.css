@@ -7312,3 +7312,127 @@ html body .betaHeader {
     font-size: 15px !important;
   }
 }
+
+
+.bookingSearchSelect {
+  width: 100%;
+  min-width: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+}
+
+.bookingSearchSelect::-ms-expand {
+  display: none;
+}
+
+.bookingSearchSelect option {
+  color: #0f172a;
+}
+
+
+/* HB Shuttle custom booking dropdown */
+.bookingSearchInput {
+  position: relative;
+}
+
+.bookingDropdown {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+}
+
+.bookingDropdownButton {
+  width: 100%;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  padding: 0;
+}
+
+.bookingDropdownValue,
+.bookingDropdownPlaceholder {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.bookingDropdownPlaceholder {
+  color: #64748b;
+}
+
+.bookingDropdownMenu {
+  position: absolute;
+  top: calc(100% + 17px);
+  left: -44px;
+  right: -38px;
+  z-index: 80;
+  overflow: hidden;
+  border: 1px solid rgba(15, 23, 42, 0.10);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.98);
+  box-shadow: 0 24px 70px rgba(15, 23, 42, 0.20);
+  backdrop-filter: blur(14px);
+}
+
+.bookingDropdownOption {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 3px;
+  border: 0;
+  border-bottom: 1px solid rgba(226, 232, 240, 0.9);
+  background: transparent;
+  padding: 15px 18px;
+  color: #0f172a;
+  text-align: left;
+  cursor: pointer;
+}
+
+.bookingDropdownOption:last-child {
+  border-bottom: 0;
+}
+
+.bookingDropdownOption span {
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.bookingDropdownOption small {
+  color: #64748b;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.bookingDropdownOption:hover {
+  background: #f0fdfa;
+}
+
+.bookingDropdownOptionActive {
+  background: #e6fbf5;
+  color: #007764;
+}
+
+.bookingDateInput {
+  width: 100%;
+  min-width: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+}
+
+.bookingDateInput::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+}
