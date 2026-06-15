@@ -148,7 +148,7 @@ function MenuIcon({ name }: { name: IconName }) {
   );
 }
 
-export default function BetaHeader() {
+export default function BetaHeader({ sticky = false }: { sticky?: boolean } = {}) {
   const [menuOpen, setMenuOpen] = useState(false);
 
   function closeMenu() {
@@ -157,7 +157,7 @@ export default function BetaHeader() {
 
   return (
     <>
-      <header className={menuOpen ? "betaHeader menuIsOpen" : "betaHeader"}>
+      <header className={sticky ? "bookingStickyHeader" : undefined} className={menuOpen ? "betaHeader menuIsOpen" : "betaHeader"}>
         <Link href="/start" className="betaLogo" aria-label="HB Shuttle startsida">
           <div className="betaLogoMark">H</div>
           <div>

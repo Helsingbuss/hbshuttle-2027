@@ -241,7 +241,7 @@ export default function TimetablePage() {
 
   return (
     <>
-      <BetaHeader />
+      <BetaHeader sticky />
 
       <main className="timetablePage">
         <section className="timetableHero">

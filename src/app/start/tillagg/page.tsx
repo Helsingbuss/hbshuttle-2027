@@ -180,7 +180,7 @@ function AddonsContent() {
 
   return (
     <>
-      <BetaHeader />
+      <BetaHeader sticky />
 
       <main className="addonsPage">
         <section className="addonsHero">
