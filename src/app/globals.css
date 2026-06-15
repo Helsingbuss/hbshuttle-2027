@@ -8815,3 +8815,781 @@ html body .betaHeader {
   font-weight: 800;
 }
 
+
+
+/* HB Shuttle departed departures */
+.departureItemDeparted {
+  opacity: 0.72 !important;
+  background: #f8fafc !important;
+}
+
+.departureItemDeparted .departureSummary {
+  background: #f8fafc !important;
+  cursor: default !important;
+}
+
+.departureItemDeparted .departureTimes strong,
+.departureItemDeparted .departureInfo,
+.departureItemDeparted .departurePrice {
+  color: #94a3b8 !important;
+}
+
+.departureItemDeparted .departureTimeArrow,
+.departureItemDeparted .departureChevron {
+  background: #e2e8f0 !important;
+  color: #94a3b8 !important;
+}
+
+.departureDeparted {
+  border-radius: 999px !important;
+  background: #e2e8f0 !important;
+  color: #64748b !important;
+  padding: 0.35rem 0.65rem !important;
+  font-size: 0.72rem !important;
+  font-weight: 900 !important;
+  white-space: nowrap !important;
+}
+
+.departureItemDeparted .comfortOption {
+  pointer-events: none !important;
+}
+
+
+
+/* HB Shuttle passenger selector */
+.passengerSelector {
+  width: 100%;
+  position: relative;
+}
+
+.passengerSelectorButton {
+  width: 100%;
+  min-height: 2.8rem;
+  border: 0;
+  background: transparent;
+  color: #0f2f3a;
+  font-size: 0.94rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  cursor: pointer;
+  text-align: left;
+}
+
+.passengerSelectorPanel {
+  position: absolute;
+  top: calc(100% + 0.65rem);
+  right: 0;
+  z-index: 80;
+  width: min(22rem, calc(100vw - 2rem));
+  border: 1px solid rgba(15, 47, 58, 0.12);
+  border-radius: 1.1rem;
+  background: #ffffff;
+  box-shadow: 0 1.4rem 3.2rem rgba(15, 47, 58, 0.18);
+  overflow: hidden;
+}
+
+.passengerSelectorRow {
+  min-height: 4.1rem;
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid rgba(15, 47, 58, 0.09);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.passengerSelectorRow strong {
+  display: block;
+  color: #102a36;
+  font-size: 0.96rem;
+  font-weight: 900;
+}
+
+.passengerSelectorRow small {
+  display: block;
+  margin-top: 0.15rem;
+  color: #48616b;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.passengerCounter {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.passengerCounter button {
+  width: 2.25rem;
+  height: 2.25rem;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(0, 119, 100, 0.22);
+  color: #102a36;
+  font-size: 1.35rem;
+  font-weight: 900;
+  line-height: 1;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+
+.passengerCounter button:hover {
+  background: rgba(0, 119, 100, 0.34);
+}
+
+.passengerCounter button:disabled {
+  cursor: not-allowed;
+  opacity: 0.35;
+}
+
+.passengerCounter span {
+  min-width: 1.25rem;
+  text-align: center;
+  color: #102a36;
+  font-size: 0.95rem;
+  font-weight: 900;
+}
+
+.passengerSelectorDone {
+  width: calc(100% - 2rem);
+  margin: 0.9rem 1rem 1rem;
+  min-height: 2.55rem;
+  border: 0;
+  border-radius: 999px;
+  background: #007764;
+  color: #ffffff;
+  font-size: 0.88rem;
+  font-weight: 900;
+  cursor: pointer;
+  box-shadow: 0 0.85rem 1.8rem rgba(0, 119, 100, 0.24);
+}
+
+.passengerSelectorDone:hover {
+  background: #006a59;
+}
+
+
+
+/* HB Shuttle addons page */
+.addonsPage {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top left, rgba(0, 119, 100, 0.08), transparent 34rem),
+    linear-gradient(180deg, #f7fbfa 0%, #eef5f4 100%);
+  padding: 2.2rem 1.5rem 4rem;
+}
+
+.addonsHero {
+  width: min(1060px, 100%);
+  margin: 0 auto 1.2rem;
+}
+
+.addonsHero p {
+  margin: 0 0 0.25rem;
+  color: #007764;
+  font-size: 0.82rem;
+  font-weight: 950;
+  letter-spacing: 0.04em;
+}
+
+.addonsHero h1 {
+  margin: 0;
+  color: #06162f;
+  font-size: clamp(2.3rem, 4vw, 4.1rem);
+  line-height: 0.95;
+  letter-spacing: -0.055em;
+}
+
+.addonsHero span {
+  display: block;
+  margin-top: 0.65rem;
+  color: #48616b;
+  font-size: 0.98rem;
+  font-weight: 750;
+}
+
+.addonsCard {
+  width: min(1060px, 100%);
+  margin: 0 auto;
+  border: 1px solid rgba(15, 47, 58, 0.11);
+  border-radius: 1.35rem;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 1.3rem 3rem rgba(15, 47, 58, 0.11);
+  overflow: hidden;
+}
+
+.addonsRoute {
+  padding: 1.3rem 1.6rem;
+  border-bottom: 1px solid rgba(15, 47, 58, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.15rem;
+  color: #102a36;
+}
+
+.addonsRoute strong {
+  font-size: 1rem;
+  font-weight: 950;
+}
+
+.addonsRoute span {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 999px;
+  background: rgba(0, 119, 100, 0.11);
+  color: #007764;
+  display: grid;
+  place-items: center;
+}
+
+.addonsRoute svg {
+  width: 1.15rem;
+  height: 1.15rem;
+  stroke: currentColor;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.addonsTripMeta {
+  padding: 1rem 1.6rem;
+  border-bottom: 1px solid rgba(15, 47, 58, 0.1);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.9rem;
+}
+
+.addonsTripMeta div {
+  min-height: 4rem;
+  border: 1px solid rgba(15, 47, 58, 0.1);
+  border-radius: 1rem;
+  background: #ffffff;
+  padding: 0.8rem 0.95rem;
+}
+
+.addonsTripMeta small {
+  display: block;
+  margin-bottom: 0.25rem;
+  color: #637882;
+  font-size: 0.68rem;
+  font-weight: 950;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.addonsTripMeta strong {
+  color: #06162f;
+  font-size: 0.92rem;
+  font-weight: 950;
+}
+
+.addonsSection {
+  padding: 1.35rem 1.6rem;
+  border-bottom: 1px solid rgba(15, 47, 58, 0.1);
+}
+
+.addonsSection h2 {
+  margin: 0 0 0.9rem;
+  color: #06162f;
+  font-size: 1.1rem;
+  font-weight: 950;
+  letter-spacing: -0.02em;
+}
+
+.addonsCounterRow {
+  padding: 1rem 0;
+  border-top: 1px solid rgba(15, 47, 58, 0.1);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.addonsCounterRow:first-of-type {
+  border-top: 0;
+}
+
+.addonsCounterText strong {
+  color: #102a36;
+  font-size: 1rem;
+  font-weight: 950;
+}
+
+.addonsCounterText p {
+  max-width: 46rem;
+  margin: 0.25rem 0 0;
+  color: #263f49;
+  font-size: 0.86rem;
+  font-weight: 650;
+  line-height: 1.5;
+}
+
+.addonsCounterActions {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.addonsCounterActions button {
+  width: 2.45rem;
+  height: 2.45rem;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(0, 119, 100, 0.22);
+  color: #102a36;
+  font-size: 1.45rem;
+  font-weight: 950;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+
+.addonsCounterActions button:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.addonsCounterActions span {
+  min-width: 1.2rem;
+  color: #102a36;
+  text-align: center;
+  font-size: 0.95rem;
+  font-weight: 950;
+}
+
+.addonsPrice {
+  min-width: 4rem;
+  color: #06162f;
+  text-align: right;
+  font-size: 0.95rem;
+  font-weight: 950;
+}
+
+.addonsCheckboxCard {
+  margin-top: 0.8rem;
+  padding: 1.1rem 1rem;
+  border: 1px solid rgba(15, 47, 58, 0.09);
+  border-radius: 1rem;
+  background: #f8fbfa;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 1.25rem;
+  align-items: center;
+  cursor: pointer;
+}
+
+.addonsCheckboxCard strong {
+  color: #102a36;
+  font-size: 0.98rem;
+  font-weight: 950;
+}
+
+.addonsCheckboxCard strong span {
+  color: #007764;
+}
+
+.addonsCheckboxCard p {
+  margin: 0.35rem 0 0;
+  color: #263f49;
+  font-size: 0.85rem;
+  font-weight: 650;
+  line-height: 1.5;
+}
+
+.addonsCheckboxCard input {
+  width: 1.55rem;
+  height: 1.55rem;
+  accent-color: #007764;
+}
+
+.addonsBottom {
+  padding: 1.15rem 1.6rem;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.addonsBottom small {
+  display: block;
+  margin-bottom: 0.2rem;
+  color: #637882;
+  font-size: 0.7rem;
+  font-weight: 950;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.addonsBottom strong {
+  color: #06162f;
+  font-size: 1.35rem;
+  font-weight: 950;
+}
+
+.addonsBottomActions {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.addonsBackButton,
+.addonsNextButton {
+  min-height: 2.8rem;
+  border: 0;
+  border-radius: 999px;
+  padding: 0 1.45rem;
+  font-size: 0.9rem;
+  font-weight: 950;
+  cursor: pointer;
+}
+
+.addonsBackButton {
+  background: transparent;
+  color: #007764;
+}
+
+.addonsNextButton {
+  background: #007764;
+  color: #ffffff;
+  box-shadow: 0 0.9rem 1.8rem rgba(0, 119, 100, 0.22);
+}
+
+.addonsNextButton:hover {
+  background: #006a59;
+}
+
+@media (max-width: 860px) {
+  .addonsTripMeta {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .addonsCounterRow {
+    grid-template-columns: 1fr;
+  }
+
+  .addonsCounterActions {
+    justify-content: flex-end;
+  }
+}
+
+@media (max-width: 640px) {
+  .addonsPage {
+    padding: 1.4rem 1rem 3rem;
+  }
+
+  .addonsRoute {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .addonsTripMeta {
+    grid-template-columns: 1fr;
+  }
+
+  .addonsBottom {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .addonsBottomActions {
+    justify-content: space-between;
+  }
+
+  .addonsBackButton,
+  .addonsNextButton {
+    flex: 1;
+  }
+}
+
+
+
+/* HB Shuttle booking pages compact + sticky menu */
+body:has(.addonsPage) header:first-of-type,
+body:has(.departurePage) header:first-of-type,
+body:has(.timetablePage) header:first-of-type {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 1000 !important;
+}
+
+.addonsPage {
+  min-height: auto !important;
+  background:
+    radial-gradient(circle at top left, rgba(0, 119, 100, 0.06), transparent 28rem),
+    linear-gradient(180deg, #f7fbfa 0%, #eef5f4 100%) !important;
+  padding: 1.25rem 1.25rem 2.4rem !important;
+}
+
+.addonsHero {
+  width: min(960px, 100%) !important;
+  margin: 0 auto 0.8rem !important;
+}
+
+.addonsHero p {
+  margin: 0 0 0.18rem !important;
+  color: #007764 !important;
+  font-size: 0.72rem !important;
+  font-weight: 950 !important;
+  letter-spacing: 0.045em !important;
+}
+
+.addonsHero h1 {
+  margin: 0 !important;
+  color: #06162f !important;
+  font-size: clamp(2rem, 3vw, 3rem) !important;
+  line-height: 0.95 !important;
+  letter-spacing: -0.055em !important;
+}
+
+.addonsHero span {
+  display: block !important;
+  margin-top: 0.35rem !important;
+  color: #48616b !important;
+  font-size: 0.78rem !important;
+  font-weight: 750 !important;
+}
+
+.addonsCard {
+  width: min(960px, 100%) !important;
+  border-radius: 1.15rem !important;
+  box-shadow: 0 1rem 2.2rem rgba(15, 47, 58, 0.10) !important;
+}
+
+.addonsRoute {
+  padding: 0.9rem 1.2rem !important;
+  gap: 0.85rem !important;
+}
+
+.addonsRoute strong {
+  font-size: 0.82rem !important;
+}
+
+.addonsRoute span {
+  width: 1.75rem !important;
+  height: 1.75rem !important;
+}
+
+.addonsRoute svg {
+  width: 0.92rem !important;
+  height: 0.92rem !important;
+}
+
+.addonsTripMeta {
+  padding: 0.75rem 1.1rem !important;
+  gap: 0.65rem !important;
+}
+
+.addonsTripMeta div {
+  min-height: 3.15rem !important;
+  border-radius: 0.85rem !important;
+  padding: 0.58rem 0.72rem !important;
+}
+
+.addonsTripMeta small {
+  margin-bottom: 0.18rem !important;
+  font-size: 0.56rem !important;
+  letter-spacing: 0.085em !important;
+}
+
+.addonsTripMeta strong {
+  font-size: 0.76rem !important;
+}
+
+.addonsSection {
+  padding: 1rem 1.2rem !important;
+}
+
+.addonsSection h2 {
+  margin: 0 0 0.55rem !important;
+  font-size: 0.95rem !important;
+}
+
+.addonsCounterRow {
+  padding: 0.7rem 0 !important;
+  gap: 1rem !important;
+}
+
+.addonsCounterText strong {
+  font-size: 0.84rem !important;
+}
+
+.addonsCounterText p {
+  max-width: 40rem !important;
+  margin-top: 0.18rem !important;
+  font-size: 0.7rem !important;
+  line-height: 1.35 !important;
+}
+
+.addonsCounterActions {
+  gap: 0.55rem !important;
+}
+
+.addonsCounterActions button {
+  width: 1.9rem !important;
+  height: 1.9rem !important;
+  font-size: 1.1rem !important;
+}
+
+.addonsCounterActions span {
+  min-width: 1rem !important;
+  font-size: 0.78rem !important;
+}
+
+.addonsPrice {
+  min-width: 3.1rem !important;
+  font-size: 0.78rem !important;
+}
+
+.addonsCheckboxCard {
+  margin-top: 0.55rem !important;
+  padding: 0.78rem 0.85rem !important;
+  border-radius: 0.85rem !important;
+  gap: 1rem !important;
+}
+
+.addonsCheckboxCard strong {
+  font-size: 0.8rem !important;
+}
+
+.addonsCheckboxCard p {
+  margin-top: 0.22rem !important;
+  font-size: 0.68rem !important;
+  line-height: 1.35 !important;
+}
+
+.addonsCheckboxCard input {
+  width: 1.15rem !important;
+  height: 1.15rem !important;
+}
+
+.addonsBottom {
+  padding: 0.85rem 1.2rem !important;
+}
+
+.addonsBottom small {
+  margin-bottom: 0.15rem !important;
+  font-size: 0.56rem !important;
+}
+
+.addonsBottom strong {
+  font-size: 1.05rem !important;
+}
+
+.addonsBottomActions {
+  gap: 0.55rem !important;
+}
+
+.addonsBackButton,
+.addonsNextButton {
+  min-height: 2.25rem !important;
+  padding: 0 1.1rem !important;
+  font-size: 0.74rem !important;
+}
+
+@media (max-width: 860px) {
+  .addonsTripMeta {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .addonsPage {
+    padding: 1rem 0.8rem 2rem !important;
+  }
+
+  .addonsHero h1 {
+    font-size: 2.15rem !important;
+  }
+
+  .addonsTripMeta {
+    grid-template-columns: 1fr !important;
+  }
+
+  .addonsCounterRow {
+    grid-template-columns: 1fr !important;
+  }
+
+  .addonsCounterActions {
+    justify-content: flex-end !important;
+  }
+
+  .addonsBottom {
+    align-items: stretch !important;
+    flex-direction: column !important;
+  }
+
+  .addonsBottomActions {
+    justify-content: space-between !important;
+  }
+
+  .addonsBackButton,
+  .addonsNextButton {
+    flex: 1 !important;
+  }
+}
+
+
+
+/* HB Shuttle addons info icon */
+.addonsCheckboxTitle {
+  display: flex !important;
+  align-items: center !important;
+  flex-wrap: wrap !important;
+  gap: 0.35rem !important;
+}
+
+.addonsInfoWrap {
+  position: relative !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.addonsInfoIcon {
+  width: 1.05rem !important;
+  height: 1.05rem !important;
+  border-radius: 999px !important;
+  background: #102a36 !important;
+  color: #ffffff !important;
+  font-size: 0.68rem !important;
+  font-weight: 950 !important;
+  font-style: italic !important;
+  display: inline-grid !important;
+  place-items: center !important;
+  cursor: help !important;
+}
+
+.addonsInfoTooltip {
+  position: absolute !important;
+  left: 50% !important;
+  bottom: calc(100% + 0.7rem) !important;
+  transform: translateX(-50%) !important;
+  z-index: 120 !important;
+  width: min(24rem, calc(100vw - 2rem)) !important;
+  border: 1px solid rgba(15, 47, 58, 0.12) !important;
+  border-radius: 0.9rem !important;
+  background: #ffffff !important;
+  color: #102a36 !important;
+  box-shadow: 0 1.2rem 2.5rem rgba(15, 47, 58, 0.22) !important;
+  padding: 0.85rem 0.95rem !important;
+  font-size: 0.72rem !important;
+  font-weight: 700 !important;
+  line-height: 1.5 !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  visibility: hidden !important;
+  white-space: normal !important;
+}
+
+.addonsInfoWrap:hover .addonsInfoTooltip,
+.addonsInfoWrap:focus-within .addonsInfoTooltip {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
