@@ -84,7 +84,7 @@ function StopDropdown({
               Inga hållplatser hittades
             </button>
           ) : (
-            stops.map((stop) => (
+            stops.map((stop: NormalizedStop) => (
               <button
                 key={stop.id}
                 type="button"
@@ -150,7 +150,7 @@ export default function TimetablePage() {
 
         const data = await response.json();
 
-        const normalized = Array.isArray(data.stops)
+        const normalized: NormalizedStop[] = Array.isArray(data.stops)
           ? data.stops
               .map(normalizeStop)
               .filter((stop: NormalizedStop) => stop.name)
@@ -158,10 +158,10 @@ export default function TimetablePage() {
 
         setStops(normalized);
 
-        const firstDeparture = normalized.find((stop) => !stop.isAirport);
+        const firstDeparture = normalized.find((stop: NormalizedStop) => !stop.isAirport);
         const firstAirport =
-          normalized.find((stop) => stop.isAirport) ||
-          normalized.find((stop) =>
+          normalized.find((stop: NormalizedStop) => stop.isAirport) ||
+          normalized.find((stop: NormalizedStop) =>
             stop.name.toLowerCase().includes("ängelholm")
           );
 
@@ -184,11 +184,11 @@ export default function TimetablePage() {
   }, []);
 
   const departureStops = useMemo(() => {
-    return stops.filter((stop) => !stop.isAirport);
+    return stops.filter((stop: NormalizedStop) => !stop.isAirport);
   }, [stops]);
 
   const airportStops = useMemo(() => {
-    const airports = stops.filter((stop) => stop.isAirport);
+    const airports = stops.filter((stop: NormalizedStop) => stop.isAirport);
 
     if (airports.length > 0) {
       return airports;
@@ -215,7 +215,7 @@ export default function TimetablePage() {
       ];
     }
 
-    const names = stops.map((stop) => stop.name);
+    const names = stops.map((stop: NormalizedStop) => stop.name);
     const fromIndex = names.indexOf(fromStop);
     const toIndex = names.indexOf(toStop);
 
