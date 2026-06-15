@@ -8800,3 +8800,18 @@ html body .betaHeader {
   color: #007764 !important;
 }
 
+
+
+/* HB Shuttle departure API notice */
+.departureApiNotice {
+  width: min(960px, calc(100vw - 3rem));
+  margin: 0 auto 0.7rem;
+  border: 1px solid rgba(0, 119, 100, 0.14);
+  border-radius: 0.9rem;
+  background: rgba(0, 119, 100, 0.07);
+  color: #007764;
+  padding: 0.65rem 0.9rem;
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
