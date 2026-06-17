@@ -69,7 +69,8 @@ function CheckoutPaymentForm({ bookingReference }: CheckoutPaymentFormProps) {
   const [paymentError, setPaymentError] = useState("");
   const [isPaying, setIsPaying] = useState(false);
 
-  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  
+  const [paymentElementReady, setPaymentElementReady] = useState(false);async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
     if (!stripe || !elements) {
@@ -79,6 +80,11 @@ function CheckoutPaymentForm({ bookingReference }: CheckoutPaymentFormProps) {
 
     setIsPaying(true);
     setPaymentError("");
+
+    if (!paymentElementReady) {
+      setPaymentError("Betalningsrutan är inte färdigladdad än. Vänta några sekunder och försök igen.");
+      return;
+    }
 
     const result = await stripe.confirmPayment({
       elements,
@@ -97,7 +103,15 @@ function CheckoutPaymentForm({ bookingReference }: CheckoutPaymentFormProps) {
 
   return (
     <form className="checkoutPaymentForm" onSubmit={handleSubmit}>
-      <PaymentElement />
+      <PaymentElement
+                    onReady={() => setPaymentElementReady(true)}
+                    onLoadError={(event) => {
+                      console.error("Payment Element load error:", event);
+                      setPaymentError(
+                        event?.error?.message || "Betalningsrutan kunde inte laddas."
+                      );
+                    }}
+                  />
 
       {paymentError ? (
         <div className="checkoutError">{paymentError}</div>
@@ -106,7 +120,7 @@ function CheckoutPaymentForm({ bookingReference }: CheckoutPaymentFormProps) {
       <button
         type="submit"
         className="checkoutPayButton"
-        disabled={!stripe || !elements || isPaying}
+        disabled={!stripe || !elements || !paymentElementReady || isPaying}
       >
         {isPaying ? "Behandlar betalning..." : "Slutför betalning"}
       </button>
@@ -547,3 +561,4 @@ export default function CheckoutPage() {
     </Suspense>
   );
 }
+
