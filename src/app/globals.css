@@ -9593,3 +9593,494 @@ body:has(.timetablePage) header:first-of-type {
   visibility: visible !important;
 }
 
+
+
+/* HB Shuttle checkout page */
+.checkoutPage {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top left, rgba(0, 119, 100, 0.06), transparent 30rem),
+    linear-gradient(180deg, #f7fbfa 0%, #eef5f4 100%);
+  padding: 1.35rem 1.25rem 2.6rem;
+}
+
+.checkoutShell {
+  width: min(1060px, 100%);
+  margin: 0 auto;
+}
+
+.checkoutTop {
+  margin-bottom: 0.85rem;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.checkoutTop p {
+  margin: 0 0 0.15rem;
+  color: #007764;
+  font-size: 0.72rem;
+  font-weight: 950;
+  letter-spacing: 0.045em;
+}
+
+.checkoutTop h1 {
+  margin: 0;
+  color: #06162f;
+  font-size: clamp(2rem, 3vw, 3rem);
+  line-height: 0.95;
+  letter-spacing: -0.055em;
+}
+
+.checkoutBack {
+  border: 0;
+  border-radius: 999px;
+  background: rgba(0, 119, 100, 0.18);
+  color: #063547;
+  padding: 0.55rem 0.9rem;
+  font-size: 0.78rem;
+  font-weight: 950;
+  cursor: pointer;
+}
+
+.checkoutGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(19rem, 0.85fr);
+  gap: 1rem;
+  align-items: start;
+}
+
+.checkoutMainCard,
+.checkoutSummaryCard {
+  border: 1px solid rgba(15, 47, 58, 0.11);
+  border-radius: 1.15rem;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 1rem 2.2rem rgba(15, 47, 58, 0.1);
+  overflow: hidden;
+}
+
+.checkoutSummaryCard {
+  position: sticky;
+  top: 5.25rem;
+}
+
+.checkoutBlock {
+  padding: 1.05rem 1.15rem;
+  border-bottom: 1px solid rgba(15, 47, 58, 0.1);
+}
+
+.checkoutBlock:last-child {
+  border-bottom: 0;
+}
+
+.checkoutBlockHeader {
+  margin-bottom: 0.8rem;
+}
+
+.checkoutBlockHeader h2,
+.checkoutSummaryHeader h2 {
+  margin: 0;
+  color: #06162f;
+  font-size: 1rem;
+  font-weight: 950;
+  letter-spacing: -0.02em;
+}
+
+.checkoutBlockHeader span,
+.checkoutSummaryHeader span {
+  display: block;
+  margin-top: 0.2rem;
+  color: #48616b;
+  font-size: 0.72rem;
+  font-weight: 750;
+}
+
+.checkoutFormGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.65rem;
+}
+
+.checkoutField {
+  display: block;
+}
+
+.checkoutFieldWide {
+  grid-column: 1 / -1;
+}
+
+.checkoutField span {
+  display: block;
+  margin-bottom: 0.3rem;
+  color: #48616b;
+  font-size: 0.62rem;
+  font-weight: 950;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.checkoutField input,
+.checkoutCampaignRow input {
+  width: 100%;
+  min-height: 2.85rem;
+  border: 1px solid rgba(15, 47, 58, 0.15);
+  border-radius: 0.8rem;
+  background: #ffffff;
+  color: #102a36;
+  padding: 0 0.85rem;
+  font-size: 0.86rem;
+  font-weight: 750;
+  outline: none;
+}
+
+.checkoutField input:focus,
+.checkoutCampaignRow input:focus {
+  border-color: rgba(0, 119, 100, 0.6);
+  box-shadow: 0 0 0 0.22rem rgba(0, 119, 100, 0.1);
+}
+
+.checkoutCampaignRow {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.6rem;
+}
+
+.checkoutCampaignRow button {
+  min-height: 2.85rem;
+  border: 0;
+  border-radius: 0.8rem;
+  background: #007764;
+  color: #ffffff;
+  padding: 0 1rem;
+  font-size: 0.78rem;
+  font-weight: 950;
+  cursor: pointer;
+}
+
+.checkoutPaymentMock {
+  border: 1px solid rgba(15, 47, 58, 0.12);
+  border-radius: 0.95rem;
+  background: #ffffff;
+  padding: 0.85rem;
+}
+
+.checkoutPaymentTop {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #102a36;
+}
+
+.checkoutPaymentTop strong {
+  font-size: 0.82rem;
+  font-weight: 950;
+}
+
+.checkoutPaymentTop small {
+  margin-left: auto;
+  color: #637882;
+  font-size: 0.66rem;
+  font-weight: 800;
+}
+
+.checkoutRadioActive {
+  width: 0.78rem;
+  height: 0.78rem;
+  border-radius: 999px;
+  border: 3px solid rgba(0, 119, 100, 0.35);
+  background: #007764;
+}
+
+.checkoutStripeBox {
+  margin-top: 0.75rem;
+  min-height: 3rem;
+  border-radius: 0.75rem;
+  background: linear-gradient(135deg, #102a36, #063547);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0 0.85rem;
+  font-size: 0.78rem;
+  font-weight: 900;
+}
+
+.checkoutStripeBox div {
+  width: 2.1rem;
+  height: 1.35rem;
+  border-radius: 0.35rem;
+  background: rgba(255, 255, 255, 0.24);
+}
+
+.checkoutCheck {
+  margin-top: 0.75rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+  color: #263f49;
+  font-size: 0.72rem;
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.checkoutCheck input {
+  width: 1.05rem;
+  height: 1.05rem;
+  accent-color: #007764;
+  margin-top: 0.05rem;
+}
+
+.checkoutPayButton {
+  width: 100%;
+  margin-top: 1rem;
+  min-height: 2.95rem;
+  border: 0;
+  border-radius: 999px;
+  background: #007764;
+  color: #ffffff;
+  font-size: 0.9rem;
+  font-weight: 950;
+  cursor: pointer;
+  box-shadow: 0 0.9rem 1.8rem rgba(0, 119, 100, 0.22);
+}
+
+.checkoutPayButton:hover {
+  background: #006a59;
+}
+
+.checkoutSummaryHeader {
+  padding: 1.05rem 1.15rem 0.85rem;
+  border-bottom: 1px solid rgba(15, 47, 58, 0.1);
+}
+
+.checkoutRouteLine {
+  padding: 1rem 1.15rem;
+  border-bottom: 1px solid rgba(15, 47, 58, 0.1);
+}
+
+.checkoutRouteLine div {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.checkoutRouteLine div span {
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 999px;
+  background: #007764;
+  box-shadow: 0 0 0 0.3rem rgba(0, 119, 100, 0.1);
+}
+
+.checkoutRouteLine strong {
+  color: #102a36;
+  font-size: 0.84rem;
+  font-weight: 950;
+}
+
+.checkoutRouteMiddle {
+  width: 1px;
+  height: 1.35rem;
+  margin: 0.2rem 0 0.2rem 0.36rem;
+  background: rgba(0, 119, 100, 0.25);
+}
+
+.checkoutSummaryMeta {
+  padding: 0.9rem 1.15rem;
+  border-bottom: 1px solid rgba(15, 47, 58, 0.1);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.65rem;
+}
+
+.checkoutSummaryMeta div {
+  border: 1px solid rgba(15, 47, 58, 0.1);
+  border-radius: 0.8rem;
+  background: #ffffff;
+  padding: 0.62rem 0.7rem;
+}
+
+.checkoutSummaryMeta small {
+  display: block;
+  margin-bottom: 0.2rem;
+  color: #637882;
+  font-size: 0.56rem;
+  font-weight: 950;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.checkoutSummaryMeta strong {
+  color: #06162f;
+  font-size: 0.73rem;
+  font-weight: 950;
+}
+
+.checkoutPriceList {
+  padding: 0.85rem 1.15rem;
+  border-bottom: 1px solid rgba(15, 47, 58, 0.1);
+}
+
+.checkoutPriceList div,
+.checkoutTotal {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.checkoutPriceList div {
+  padding: 0.45rem 0;
+  color: #263f49;
+  font-size: 0.76rem;
+  font-weight: 750;
+}
+
+.checkoutPriceList strong {
+  color: #06162f;
+  font-weight: 950;
+}
+
+.checkoutTotal {
+  padding: 1rem 1.15rem;
+}
+
+.checkoutTotal span {
+  color: #06162f;
+  font-size: 0.85rem;
+  font-weight: 950;
+}
+
+.checkoutTotal strong {
+  color: #06162f;
+  font-size: 1.2rem;
+  font-weight: 950;
+}
+
+@media (max-width: 900px) {
+  .checkoutGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .checkoutSummaryCard {
+    position: static;
+  }
+}
+
+@media (max-width: 640px) {
+  .checkoutPage {
+    padding: 1rem 0.8rem 2rem;
+  }
+
+  .checkoutTop {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .checkoutFormGrid,
+  .checkoutSummaryMeta {
+    grid-template-columns: 1fr;
+  }
+
+  .checkoutCampaignRow {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+
+
+/* HB Shuttle real Stripe checkout */
+.checkoutPaymentForm {
+  margin-top: 1rem;
+}
+
+.checkoutError {
+  margin-top: 0.8rem;
+  border: 1px solid rgba(185, 28, 28, 0.18);
+  border-radius: 0.75rem;
+  background: rgba(254, 226, 226, 0.7);
+  color: #991b1b;
+  padding: 0.75rem 0.85rem;
+  font-size: 0.76rem;
+  font-weight: 850;
+}
+
+.thanksCard {
+  width: min(620px, 100%);
+  margin: 2rem auto;
+  border: 1px solid rgba(15, 47, 58, 0.11);
+  border-radius: 1.2rem;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 1rem 2.2rem rgba(15, 47, 58, 0.1);
+  padding: 2rem;
+  text-align: center;
+}
+
+.thanksIcon {
+  width: 3rem;
+  height: 3rem;
+  margin: 0 auto 0.9rem;
+  border-radius: 999px;
+  background: #f1f5f9;
+  color: #102a36;
+  display: grid;
+  place-items: center;
+  font-size: 1.35rem;
+  font-weight: 950;
+}
+
+.thanksIconSuccess {
+  background: rgba(0, 119, 100, 0.14);
+  color: #007764;
+}
+
+.thanksCard p {
+  margin: 0 0 0.2rem;
+  color: #007764;
+  font-size: 0.72rem;
+  font-weight: 950;
+  letter-spacing: 0.045em;
+}
+
+.thanksCard h1 {
+  margin: 0;
+  color: #06162f;
+  font-size: clamp(2rem, 3vw, 3rem);
+  line-height: 0.95;
+  letter-spacing: -0.055em;
+}
+
+.thanksCard span {
+  display: block;
+  max-width: 31rem;
+  margin: 0.75rem auto 1rem;
+  color: #48616b;
+  font-size: 0.86rem;
+  font-weight: 750;
+  line-height: 1.55;
+}
+
+.thanksCard strong {
+  display: block;
+  color: #102a36;
+  font-size: 0.9rem;
+  font-weight: 950;
+}
+
+.thanksCard a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.65rem;
+  margin-top: 1.2rem;
+  border-radius: 999px;
+  background: #007764;
+  color: #ffffff;
+  padding: 0 1.2rem;
+  font-size: 0.82rem;
+  font-weight: 950;
+  text-decoration: none;
+}
+
