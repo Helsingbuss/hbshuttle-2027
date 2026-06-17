@@ -10084,3 +10084,401 @@ body:has(.timetablePage) header:first-of-type {
   text-decoration: none;
 }
 
+
+/* HB Shuttle checkout polish v1 START */
+
+/* Kassa - mer premium och kompakt */
+.checkoutPage,
+.checkoutShell,
+.checkoutWrapper {
+  background:
+    radial-gradient(circle at 12% 5%, rgba(13, 139, 121, 0.10), transparent 26%),
+    linear-gradient(180deg, #f4fbfa 0%, #eef8f6 100%);
+}
+
+/* Gör huvudrubriken mindre och mer balanserad */
+.checkoutPage h1,
+.checkoutShell h1,
+.checkoutWrapper h1 {
+  font-size: clamp(38px, 5vw, 58px) !important;
+  line-height: 0.95 !important;
+  letter-spacing: -0.04em !important;
+  margin-bottom: 14px !important;
+}
+
+/* Tillbaka-knappen */
+.checkoutBackButton,
+.checkoutBack,
+.backButton {
+  background: #cfeee8 !important;
+  color: #063547 !important;
+  border-radius: 999px !important;
+  padding: 11px 20px !important;
+  font-weight: 800 !important;
+  border: 0 !important;
+  box-shadow: 0 8px 20px rgba(6, 53, 71, 0.08) !important;
+}
+
+/* Kortlayout */
+.checkoutCard,
+.checkoutMainCard,
+.checkoutSummaryCard,
+.checkoutPanel,
+.checkoutBox {
+  border-radius: 24px !important;
+  border: 1px solid rgba(6, 53, 71, 0.10) !important;
+  box-shadow: 0 18px 45px rgba(6, 53, 71, 0.08) !important;
+}
+
+/* Formulär */
+.checkoutInput,
+.checkoutCard input[type="text"],
+.checkoutCard input[type="email"],
+.checkoutCard input[type="tel"],
+.checkoutCard input:not([type]),
+.checkoutPanel input[type="text"],
+.checkoutPanel input[type="email"],
+.checkoutPanel input[type="tel"] {
+  min-height: 46px !important;
+  border-radius: 15px !important;
+  border: 1px solid #d5e2e6 !important;
+  background: #ffffff !important;
+  padding: 0 15px !important;
+  font-size: 14px !important;
+  color: #082b3a !important;
+  transition: border-color .18s ease, box-shadow .18s ease, transform .18s ease !important;
+}
+
+.checkoutInput:focus,
+.checkoutCard input:focus,
+.checkoutPanel input:focus {
+  outline: none !important;
+  border-color: #007764 !important;
+  box-shadow: 0 0 0 4px rgba(0, 119, 100, 0.12) !important;
+}
+
+/* Labels */
+.checkoutCard label,
+.checkoutPanel label {
+  color: #17384a !important;
+  font-weight: 800 !important;
+}
+
+/* Sektioner */
+.checkoutSection {
+  padding: 24px 26px !important;
+}
+
+.checkoutSection h2,
+.checkoutCard h2,
+.checkoutPanel h2 {
+  font-size: 18px !important;
+  letter-spacing: -0.02em !important;
+  color: #082b3a !important;
+}
+
+.checkoutSection p,
+.checkoutCard p,
+.checkoutPanel p {
+  color: #3e5b68 !important;
+}
+
+/* Kampanjkod */
+.checkoutPromoRow,
+.promoRow,
+.campaignRow {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) auto !important;
+  gap: 10px !important;
+  align-items: center !important;
+}
+
+.checkoutPromoButton,
+.promoButton,
+.campaignButton,
+.checkoutCard button[type="button"]:not(.checkoutBackButton):not(.checkoutBack):not(.backButton) {
+  min-height: 46px !important;
+  border-radius: 15px !important;
+  background: linear-gradient(135deg, #007764 0%, #00977f 100%) !important;
+  color: #ffffff !important;
+  border: 0 !important;
+  font-weight: 900 !important;
+  padding: 0 18px !important;
+  box-shadow: 0 10px 24px rgba(0, 119, 100, 0.18) !important;
+}
+
+/* Checkboxar */
+.checkoutChecks,
+.checkoutCheckboxes {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 11px !important;
+  margin: 16px 0 !important;
+}
+
+.checkoutCheckRow,
+.checkoutCheckboxRow,
+.checkoutCard label:has(input[type="checkbox"]) {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 11px !important;
+  line-height: 1.45 !important;
+  font-size: 13.5px !important;
+  color: #17384a !important;
+  font-weight: 700 !important;
+}
+
+.checkoutCard input[type="checkbox"],
+.checkoutPanel input[type="checkbox"] {
+  width: 18px !important;
+  height: 18px !important;
+  margin-top: 1px !important;
+  accent-color: #007764 !important;
+}
+
+/* Stripe payment box */
+.checkoutPaymentForm,
+.checkoutPaymentBox,
+.checkoutStripeBox {
+  border-radius: 20px !important;
+  border: 1px solid #d7e6ea !important;
+  background: #ffffff !important;
+  padding: 15px !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.85) !important;
+}
+
+.checkoutPaymentForm::before,
+.checkoutPaymentBox::before {
+  content: "Betala säkert";
+  display: block;
+  font-size: 14px;
+  font-weight: 900;
+  color: #082b3a;
+  margin-bottom: 8px;
+}
+
+/* Submit-knapp */
+.checkoutSubmitButton,
+.checkoutPayButton,
+.checkoutCard button[type="submit"],
+.checkoutPanel button[type="submit"] {
+  width: 100% !important;
+  min-height: 58px !important;
+  border-radius: 20px !important;
+  border: 0 !important;
+  background: linear-gradient(135deg, #007764 0%, #00a88d 100%) !important;
+  color: #ffffff !important;
+  font-size: 18px !important;
+  font-weight: 950 !important;
+  box-shadow: 0 16px 34px rgba(0, 119, 100, 0.22) !important;
+  transition: transform .18s ease, box-shadow .18s ease, opacity .18s ease !important;
+}
+
+.checkoutSubmitButton:hover,
+.checkoutPayButton:hover,
+.checkoutCard button[type="submit"]:hover,
+.checkoutPanel button[type="submit"]:hover {
+  transform: translateY(-1px) !important;
+  box-shadow: 0 20px 40px rgba(0, 119, 100, 0.26) !important;
+}
+
+.checkoutSubmitButton:disabled,
+.checkoutPayButton:disabled,
+.checkoutCard button[type="submit"]:disabled,
+.checkoutPanel button[type="submit"]:disabled {
+  opacity: .65 !important;
+  cursor: not-allowed !important;
+  transform: none !important;
+}
+
+/* Resedetaljer högerkort */
+.checkoutSummaryCard,
+.checkoutSidebar .checkoutCard,
+.checkoutSummary {
+  overflow: hidden !important;
+}
+
+.checkoutSummaryCard h2,
+.checkoutSidebar h2,
+.checkoutSummary h2 {
+  font-size: 18px !important;
+  color: #082b3a !important;
+}
+
+.checkoutSummaryTotal,
+.checkoutTotal,
+.orderTotal {
+  background: linear-gradient(135deg, #ffffff 0%, #f4fbfa 100%) !important;
+  border-top: 1px solid #dce9ed !important;
+  padding: 20px 24px !important;
+}
+
+.checkoutSummaryTotal strong,
+.checkoutTotal strong,
+.orderTotal strong {
+  color: #082b63 !important;
+  font-size: clamp(24px, 3vw, 34px) !important;
+  letter-spacing: -0.04em !important;
+}
+
+/* Gör högerkort sticky på desktop */
+@media (min-width: 1000px) {
+  .checkoutSidebar,
+  .checkoutSummaryCard {
+    position: sticky !important;
+    top: 92px !important;
+  }
+}
+
+/* Mobil */
+@media (max-width: 768px) {
+  .checkoutPromoRow,
+  .promoRow,
+  .campaignRow {
+    grid-template-columns: 1fr !important;
+  }
+
+  .checkoutSection {
+    padding: 18px !important;
+  }
+
+  .checkoutPage h1,
+  .checkoutShell h1,
+  .checkoutWrapper h1 {
+    font-size: 38px !important;
+  }
+}
+
+/* HB Shuttle checkout polish v1 END */
+
+
+/* HB Shuttle remove Stripe test label START */
+
+/* Dölj intern Stripe-testrad: "Stripe Payment Element" + "Redo att kopplas" */
+.checkoutPaymentForm > div:first-child,
+.checkoutPaymentBox > div:first-child,
+.checkoutStripeBox > div:first-child {
+  display: none !important;
+}
+
+/* Ta bort eventuell extra rubrik som lades på via CSS */
+.checkoutPaymentForm::before,
+.checkoutPaymentBox::before,
+.checkoutStripeBox::before {
+  content: none !important;
+  display: none !important;
+}
+
+/* Gör själva Stripe-rutan renare */
+.checkoutPaymentForm,
+.checkoutPaymentBox,
+.checkoutStripeBox {
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+.checkoutStripeWrap,
+.checkoutPaymentForm .__PrivateStripeElement,
+.checkoutPaymentBox .__PrivateStripeElement {
+  border-radius: 18px !important;
+}
+
+/* HB Shuttle remove Stripe test label END */
+
+
+/* HB Shuttle payment method badges START */
+
+.checkoutPaymentHeader {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 14px !important;
+  margin-bottom: 14px !important;
+  flex-wrap: wrap !important;
+}
+
+.checkoutPaymentTitle {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  color: #082b3a !important;
+}
+
+.checkoutPaymentTitle strong {
+  font-size: 15px !important;
+  font-weight: 900 !important;
+}
+
+.checkoutPaymentStatusDot {
+  width: 11px !important;
+  height: 11px !important;
+  border-radius: 999px !important;
+  background: #007764 !important;
+  box-shadow: 0 0 0 4px rgba(0, 119, 100, 0.10) !important;
+}
+
+.checkoutPaymentBadges {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  flex-wrap: wrap !important;
+}
+
+.checkoutPaymentBadges span {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 29px !important;
+  padding: 0 11px !important;
+  border-radius: 999px !important;
+  border: 1px solid #cfe3df !important;
+  background: #f5fbfa !important;
+  color: #007764 !important;
+  font-size: 12px !important;
+  font-weight: 850 !important;
+  line-height: 1 !important;
+}
+
+.checkoutStripeBox {
+  min-height: 52px !important;
+}
+
+/* HB Shuttle payment method badges END */
+
+
+.checkoutPaymentBadgeRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin: 10px 0 18px;
+}
+
+.checkoutPaymentBadgeImage {
+  display: block;
+  width: auto;
+  height: 28px;
+  object-fit: contain;
+}
+
+.checkoutPaymentBadgeKlarna {
+  height: 34px;
+  border-radius: 10px;
+}
+
+@media (max-width: 768px) {
+  .checkoutPaymentBadgeRow {
+    gap: 10px;
+    margin: 8px 0 14px;
+  }
+
+  .checkoutPaymentBadgeImage {
+    height: 24px;
+  }
+
+  .checkoutPaymentBadgeKlarna {
+    height: 28px;
+  }
+}

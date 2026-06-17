@@ -369,7 +369,7 @@ function CheckoutContent() {
               <div className="checkoutBlock">
                 <div className="checkoutBlockHeader">
                   <h2>Betalning</h2>
-                  <span>Kort, Klarna, Swish och digitala plånböcker visas beroende på vad som är aktiverat i Stripe.</span>
+                  <span></span>
                 </div>
 
                 <label className="checkoutCheck">
@@ -398,20 +398,7 @@ function CheckoutContent() {
 
                 {!clientSecret ? (
                   <>
-                    <div className="checkoutPaymentMock">
-                      <div className="checkoutPaymentTop">
-                        <span className="checkoutRadioActive"></span>
-                        <strong>Stripe Payment Element</strong>
-                        <small>Redo att kopplas</small>
-                      </div>
-
-                      <div className="checkoutStripeBox">
-                        <div></div>
-                        <span>Kort / Klarna / Swish / Apple Pay / Google Pay</span>
-                      </div>
-                    </div>
-
-                    <button
+<button
                       type="button"
                       className="checkoutPayButton"
                       onClick={createStripePayment}
@@ -561,4 +548,7 @@ export default function CheckoutPage() {
     </Suspense>
   );
 }
+
+
+
 

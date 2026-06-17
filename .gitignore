@@ -41,3 +41,7 @@ yarn-error.log*
 next-env.d.ts
 
 .env.local
+
+.env.local
+src/app/*backup*
+src/app/**/*backup*
