@@ -175,7 +175,7 @@ function AddonsContent() {
     params.set("smsTicket", smsTicket ? "1" : "0");
     params.set("addonsTotal", String(totalAddonsPrice));
 
-    router.push(`/start/kunduppgifter?${params.toString()}`);
+    router.push(`/start/kassa?${params.toString()}`);
   }
 
   return (
