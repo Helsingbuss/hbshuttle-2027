@@ -246,8 +246,8 @@ function ChooseDepartureContent() {
             departureTime: String(item.departureTime || item.departure_time || ""),
             arrivalTime: String(item.arrivalTime || item.arrival_time || ""),
             duration: item.durationMinutes ? `${item.durationMinutes} min` : String(item.duration || "50 min"),
-            line: String(item.line || item.lineName || "Linje 101"),
-            vehicle: String(item.vehicle || "HB Shuttle"),
+            line: String(item.line || item.lineName || item.lineCode || "Linje hämtas från Portal"),
+            vehicle: String(item.vehicle || item.operatorName || item.operator_name || "Helsingbuss"),
             from: String(item.from || item.fromName || item.departureLocation || from || "Helsingborg C"),
             to: String(item.to || item.toName || item.destinationLocation || to || "Ängelholm Airport"),
             priceEconomy: Number(item.priceEconomy || item.price_economy || item.ticketPrice || item.price || 0),
@@ -375,7 +375,7 @@ return (
 
             <div>
               <small>Linje</small>
-              <strong>101 Helsingborg – Ängelholm Airport</strong>
+              <strong>{departures[0]?.line || departures[0]?.lineName || departures[0]?.lineCode || "Linje hämtas från avgång"}</strong>
             </div>
           </div>
         </div>
@@ -632,6 +632,7 @@ return (
     </Suspense>
   );
 }
+
 
 
 
