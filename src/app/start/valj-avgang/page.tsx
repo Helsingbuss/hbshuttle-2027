@@ -51,6 +51,7 @@ type Departure = {
   priceEconomy: number;
   pricePlus: number;
   status?: "available" | "departed";
+  stops?: any[];
 };
 
 
@@ -120,6 +121,46 @@ function displayTime(value?: any) {
   }
 
   return text;
+}
+
+function normalizeStopName(value?: string | null) {
+  return String(value || "")
+    .trim()
+    .toLowerCase()
+    .replace(/\s+/g, " ");
+}
+
+function getStopsFromItem(item: any) {
+  if (Array.isArray(item?.visibleStops) && item.visibleStops.length > 0) {
+    return item.visibleStops;
+  }
+
+  if (Array.isArray(item?.stops) && item.stops.length > 0) {
+    return item.stops;
+  }
+
+  return [];
+}
+
+function getSelectedStopTime(item: any, stopName: string, fallback: "first" | "last") {
+  const stops = getStopsFromItem(item);
+
+  if (stops.length === 0) {
+    return fallback === "first"
+      ? displayTime(item?.departureTime || item?.departure_time || "")
+      : displayTime(item?.arrivalTime || item?.arrival_time || "");
+  }
+
+  const wanted = normalizeStopName(stopName);
+
+  const selectedStop = wanted
+    ? stops.find((stop: any) => normalizeStopName(stop?.name) === wanted)
+    : null;
+
+  const fallbackStop = fallback === "first" ? stops[0] : stops[stops.length - 1];
+  const stop = selectedStop || fallbackStop;
+
+  return getStopTime(stop);
 }
 
 function getStopTime(stop?: any) {
@@ -225,8 +266,8 @@ const params = new URLSearchParams();
 
           const connectedDepartures: Departure[] = apiDepartures.map((item: any, index: number) => ({
             id: String(item.id || `departure-${index}`),
-            departureTime: getFirstStopTime(item),
-            arrivalTime: getLastStopTime(item),
+            departureTime: getSelectedStopTime(item, from, "first"),
+            arrivalTime: getSelectedStopTime(item, to, "last"),
             duration: item.durationMinutes ? `${item.durationMinutes} min` : String(item.duration || "50 min"),
             line: String(item.line || item.lineName || item.lineCode || "Linje hämtas från Portal"),
             vehicle: String(item.vehicle || item.operatorName || item.operator_name || "Helsingbuss"),
@@ -235,6 +276,7 @@ const params = new URLSearchParams();
             priceEconomy: Number(item.priceEconomy || item.price_economy || item.ticketPrice || item.price || 0),
             pricePlus: Number(item.pricePlus || item.price_plus || item.ticketPrice || item.price || 0),
             status: item.status === "departed" ? "departed" : "available",
+            stops: getStopsFromItem(item),
           }));
 
           setDepartures(connectedDepartures);
@@ -637,6 +679,11 @@ return (
     </Suspense>
   );
 }
+
+
+
+
+
 
 
 
