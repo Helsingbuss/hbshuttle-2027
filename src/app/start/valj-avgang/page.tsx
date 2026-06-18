@@ -206,7 +206,8 @@ function ChooseDepartureContent() {
 
         const params = new URLSearchParams();
 
-        // Avgångar hämtas efter datum. Från/till används senare när stopp och priser är fullt kopplade.`r`n        if (date) params.set("date", date);
+        // Load departures by selected date.
+        if (date) params.set("date", date);
 
         const response = await fetch(
           `${baseUrl.replace(/\/$/, "")}/api/public/shuttle/departures?${params.toString()}`,
@@ -223,12 +224,7 @@ function ChooseDepartureContent() {
         if (Array.isArray(data.departures) && data.departures.length > 0) {
           const apiDepartures = Array.isArray(data.departures) ? data.departures : [];
 
-          const filteredDepartures = apiDepartures.filter((item: any) => {
-            const itemDate = String(item.date || item.departureDate || item.departure_date || "");
-            return !date || itemDate === date;
-          });
-
-          const connectedDepartures: Departure[] = filteredDepartures.map((item: any, index: number) => ({
+          const connectedDepartures: Departure[] = apiDepartures.map((item: any, index: number) => ({
             id: String(item.id || `departure-${index}`),
             departureTime: getFirstStopTime(item),
             arrivalTime: getLastStopTime(item),
@@ -641,6 +637,8 @@ return (
     </Suspense>
   );
 }
+
+
 
 
 
