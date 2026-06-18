@@ -122,6 +122,30 @@ function displayTime(value?: any) {
   return text;
 }
 
+function getStopTime(stop?: any) {
+  return displayTime(stop?.time || stop?.departure_time || stop?.arrival_time || "");
+}
+
+function getFirstStopTime(item: any) {
+  const stops = Array.isArray(item?.visibleStops) && item.visibleStops.length > 0
+    ? item.visibleStops
+    : Array.isArray(item?.stops)
+      ? item.stops
+      : [];
+
+  return getStopTime(stops[0]) || displayTime(item?.departureTime || item?.departure_time || "");
+}
+
+function getLastStopTime(item: any) {
+  const stops = Array.isArray(item?.visibleStops) && item.visibleStops.length > 0
+    ? item.visibleStops
+    : Array.isArray(item?.stops)
+      ? item.stops
+      : [];
+
+  return getStopTime(stops[stops.length - 1]) || displayTime(item?.arrivalTime || item?.arrival_time || "");
+}
+
 function shiftDateValue(value: string, days: number) {
   if (!value) return "";
 
@@ -206,8 +230,8 @@ function ChooseDepartureContent() {
 
           const connectedDepartures: Departure[] = filteredDepartures.map((item: any, index: number) => ({
             id: String(item.id || `departure-${index}`),
-            departureTime: displayTime(item.visibleStops?.[0]?.time || item.stops?.[0]?.time || item.departureTime || item.departure_time || ""),
-            arrivalTime: displayTime(item.visibleStops?.[item.visibleStops.length - 1]?.time || item.stops?.[item.stops.length - 1]?.time || item.arrivalTime || item.arrival_time || ""),
+            departureTime: getFirstStopTime(item),
+            arrivalTime: getLastStopTime(item),
             duration: item.durationMinutes ? `${item.durationMinutes} min` : String(item.duration || "50 min"),
             line: String(item.line || item.lineName || item.lineCode || "Linje hämtas från Portal"),
             vehicle: String(item.vehicle || item.operatorName || item.operator_name || "Helsingbuss"),
@@ -617,6 +641,7 @@ return (
     </Suspense>
   );
 }
+
 
 
 
