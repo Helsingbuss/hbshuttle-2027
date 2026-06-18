@@ -168,6 +168,11 @@ function formatDepartureDateLabel(value: string, fallback = "Välj datum") {
   return `${days[date.getDay()]} ${date.getDate()} ${months[date.getMonth()]}`;
 }
 
+function displayTime(value?: string | null) {
+  if (!value) return "";
+  return String(value).slice(0, 5);
+}
+
 function shiftDateValue(value: string, days: number) {
   if (!value) return "";
 
@@ -282,7 +287,7 @@ function ChooseDepartureContent() {
     router.push(`/start/valj-avgang?${params.toString()}`);
   }
   function goToAddons(departure: Departure, selectedComfort: Comfort) {
-    if (isDepartureDeparted(date, departure.departureTime, departure.status)) {
+    if (isDepartureDeparted(date, displayTime(departure.departureTime), departure.status)) {
       return;
     }
 
@@ -292,8 +297,8 @@ function ChooseDepartureContent() {
     params.set("to", to || departure.to);
     params.set("date", date);
     params.set("departureId", departure.id);
-    params.set("departureTime", departure.departureTime);
-    params.set("arrivalTime", departure.arrivalTime);
+    params.set("departureTime", displayTime(departure.departureTime));
+    params.set("arrivalTime", displayTime(departure.arrivalTime));
     params.set("line", departure.line);
     params.set("vehicle", departure.vehicle);
     params.set("comfort", selectedComfort);
@@ -310,7 +315,7 @@ function ChooseDepartureContent() {
   }
 
   function chooseDeparture(departure: Departure, selectedComfort: Comfort) {
-    if (isDepartureDeparted(date, departure.departureTime, departure.status)) {
+    if (isDepartureDeparted(date, displayTime(departure.departureTime), departure.status)) {
       return;
     }
 
@@ -416,7 +421,7 @@ return (
             const isSelected = selectedDepartureId === departure.id;
             const isDeparted = isDepartureDeparted(
               date,
-              departure.departureTime,
+              displayTime(departure.departureTime),
               departure.status
             );
 
@@ -442,14 +447,14 @@ return (
                   }
                 >
                   <div className="departureTimes">
-                    <strong>{departure.departureTime}</strong>
+                    <strong>{displayTime(departure.departureTime)}</strong>
                     <span className="departureTimeArrow">
                       <svg viewBox="0 0 24 24" fill="none">
                         <path d="M5 12h14" />
                         <path d="m13 6 6 6-6 6" />
                       </svg>
                     </span>
-                    <strong>{departure.arrivalTime}</strong>
+                    <strong>{displayTime(departure.arrivalTime)}</strong>
                   </div>
 
                   <div className="departureInfo">
@@ -482,7 +487,7 @@ return (
                       <div className="timelineStop">
                         <span />
                         <div>
-                          <strong>{departure.departureTime}</strong>
+                          <strong>{displayTime(departure.departureTime)}</strong>
                           <p>{displayFrom}</p>
                         </div>
                       </div>
@@ -533,7 +538,7 @@ return (
                       <div className="timelineStop">
                         <span />
                         <div>
-                          <strong>{departure.arrivalTime}</strong>
+                          <strong>{displayTime(departure.arrivalTime)}</strong>
                           <p>{displayTo}</p>
                         </div>
                       </div>
@@ -632,6 +637,7 @@ return (
     </Suspense>
   );
 }
+
 
 
 
