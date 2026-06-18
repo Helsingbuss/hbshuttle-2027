@@ -373,6 +373,28 @@ return (
           <div className="departureApiNotice">Hämtar avgångar...</div>
         ) : null}
 
+        {!loadingDepartures && departures.length === 0 ? (
+          <div className="departureEmptyState">
+            <div className="departureEmptyIcon">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M7 3v3" />
+                <path d="M17 3v3" />
+                <path d="M4.5 8.5h15" />
+                <path d="M6.5 5h11A2.5 2.5 0 0 1 20 7.5v10A2.5 2.5 0 0 1 17.5 20h-11A2.5 2.5 0 0 1 4 17.5v-10A2.5 2.5 0 0 1 6.5 5Z" />
+                <path d="M9 13h6" />
+                <path d="M12 10v6" />
+              </svg>
+            </div>
+
+            <div>
+              <h2>Inga avgångar den här dagen</h2>
+              <p>
+                Tyvärr finns det inga planerade avgångar för valt datum.
+                Prova ett annat datum eller håll utkik – fler avgångar kan läggas till.
+              </p>
+            </div>
+          </div>
+        ) : null}
         <div className="departureList">
           {departures.map((departure) => {
             const isOpen = openDepartureId === departure.id;
@@ -595,6 +617,7 @@ return (
     </Suspense>
   );
 }
+
 
 
 
