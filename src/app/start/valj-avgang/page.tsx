@@ -200,17 +200,13 @@ function ChooseDepartureContent() {
     async function loadDepartures() {
       try {
         setDepartures([]);
-
-        const baseUrl =
-          process.env.NEXT_PUBLIC_PORTAL_API_URL || "https://login.helsingbuss.se";
-
-        const params = new URLSearchParams();
+const params = new URLSearchParams();
 
         // Load departures by selected date.
         if (date) params.set("date", date);
 
         const response = await fetch(
-          `${baseUrl.replace(/\/$/, "")}/api/public/shuttle/departures?${params.toString()}`,
+          `/api/shuttle/departures?${params.toString()}`,
           { cache: "no-store" }
         );
 
@@ -637,6 +633,7 @@ return (
     </Suspense>
   );
 }
+
 
 
 
