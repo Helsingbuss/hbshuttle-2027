@@ -185,6 +185,7 @@ function ChooseDepartureContent() {
   const [comfort, setComfort] = useState<Comfort>("economy");
   const [departures, setDepartures] = useState<Departure[]>([]);
   const [loadingDepartures, setLoadingDepartures] = useState(true);
+  const [hasLoadedDepartures, setHasLoadedDepartures] = useState(false);
 
   const selectedDeparture = useMemo(() => {
     return departures.find((departure) => departure.id === selectedDepartureId) || null;
@@ -199,6 +200,8 @@ function ChooseDepartureContent() {
   useEffect(() => {
     async function loadDepartures() {
       try {
+        setLoadingDepartures(true);
+        setHasLoadedDepartures(false);
         setDepartures([]);
 const params = new URLSearchParams();
 
@@ -245,6 +248,7 @@ const params = new URLSearchParams();
         console.error("Could not load shuttle departures:", error);
         setDepartures([]);
       } finally {
+        setHasLoadedDepartures(true);
         setLoadingDepartures(false);
       }
     }
@@ -389,7 +393,7 @@ return (
           <div className="departureApiNotice">Hämtar avgångar...</div>
         ) : null}
 
-        {!loadingDepartures && departures.length === 0 ? (
+        {hasLoadedDepartures && !loadingDepartures && departures.length === 0 ? (
           <div className="departureEmptyState">
             <div className="departureEmptyIcon">
               <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -633,6 +637,8 @@ return (
     </Suspense>
   );
 }
+
+
 
 
 
