@@ -154,9 +154,10 @@ function isDepartureDeparted(selectedDate: string, departureTime: string, status
 function formatDepartureDateLabel(value: string, fallback = "Välj datum") {
   if (!value) return fallback;
 
-  const date = new Date(value + "T00:00:00");
+  const parts = value.split("-").map(Number);
+  if (parts.length !== 3 || parts.some(Number.isNaN)) return value;
 
-  if (Number.isNaN(date.getTime())) return value;
+  const date = new Date(parts[0], parts[1] - 1, parts[2]);
 
   const days = ["Sön", "Mån", "Tis", "Ons", "Tor", "Fre", "Lör"];
   const months = [
@@ -170,13 +171,17 @@ function formatDepartureDateLabel(value: string, fallback = "Välj datum") {
 function shiftDateValue(value: string, days: number) {
   if (!value) return "";
 
-  const date = new Date(value + "T00:00:00");
+  const parts = value.split("-").map(Number);
+  if (parts.length !== 3 || parts.some(Number.isNaN)) return "";
 
-  if (Number.isNaN(date.getTime())) return "";
-
+  const date = new Date(parts[0], parts[1] - 1, parts[2]);
   date.setDate(date.getDate() + days);
 
-  return date.toISOString().slice(0, 10);
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+
+  return `${year}-${month}-${day}`;
 }
 function ChooseDepartureContent() {
   const searchParams = useSearchParams();
@@ -221,9 +226,7 @@ function ChooseDepartureContent() {
 
         const params = new URLSearchParams();
 
-        if (from) params.set("from", from);
-        if (to) params.set("to", to);
-        if (date) params.set("date", date);
+        // Avgångar hämtas efter datum. Från/till används senare när stopp och priser är fullt kopplade.`r`n        if (date) params.set("date", date);
 
         const response = await fetch(
           `${baseUrl.replace(/\/$/, "")}/api/public/shuttle/departures?${params.toString()}`,
@@ -242,11 +245,11 @@ function ChooseDepartureContent() {
             id: String(item.id || `departure-${index}`),
             departureTime: String(item.departureTime || item.departure_time || ""),
             arrivalTime: String(item.arrivalTime || item.arrival_time || ""),
-            duration: String(item.duration || "50 min"),
-            line: String(item.lineName || item.line || "Linje 101"),
+            duration: item.durationMinutes ? `${item.durationMinutes} min` : String(item.duration || "50 min"),
+            line: String(item.line || item.lineName || "Linje 101"),
             vehicle: String(item.vehicle || "HB Shuttle"),
-            from: String(item.fromName || from || "Helsingborg C"),
-            to: String(item.toName || to || "Ängelholm Helsingborg Airport"),
+            from: String(item.from || item.fromName || item.departureLocation || from || "Helsingborg C"),
+            to: String(item.to || item.toName || item.destinationLocation || to || "Ängelholm Airport"),
             priceEconomy: Number(item.priceEconomy || item.price_economy || item.ticketPrice || item.price || 0),
             pricePlus: Number(item.pricePlus || item.price_plus || item.ticketPrice || item.price || 0),
             status: item.status === "departed" ? "departed" : "available",
@@ -629,6 +632,7 @@ return (
     </Suspense>
   );
 }
+
 
 
 
