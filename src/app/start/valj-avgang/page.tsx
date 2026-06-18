@@ -150,6 +150,34 @@ function isDepartureDeparted(selectedDate: string, departureTime: string, status
   return departureDateTime < now;
 }
 
+
+function formatDepartureDateLabel(value: string, fallback = "Välj datum") {
+  if (!value) return fallback;
+
+  const date = new Date(value + "T00:00:00");
+
+  if (Number.isNaN(date.getTime())) return value;
+
+  const days = ["Sön", "Mån", "Tis", "Ons", "Tor", "Fre", "Lör"];
+  const months = [
+    "jan", "feb", "mars", "apr", "maj", "juni",
+    "juli", "aug", "sep", "okt", "nov", "dec"
+  ];
+
+  return `${days[date.getDay()]} ${date.getDate()} ${months[date.getMonth()]}`;
+}
+
+function shiftDateValue(value: string, days: number) {
+  if (!value) return "";
+
+  const date = new Date(value + "T00:00:00");
+
+  if (Number.isNaN(date.getTime())) return "";
+
+  date.setDate(date.getDate() + days);
+
+  return date.toISOString().slice(0, 10);
+}
 function ChooseDepartureContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -172,7 +200,7 @@ function ChooseDepartureContent() {
   const [openDepartureId, setOpenDepartureId] = useState<string | null>(null);
   const [selectedDepartureId, setSelectedDepartureId] = useState<string | null>(null);
   const [comfort, setComfort] = useState<Comfort>("economy");
-  const [departures, setDepartures] = useState<Departure[]>(fallbackDepartures);
+  const [departures, setDepartures] = useState<Departure[]>([]);
   const [loadingDepartures, setLoadingDepartures] = useState(true);
 
   const selectedDeparture = useMemo(() => {
@@ -203,7 +231,7 @@ function ChooseDepartureContent() {
         );
 
         if (!response.ok) {
-          setDepartures(fallbackDepartures);
+          setDepartures([]);
           return;
         }
 
@@ -216,11 +244,11 @@ function ChooseDepartureContent() {
             arrivalTime: String(item.arrivalTime || item.arrival_time || ""),
             duration: String(item.duration || "50 min"),
             line: String(item.lineName || item.line || "Linje 101"),
-            vehicle: String(item.vehicle || "HB Shuttle Direkt"),
+            vehicle: String(item.vehicle || "HB Shuttle"),
             from: String(item.fromName || from || "Helsingborg C"),
             to: String(item.toName || to || "Ängelholm Helsingborg Airport"),
-            priceEconomy: Number(item.priceEconomy || item.price_economy || 129),
-            pricePlus: Number(item.pricePlus || item.price_plus || 169),
+            priceEconomy: Number(item.priceEconomy || item.price_economy || item.ticketPrice || item.price || 0),
+            pricePlus: Number(item.pricePlus || item.price_plus || item.ticketPrice || item.price || 0),
             status: item.status === "departed" ? "departed" : "available",
           }));
 
@@ -230,10 +258,10 @@ function ChooseDepartureContent() {
           return;
         }
 
-        setDepartures(fallbackDepartures);
+        setDepartures([]);
       } catch (error) {
         console.error("Could not load shuttle departures:", error);
-        setDepartures(fallbackDepartures);
+        setDepartures([]);
       } finally {
         setLoadingDepartures(false);
       }
@@ -242,6 +270,14 @@ function ChooseDepartureContent() {
     loadDepartures();
   }, [from, to, date]);
 
+  function goToDate(nextDate: string) {
+    if (!nextDate) return;
+
+    const params = new URLSearchParams(searchParams.toString());
+    params.set("date", nextDate);
+
+    router.push(`/start/valj-avgang?${params.toString()}`);
+  }
   function goToAddons(departure: Departure, selectedComfort: Comfort) {
     if (isDepartureDeparted(date, departure.departureTime, departure.status)) {
       return;
@@ -279,8 +315,7 @@ function ChooseDepartureContent() {
     setOpenDepartureId(departure.id);
     setComfort(selectedComfort);
   }
-
-  return (
+return (
     <>
       <BetaHeader sticky />
       <main className="departurePage">
@@ -345,9 +380,27 @@ function ChooseDepartureContent() {
 
       <section className="departureContent">
         <div className="departureDateTabs">
-          <button type="button" className="departureDateTab disabled">← Föregående</button>
-          <button type="button" className="departureDateTab active">Mån 15 juni</button>
-          <button type="button" className="departureDateTab">Tis 16 juni →</button>
+          <button
+            type="button"
+            className="departureDateTab"
+            disabled={!date}
+            onClick={() => goToDate(shiftDateValue(date, -1))}
+          >
+            ← {formatDepartureDateLabel(shiftDateValue(date, -1), "Föregående")}
+          </button>
+
+          <button type="button" className="departureDateTab active">
+            {formatDepartureDateLabel(date)}
+          </button>
+
+          <button
+            type="button"
+            className="departureDateTab"
+            disabled={!date}
+            onClick={() => goToDate(shiftDateValue(date, 1))}
+          >
+            {formatDepartureDateLabel(shiftDateValue(date, 1), "Nästa")} →
+          </button>
         </div>
 
         {loadingDepartures ? (
@@ -559,7 +612,7 @@ function ChooseDepartureContent() {
 
 
 export default function ChooseDeparturePage() {
-  return (
+return (
     <Suspense
       fallback={
         <main className="departurePage">
@@ -576,3 +629,7 @@ export default function ChooseDeparturePage() {
     </Suspense>
   );
 }
+
+
+
+
