@@ -375,7 +375,7 @@ return (
 
             <div>
               <small>Linje</small>
-              <strong>{departures[0]?.line || departures[0]?.lineName || departures[0]?.lineCode || "Linje hämtas från avgång"}</strong>
+              <strong>{departures[0]?.line || "Linje hämtas från avgång"}</strong>
             </div>
           </div>
         </div>
@@ -632,6 +632,7 @@ return (
     </Suspense>
   );
 }
+
 
 
 
