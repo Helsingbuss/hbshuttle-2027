@@ -53,73 +53,6 @@ type Departure = {
   status?: "available" | "departed";
 };
 
-const fallbackDepartures: Departure[] = [
-  {
-    id: "dep-1215",
-    departureTime: "12:15",
-    arrivalTime: "13:05",
-    duration: "50 min",
-    line: "Linje 101",
-    vehicle: "HB Shuttle Direkt",
-    from: "Helsingborg C",
-    to: "Ängelholm Helsingborg Airport",
-    priceEconomy: 129,
-    pricePlus: 169,
-    status: "departed",
-  },
-  {
-    id: "dep-1500",
-    departureTime: "15:00",
-    arrivalTime: "15:50",
-    duration: "50 min",
-    line: "Linje 101",
-    vehicle: "HB Shuttle Direkt",
-    from: "Helsingborg C",
-    to: "Ängelholm Helsingborg Airport",
-    priceEconomy: 129,
-    pricePlus: 169,
-    status: "available",
-  },
-  {
-    id: "dep-1630",
-    departureTime: "16:30",
-    arrivalTime: "17:20",
-    duration: "50 min",
-    line: "Linje 101",
-    vehicle: "HB Shuttle Direkt",
-    from: "Helsingborg C",
-    to: "Ängelholm Helsingborg Airport",
-    priceEconomy: 129,
-    pricePlus: 169,
-    status: "available",
-  },
-  {
-    id: "dep-1815",
-    departureTime: "18:15",
-    arrivalTime: "19:05",
-    duration: "50 min",
-    line: "Linje 101",
-    vehicle: "HB Shuttle Direkt",
-    from: "Helsingborg C",
-    to: "Ängelholm Helsingborg Airport",
-    priceEconomy: 129,
-    pricePlus: 169,
-    status: "available",
-  },
-  {
-    id: "dep-2030",
-    departureTime: "20:30",
-    arrivalTime: "21:20",
-    duration: "50 min",
-    line: "Linje 101",
-    vehicle: "HB Shuttle Direkt",
-    from: "Helsingborg C",
-    to: "Ängelholm Helsingborg Airport",
-    priceEconomy: 129,
-    pricePlus: 169,
-    status: "available",
-  },
-];
 
 function isDepartureDeparted(selectedDate: string, departureTime: string, status?: string) {
   if (status === "departed") return true;
@@ -168,9 +101,25 @@ function formatDepartureDateLabel(value: string, fallback = "Välj datum") {
   return `${days[date.getDay()]} ${date.getDate()} ${months[date.getMonth()]}`;
 }
 
-function displayTime(value?: string | null) {
-  if (!value) return "";
-  return String(value).slice(0, 5);
+function displayTime(value?: any) {
+  const text = String(value || "").trim();
+
+  if (!text) return "";
+
+  if (/^\d{1,2}:\d{2}/.test(text)) {
+    const [hours, minutes] = text.split(":");
+    return `${hours.padStart(2, "0")}:${minutes}`;
+  }
+
+  if (/^\d{4}$/.test(text)) {
+    return `${text.slice(0, 2)}:${text.slice(2, 4)}`;
+  }
+
+  if (/^\d{3}$/.test(text)) {
+    return `0${text.slice(0, 1)}:${text.slice(1, 3)}`;
+  }
+
+  return text;
 }
 
 function shiftDateValue(value: string, days: number) {
@@ -226,6 +175,8 @@ function ChooseDepartureContent() {
   useEffect(() => {
     async function loadDepartures() {
       try {
+        setDepartures([]);
+
         const baseUrl =
           process.env.NEXT_PUBLIC_PORTAL_API_URL || "https://login.helsingbuss.se";
 
@@ -246,10 +197,17 @@ function ChooseDepartureContent() {
         const data = await response.json();
 
         if (Array.isArray(data.departures) && data.departures.length > 0) {
-          const connectedDepartures: Departure[] = data.departures.map((item: any, index: number) => ({
+          const apiDepartures = Array.isArray(data.departures) ? data.departures : [];
+
+          const filteredDepartures = apiDepartures.filter((item: any) => {
+            const itemDate = String(item.date || item.departureDate || item.departure_date || "");
+            return !date || itemDate === date;
+          });
+
+          const connectedDepartures: Departure[] = filteredDepartures.map((item: any, index: number) => ({
             id: String(item.id || `departure-${index}`),
-            departureTime: String(item.departureTime || item.departure_time || ""),
-            arrivalTime: String(item.arrivalTime || item.arrival_time || ""),
+            departureTime: displayTime(item.visibleStops?.[0]?.time || item.stops?.[0]?.time || item.departureTime || item.departure_time || ""),
+            arrivalTime: displayTime(item.visibleStops?.[item.visibleStops.length - 1]?.time || item.stops?.[item.stops.length - 1]?.time || item.arrivalTime || item.arrival_time || ""),
             duration: item.durationMinutes ? `${item.durationMinutes} min` : String(item.duration || "50 min"),
             line: String(item.line || item.lineName || item.lineCode || "Linje hämtas från Portal"),
             vehicle: String(item.vehicle || item.operatorName || item.operator_name || "Helsingbuss"),
@@ -637,6 +595,9 @@ return (
     </Suspense>
   );
 }
+
+
+
 
 
 
