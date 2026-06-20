@@ -321,6 +321,7 @@ const params = new URLSearchParams();
           const priceParams = new URLSearchParams();
           priceParams.set("from", from);
           priceParams.set("to", to);
+          if (date) priceParams.set("date", date);
 
           const priceResponse = await fetch(
             `/api/shuttle/price-rules?${priceParams.toString()}`,
@@ -765,6 +766,7 @@ return (
     </Suspense>
   );
 }
+
 
 
 
