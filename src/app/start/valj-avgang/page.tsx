@@ -73,6 +73,40 @@ type Departure = {
 };
 
 
+function normalizePriceName(value?: string | null) {
+  return String(value || "")
+    .trim()
+    .toLowerCase()
+    .replace(/\s+/g, " ");
+}
+
+function getPriceFromRules(
+  rules: any[],
+  lineCode: string,
+  fromName: string,
+  toName: string,
+  ticketTypeKey: "economy" | "plus",
+  passengerTypeKey = "adult"
+) {
+  const line = normalizePriceName(lineCode);
+  const from = normalizePriceName(fromName);
+  const to = normalizePriceName(toName);
+
+  const rule = rules.find((item: any) => {
+    return (
+      normalizePriceName(item.line_code) === line &&
+      normalizePriceName(item.from_stop_name) === from &&
+      normalizePriceName(item.to_stop_name) === to &&
+      normalizePriceName(item.passenger_type_key) === passengerTypeKey &&
+      normalizePriceName(item.ticket_type_key) === ticketTypeKey
+    );
+  });
+
+  const price = Number(rule?.price_sek || 0);
+
+  return Number.isFinite(price) && price > 0 ? price : null;
+}
+
 function isDepartureDeparted(selectedDate: string, departureTime: string, status?: string) {
   if (status === "departed") return true;
 
@@ -292,8 +326,22 @@ const params = new URLSearchParams();
             vehicle: String(item.vehicle || item.operatorName || item.operator_name || "Helsingbuss"),
             from: String(item.from || item.fromName || item.departureLocation || from || "Helsingborg C"),
             to: String(item.to || item.toName || item.destinationLocation || to || "Ängelholm Airport"),
-            priceEconomy: Number(item.priceEconomy || item.price_economy || item.ticketPrice || item.price || 0),
-            pricePlus: Number(item.pricePlus || item.price_plus || item.ticketPrice || item.price || 0),
+            priceEconomy:
+              getPriceFromRules(
+                priceRules,
+                String(item.line || item.lineName || item.lineCode || ""),
+                from,
+                to,
+                "economy"
+              ) ?? Number(item.priceEconomy || item.price_economy || item.ticketPrice || item.price || 0),
+            pricePlus:
+              getPriceFromRules(
+                priceRules,
+                String(item.line || item.lineName || item.lineCode || ""),
+                from,
+                to,
+                "plus"
+              ) ?? Number(item.pricePlus || item.price_plus || item.ticketPrice || item.price || 0),
             status: item.status === "departed" ? "departed" : "available",
             stops: getStopsFromItem(item),
           }));
@@ -699,6 +747,8 @@ return (
     </Suspense>
   );
 }
+
+
 
 
 
