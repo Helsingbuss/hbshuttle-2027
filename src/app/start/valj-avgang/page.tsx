@@ -7,6 +7,24 @@ import { Suspense, useEffect, useMemo, useState } from "react";
 
 type Comfort = "economy" | "plus";
 
+const comfortTexts = {
+  plus: {
+    title: "Plus",
+    benefits: [
+      "Extra benutrymme",
+      "Prioriterad ombordstigning",
+      "1 handbagage + 1 resväska",
+    ],
+  },
+  economy: {
+    title: "Ekonomi",
+    benefits: [
+      "Bekväm sittplats",
+      "1 handbagage + 1 resväska",
+    ],
+  },
+};
+
 type PassengerCounts = {
   adults: number;
   children: number;
@@ -601,14 +619,14 @@ return (
                       >
                         <div className="comfortTop">
                           <span className="comfortRadio" />
-                          <strong>Plus</strong>
+                          <strong>{comfortTexts.plus.title}</strong>
                           <b>{departure.pricePlus} SEK</b>
                         </div>
 
                         <ul>
-                          <li>Extra benutrymme</li>
-                          <li>Prioriterad ombordstigning</li>
-                          <li>1 handbagage + 1 resväska</li>
+                          {comfortTexts.plus.benefits.map((benefit) => (
+                            <li key={benefit}>{benefit}</li>
+                          ))}
                         </ul>
                       </button>
 
@@ -624,13 +642,14 @@ return (
                       >
                         <div className="comfortTop">
                           <span className="comfortRadio" />
-                          <strong>Ekonomi</strong>
+                          <strong>{comfortTexts.economy.title}</strong>
                           <b>{departure.priceEconomy} SEK</b>
                         </div>
 
                         <ul>
-                          <li>Bekväm sittplats</li>
-                          <li>1 handbagage + 1 resväska</li>
+                          {comfortTexts.economy.benefits.map((benefit) => (
+                            <li key={benefit}>{benefit}</li>
+                          ))}
                         </ul>
                       </button>
                     </div>
@@ -679,6 +698,7 @@ return (
     </Suspense>
   );
 }
+
 
 
 
