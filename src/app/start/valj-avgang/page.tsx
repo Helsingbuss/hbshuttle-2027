@@ -102,9 +102,11 @@ function getPriceFromRules(
     );
   });
 
-  const price = Number(rule?.price_sek || 0);
+  if (!rule) return null;
 
-  return Number.isFinite(price) && price > 0 ? price : null;
+  const price = Number(rule.price_sek);
+
+  return Number.isFinite(price) && price >= 0 ? price : null;
 }
 
 function isDepartureDeparted(selectedDate: string, departureTime: string, status?: string) {
@@ -763,6 +765,7 @@ return (
     </Suspense>
   );
 }
+
 
 
 
