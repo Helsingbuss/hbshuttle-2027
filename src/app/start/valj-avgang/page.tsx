@@ -7,7 +7,7 @@ import { Suspense, useEffect, useMemo, useState } from "react";
 
 type Comfort = "economy" | "plus";
 
-const comfortTexts = {
+const defaultComfortTexts = {
   plus: {
     title: "Plus",
     benefits: [
@@ -242,6 +242,7 @@ function ChooseDepartureContent() {
   const [openDepartureId, setOpenDepartureId] = useState<string | null>(null);
   const [selectedDepartureId, setSelectedDepartureId] = useState<string | null>(null);
   const [comfort, setComfort] = useState<Comfort>("economy");
+  const [comfortTexts, setComfortTexts] = useState(defaultComfortTexts);
   const [departures, setDepartures] = useState<Departure[]>([]);
   const [loadingDepartures, setLoadingDepartures] = useState(true);
   const [hasLoadedDepartures, setHasLoadedDepartures] = useState(false);
@@ -698,6 +699,7 @@ return (
     </Suspense>
   );
 }
+
 
 
 
