@@ -313,7 +313,23 @@ const params = new URLSearchParams();
         }
 
         const data = await response.json();
+        let priceRules: any[] = [];
 
+        if (from && to) {
+          const priceParams = new URLSearchParams();
+          priceParams.set("from", from);
+          priceParams.set("to", to);
+
+          const priceResponse = await fetch(
+            `/api/shuttle/price-rules?${priceParams.toString()}`,
+            { cache: "no-store" }
+          );
+
+          if (priceResponse.ok) {
+            const priceRulesData = await priceResponse.json();
+            priceRules = Array.isArray(priceRulesData.prices) ? priceRulesData.prices : [];
+          }
+        }
         if (Array.isArray(data.departures) && data.departures.length > 0) {
           const apiDepartures = Array.isArray(data.departures) ? data.departures : [];
 
@@ -747,6 +763,9 @@ return (
     </Suspense>
   );
 }
+
+
+
 
 
 
