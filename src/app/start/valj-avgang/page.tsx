@@ -664,45 +664,27 @@ return (
 
                       <div className="timelineVehicle">
                         <p>{departure.vehicle}</p>
-                        <div className="vehicleIcons">
-  <span>
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path d="M10 3v6" />
-      <path d="M14 3v6" />
-      <path d="M8 9h8v3a4 4 0 0 1-8 0V9Z" />
-      <path d="M12 16v5" />
-    </svg>
-    <small>Eluttag</small>
-  </span>
+                        <div className="departureAmenityRow">
+                          <span className="departureAmenityItem">
+                            <img src="/icons/amenities/plug-circle-bolt.svg" alt="" aria-hidden="true" />
+                            <small>Eluttag</small>
+                          </span>
 
-  <span>
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path d="M5 10.5a10 10 0 0 1 14 0" />
-      <path d="M8 13.5a6 6 0 0 1 8 0" />
-      <path d="M11 16.5a2 2 0 0 1 2 0" />
-      <circle cx="12" cy="19" r="1" fill="currentColor" stroke="none" />
-    </svg>
-    <small>Wi‑Fi</small>
-  </span>
+                          <span className="departureAmenityItem">
+                            <img src="/icons/amenities/wifi.svg" alt="" aria-hidden="true" />
+                            <small>Wi-Fi</small>
+                          </span>
 
-  <span>
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <rect x="6" y="7" width="12" height="11" rx="2.5" />
-      <path d="M9 7V5.5A2.5 2.5 0 0 1 11.5 3h1A2.5 2.5 0 0 1 15 5.5V7" />
-      <path d="M10 11h4" />
-    </svg>
-    <small>Bagage</small>
-  </span>
+                          <span className="departureAmenityItem">
+                            <img src="/icons/amenities/suitcase-alt.svg" alt="" aria-hidden="true" />
+                            <small>Bagage</small>
+                          </span>
 
-  <span>
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path d="M12 3v18" />
-      <path d="M7.5 5.5 16.5 18.5" />
-      <path d="M16.5 5.5 7.5 18.5" />
-    </svg>
-    <small>Klimat</small>
-  </span>
-</div>
+                          <span className="departureAmenityItem">
+                            <img src="/icons/amenities/air-conditioner.svg" alt="" aria-hidden="true" />
+                            <small>AC</small>
+                          </span>
+                        </div>
                       </div>
 
                       <div className="timelineStop">

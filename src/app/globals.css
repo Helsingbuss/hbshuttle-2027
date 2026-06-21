@@ -10553,3 +10553,57 @@ body:has(.timetablePage) header:first-of-type {
     font-size: 13.5px;
   }
 }
+/* HB Shuttle - avgångsikoner utan rutor */
+.departureAmenityRow {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  margin-top: 14px;
+  flex-wrap: wrap;
+}
+
+.departureAmenityItem {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  color: #007764;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.1;
+  min-width: 48px;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+.departureAmenityItem img {
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+  display: block;
+}
+
+.departureAmenityItem small {
+  font-size: 11px;
+  font-weight: 700;
+  color: #0f3f3a;
+}
+
+@media (max-width: 640px) {
+  .departureAmenityRow {
+    gap: 16px;
+  }
+
+  .departureAmenityItem img {
+    width: 30px;
+    height: 30px;
+  }
+
+  .departureAmenityItem small {
+    font-size: 10.5px;
+  }
+}
+
