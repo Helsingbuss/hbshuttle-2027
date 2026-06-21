@@ -10692,3 +10692,83 @@ body:has(.timetablePage) header:first-of-type {
   }
 }
 
+
+/* HB Shuttle - kompaktare sökmodul */
+.bookingSearchBox {
+  gap: 14px !important;
+  padding: 18px 18px !important;
+  align-items: end !important;
+}
+
+.bookingSearchField {
+  min-width: 0 !important;
+}
+
+.bookingSearchField label {
+  margin-bottom: 7px !important;
+  font-size: 13px !important;
+}
+
+.bookingSearchInput {
+  min-height: 42px !important;
+  height: 42px !important;
+  padding: 0 14px !important;
+  border-radius: 13px !important;
+}
+
+.bookingSearchIcon svg {
+  width: 20px !important;
+  height: 20px !important;
+}
+
+.bookingSearchArrow svg {
+  width: 17px !important;
+  height: 17px !important;
+}
+
+.bookingDateInput {
+  height: 44px !important;
+  font-size: 14px !important;
+}
+
+.bookingSearchButton {
+  min-height: 42px !important;
+  height: 42px !important;
+  padding: 0 26px !important;
+  border-radius: 12px !important;
+  font-size: 14px !important;
+}
+
+.bookingSearchButton svg {
+  width: 19px !important;
+  height: 19px !important;
+}
+
+.bookingTripTypeSwitch {
+  margin-bottom: 4px !important;
+  padding: 3px !important;
+}
+
+.bookingTripTypeButton {
+  padding: 7px 15px !important;
+  font-size: 12.5px !important;
+}
+
+.passengerSelectorButton,
+.bookingDropdownButton {
+  min-height: 44px !important;
+  height: 44px !important;
+}
+
+@media (max-width: 900px) {
+  .bookingSearchBox {
+    gap: 12px !important;
+    padding: 18px 16px !important;
+  }
+
+  .bookingSearchButton {
+    width: 100% !important;
+  }
+}
+
+
