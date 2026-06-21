@@ -663,7 +663,10 @@ return (
                       </div>
 
                       <div className="timelineVehicle">
-                        <p>{departure.vehicle}</p>
+                                                <p className="departureOperatorName">
+                          <img src="/icons/amenities/taxi-bus.svg" alt="" aria-hidden="true" />
+                          <span>{departure.vehicle}</span>
+                        </p>
                         <div className="departureAmenityRow">
                           <span className="departureAmenityItem">
                             <img src="/icons/amenities/plug-circle-bolt.svg" alt="" aria-hidden="true" />
@@ -790,6 +793,9 @@ return (
     </Suspense>
   );
 }
+
+
+
 
 
 
