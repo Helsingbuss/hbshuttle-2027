@@ -359,7 +359,7 @@ export default function BookingSearch() {
 
   return (
     <section className="bookingSearchWrap" aria-label="Sök resa">
-      <div className="bookingSearchBox">
+      <div className={tripType === "roundTrip" ? "bookingSearchBox bookingSearchBoxRoundTrip" : "bookingSearchBox bookingSearchBoxOneWay"}>
         <div className="bookingTripTypeSwitch" aria-label="Välj resetyp">
           <button
             type="button"
@@ -509,4 +509,5 @@ export default function BookingSearch() {
     </section>
   );
 }
+
 
