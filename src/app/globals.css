@@ -10833,3 +10833,73 @@ body:has(.timetablePage) header:first-of-type {
   gap: 8px;
 }
 
+
+/* HB Shuttle - tur och retur steg */
+.roundTripStepNotice {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 14px;
+  flex-wrap: wrap;
+}
+
+.roundTripStepNotice span {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 8px 13px;
+  background: rgba(6, 53, 71, 0.06);
+  color: #17384a;
+  font-size: 12.5px;
+  font-weight: 800;
+}
+
+.roundTripStepNotice span.active {
+  background: #007764;
+  color: #ffffff;
+  box-shadow: 0 8px 18px rgba(0, 119, 100, 0.18);
+}
+
+
+/* HB Shuttle - hemresa under utresa */
+.roundTripReturnContent {
+  margin-top: 24px !important;
+}
+
+.roundTripInlineTitle {
+  max-width: 780px;
+  margin: 0 auto 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 0 4px;
+}
+
+.roundTripInlineTitle small {
+  color: #007764;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 11px;
+}
+
+.roundTripInlineTitle strong {
+  color: #102438;
+  font-size: 16px;
+  font-weight: 900;
+}
+
+.roundTripInlineTitle span {
+  color: #526070;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+@media (max-width: 700px) {
+  .roundTripInlineTitle {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+

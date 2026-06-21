@@ -263,6 +263,15 @@ function ChooseDepartureContent() {
   const from = searchParams.get("from") || "Helsingborg C";
   const to = searchParams.get("to") || "Ängelholm Helsingborg Airport";
   const date = searchParams.get("date") || "";
+  const returnDate = searchParams.get("returnDate") || "";
+  const tripType = searchParams.get("tripType") === "roundTrip" ? "roundTrip" : "oneWay";
+  const activeLeg = tripType === "roundTrip" && searchParams.get("leg") === "return" ? "return" : "outbound";
+  const isRoundTrip = tripType === "roundTrip";
+
+  const activeFrom = isRoundTrip && activeLeg === "return" ? to : from;
+  const activeTo = isRoundTrip && activeLeg === "return" ? from : to;
+  const activeDate = isRoundTrip && activeLeg === "return" ? returnDate || date : date;
+  const activeDateLabel = isRoundTrip ? (activeLeg === "return" ? "Hemresa" : "Utresa") : "Datum";
   const adults = Number(searchParams.get("adults") || "1");
   const children = Number(searchParams.get("children") || "0");
   const youth = Number(searchParams.get("youth") || "0");
@@ -280,6 +289,11 @@ function ChooseDepartureContent() {
   const [comfort, setComfort] = useState<Comfort>("economy");
   const [comfortTexts, setComfortTexts] = useState(defaultComfortTexts);
   const [departures, setDepartures] = useState<Departure[]>([]);
+  const [returnDepartures, setReturnDepartures] = useState<Departure[]>([]);
+  const [loadingReturnDepartures, setLoadingReturnDepartures] = useState(false);
+  const [openReturnDepartureId, setOpenReturnDepartureId] = useState<string | null>(null);
+  const [selectedReturnDepartureId, setSelectedReturnDepartureId] = useState<string | null>(null);
+  const [returnComfort, setReturnComfort] = useState<Comfort>("economy");
   const [loadingDepartures, setLoadingDepartures] = useState(true);
   const [hasLoadedDepartures, setHasLoadedDepartures] = useState(false);
 
@@ -292,6 +306,19 @@ function ChooseDepartureContent() {
       ? selectedDeparture.pricePlus
       : selectedDeparture.priceEconomy
     : 0;
+  const selectedReturnDeparture = useMemo(
+    () => returnDepartures.find((item) => item.id === selectedReturnDepartureId) || null,
+    [returnDepartures, selectedReturnDepartureId]
+  );
+
+  const selectedReturnPrice = selectedReturnDeparture
+    ? returnComfort === "plus"
+      ? selectedReturnDeparture.pricePlus
+      : selectedReturnDeparture.priceEconomy
+    : 0;
+
+  const roundTripReady = Boolean(selectedDeparture && selectedReturnDeparture);
+  const roundTripTotalPrice = selectedPrice + selectedReturnPrice;
   useEffect(() => {
     async function loadTicketTypes() {
       try {
@@ -344,7 +371,7 @@ function ChooseDepartureContent() {
 const params = new URLSearchParams();
 
         // Load departures by selected date.
-        if (date) params.set("date", date);
+        if (activeDate) params.set("date", activeDate);
 
         const response = await fetch(
           `/api/shuttle/departures?${params.toString()}`,
@@ -359,11 +386,11 @@ const params = new URLSearchParams();
         const data = await response.json();
         let priceRules: any[] = [];
 
-        if (from && to) {
+        if (activeFrom && activeTo) {
           const priceParams = new URLSearchParams();
-          priceParams.set("from", from);
-          priceParams.set("to", to);
-          if (date) priceParams.set("date", date);
+          priceParams.set("from", activeFrom);
+          priceParams.set("to", activeTo);
+          if (activeDate) priceParams.set("date", activeDate);
 
           const priceResponse = await fetch(
             `/api/shuttle/price-rules?${priceParams.toString()}`,
@@ -380,27 +407,27 @@ const params = new URLSearchParams();
 
           const connectedDepartures: Departure[] = apiDepartures.map((item: any, index: number) => ({
             id: String(item.id || `departure-${index}`),
-            departureTime: getSelectedStopTime(item, from, "first"),
-            arrivalTime: getSelectedStopTime(item, to, "last"),
+            departureTime: getSelectedStopTime(item, activeFrom, "first"),
+            arrivalTime: getSelectedStopTime(item, activeTo, "last"),
             duration: item.durationMinutes ? `${item.durationMinutes} min` : String(item.duration || "50 min"),
             line: String(item.line || item.lineName || item.lineCode || "Linje hämtas från Portal"),
             vehicle: String(item.vehicle || item.operatorName || item.operator_name || "Helsingbuss"),
-            from: String(item.from || item.fromName || item.departureLocation || from || "Helsingborg C"),
-            to: String(item.to || item.toName || item.destinationLocation || to || "Ängelholm Airport"),
+            from: String(item.from || item.fromName || item.departureLocation || activeFrom || "Helsingborg C"),
+            to: String(item.to || item.toName || item.destinationLocation || activeTo || "Ängelholm Airport"),
             priceEconomy:
               getPriceFromRules(
                 priceRules,
                 String(item.line || item.lineName || item.lineCode || ""),
-                from,
-                to,
+                activeFrom,
+                activeTo,
                 "economy"
               ) ?? Number(item.priceEconomy || item.price_economy || item.ticketPrice || item.price || 0),
             pricePlus:
               getPriceFromRules(
                 priceRules,
                 String(item.line || item.lineName || item.lineCode || ""),
-                from,
-                to,
+                activeFrom,
+                activeTo,
                 "plus"
               ) ?? Number(item.pricePlus || item.price_plus || item.ticketPrice || item.price || 0),
             status: item.status === "departed" ? "departed" : "available",
@@ -424,18 +451,124 @@ const params = new URLSearchParams();
     }
 
     loadDepartures();
-  }, [from, to, date]);
+  }, [activeFrom, activeTo, activeDate]);
+  useEffect(() => {
+    async function loadReturnDepartures() {
+      if (!isRoundTrip) {
+        setReturnDepartures([]);
+        setSelectedReturnDepartureId(null);
+        setOpenReturnDepartureId(null);
+        return;
+      }
+
+      const selectedReturnDate = returnDate || date;
+
+      if (!from || !to || !selectedReturnDate) {
+        setReturnDepartures([]);
+        return;
+      }
+
+      try {
+        setLoadingReturnDepartures(true);
+
+        const params = new URLSearchParams();
+        params.set("date", selectedReturnDate);
+
+        const response = await fetch(
+          `/api/shuttle/departures?${params.toString()}`,
+          { cache: "no-store" }
+        );
+
+        if (!response.ok) {
+          setReturnDepartures([]);
+          return;
+        }
+
+        let priceRules: any[] = [];
+        const priceParams = new URLSearchParams();
+        priceParams.set("from", to);
+        priceParams.set("to", from);
+        priceParams.set("date", selectedReturnDate);
+
+        const priceResponse = await fetch(
+          `/api/shuttle/price-rules?${priceParams.toString()}`,
+          { cache: "no-store" }
+        );
+
+        if (priceResponse.ok) {
+          const priceRulesData = await priceResponse.json();
+          priceRules = Array.isArray(priceRulesData.prices) ? priceRulesData.prices : [];
+        }
+
+        const data = await response.json();
+        const apiDepartures = Array.isArray(data.departures) ? data.departures : [];
+
+        const connectedReturnDepartures: Departure[] = apiDepartures.map((item: any, index: number) => ({
+          id: String(item.id || `return-departure-${index}`),
+          departureTime: getSelectedStopTime(item, to, "first"),
+          arrivalTime: getSelectedStopTime(item, from, "last"),
+          duration: item.durationMinutes ? `${item.durationMinutes} min` : String(item.duration || "50 min"),
+          line: String(item.line || item.lineName || item.lineCode || "Linje hämtas från Portal"),
+          vehicle: String(item.vehicle || item.operatorName || item.operator_name || "Helsingbuss"),
+          from: String(item.from || item.fromName || item.departureLocation || to || "Ängelholm Airport"),
+          to: String(item.to || item.toName || item.destinationLocation || from || "Helsingborg C"),
+          priceEconomy:
+            getPriceFromRules(
+              priceRules,
+              String(item.line || item.lineName || item.lineCode || ""),
+              to,
+              from,
+              "economy"
+            ) ?? Number(item.priceEconomy || item.price_economy || item.ticketPrice || item.price || 0),
+          pricePlus:
+            getPriceFromRules(
+              priceRules,
+              String(item.line || item.lineName || item.lineCode || ""),
+              to,
+              from,
+              "plus"
+            ) ?? Number(item.pricePlus || item.price_plus || item.ticketPrice || item.price || 0),
+          status: item.status === "departed" ? "departed" : "available",
+          stops: getStopsFromItem(item),
+        }));
+
+        setReturnDepartures(connectedReturnDepartures);
+        setOpenReturnDepartureId(null);
+        setSelectedReturnDepartureId(null);
+      } catch (error) {
+        console.error("Could not load return departures:", error);
+        setReturnDepartures([]);
+      } finally {
+        setLoadingReturnDepartures(false);
+      }
+    }
+
+    loadReturnDepartures();
+  }, [isRoundTrip, from, to, date, returnDate]);
+
 
   function goToDate(nextDate: string) {
     if (!nextDate) return;
 
     const params = new URLSearchParams(searchParams.toString());
-    params.set("date", nextDate);
+    if (isRoundTrip && activeLeg === "return") {
+      params.set("returnDate", nextDate);
+      params.set("leg", "return");
+    } else {
+      params.set("date", nextDate);
+    }
 
     router.push(`/start/valj-avgang?${params.toString()}`);
   }
   function goToAddons(departure: Departure, selectedComfort: Comfort) {
     if (isDepartureDeparted(date, displayTime(departure.departureTime), departure.status)) {
+      return;
+    }
+
+    if (isRoundTrip) {
+      setSelectedDepartureId(departure.id);
+      setOpenDepartureId(departure.id);
+      setComfort(selectedComfort);
       return;
     }
 
@@ -458,6 +591,64 @@ const params = new URLSearchParams();
         : departure.priceEconomy;
 
     params.set("ticketPrice", String(price));
+
+    router.push(`/start/tillagg?${params.toString()}`);
+  }
+
+  function chooseReturnDeparture(departure: Departure, selectedComfort: Comfort) {
+    const selectedReturnDate = returnDate || date;
+
+    if (isDepartureDeparted(selectedReturnDate, displayTime(departure.departureTime), departure.status)) {
+      return;
+    }
+
+    setSelectedReturnDepartureId(departure.id);
+    setOpenReturnDepartureId(departure.id);
+    setReturnComfort(selectedComfort);
+  }
+
+  function continueRoundTrip() {
+    if (!selectedDeparture || !selectedReturnDeparture) return;
+
+    const params = new URLSearchParams(searchParams.toString());
+
+    params.set("tripType", "roundTrip");
+    params.set("ticketType", "Tur & Retur");
+
+    params.set("from", from || selectedDeparture.from);
+    params.set("to", to || selectedDeparture.to);
+    params.set("date", date);
+
+    params.set("departureId", selectedDeparture.id);
+    params.set("departureTime", displayTime(selectedDeparture.departureTime));
+    params.set("arrivalTime", displayTime(selectedDeparture.arrivalTime));
+    params.set("line", selectedDeparture.line);
+    params.set("vehicle", selectedDeparture.vehicle);
+    params.set("comfort", comfort);
+
+    params.set("outboundFrom", from || selectedDeparture.from);
+    params.set("outboundTo", to || selectedDeparture.to);
+    params.set("outboundDate", date);
+    params.set("outboundDepartureId", selectedDeparture.id);
+    params.set("outboundDepartureTime", displayTime(selectedDeparture.departureTime));
+    params.set("outboundArrivalTime", displayTime(selectedDeparture.arrivalTime));
+    params.set("outboundLine", selectedDeparture.line);
+    params.set("outboundVehicle", selectedDeparture.vehicle);
+    params.set("outboundComfort", comfort);
+    params.set("outboundTicketPrice", String(selectedPrice));
+
+    params.set("returnFrom", to || selectedReturnDeparture.from);
+    params.set("returnTo", from || selectedReturnDeparture.to);
+    params.set("returnDate", returnDate || date);
+    params.set("returnDepartureId", selectedReturnDeparture.id);
+    params.set("returnDepartureTime", displayTime(selectedReturnDeparture.departureTime));
+    params.set("returnArrivalTime", displayTime(selectedReturnDeparture.arrivalTime));
+    params.set("returnLine", selectedReturnDeparture.line);
+    params.set("returnVehicle", selectedReturnDeparture.vehicle);
+    params.set("returnComfort", returnComfort);
+    params.set("returnTicketPrice", String(selectedReturnPrice));
+
+    params.set("ticketPrice", String(roundTripTotalPrice));
 
     router.push(`/start/tillagg?${params.toString()}`);
   }
@@ -489,8 +680,8 @@ return (
                 </svg>
               </span>
               <div>
-                <small>{from.toLowerCase().includes("airport") || from.toLowerCase().includes("flygplats") ? "Från flygplats" : "Från"}</small>
-                <strong>{from}</strong>
+                <small>{activeFrom.toLowerCase().includes("airport") || activeFrom.toLowerCase().includes("flygplats") ? "Från flygplats" : "Från"}</small>
+                <strong>{activeFrom}</strong>
               </div>
             </div>
 
@@ -509,16 +700,16 @@ return (
                 </svg>
               </span>
               <div>
-                <small>{from.toLowerCase().includes("airport") || from.toLowerCase().includes("flygplats") ? "Till hållplats" : "Till flygplats"}</small>
-                <strong>{to}</strong>
+                <small>{activeFrom.toLowerCase().includes("airport") || activeFrom.toLowerCase().includes("flygplats") ? "Till hållplats" : "Till flygplats"}</small>
+                <strong>{activeTo}</strong>
               </div>
             </div>
           </div>
 
           <div className="departureMetaRow">
             <div>
-              <small>Datum</small>
-              <strong>{date || "Välj datum"}</strong>
+              <small>{activeDateLabel}</small>
+              <strong>{activeDate || "Välj datum"}</strong>
             </div>
 
             <div>
@@ -534,28 +725,34 @@ return (
         </div>
       </section>
 
+      {isRoundTrip ? (
+        <div className="roundTripStepNotice">
+          <span className={activeLeg === "outbound" ? "active" : ""}>1. Välj utresa</span>
+          <span className={activeLeg === "return" ? "active" : ""}>2. Välj hemresa</span>
+        </div>
+      ) : null}
       <section className="departureContent">
         <div className="departureDateTabs">
           <button
             type="button"
             className="departureDateTab"
-            disabled={!date}
-            onClick={() => goToDate(shiftDateValue(date, -1))}
+            disabled={!activeDate}
+            onClick={() => goToDate(shiftDateValue(activeDate, -1))}
           >
-            ← {formatDepartureDateLabel(shiftDateValue(date, -1), "Föregående")}
+            ← {formatDepartureDateLabel(shiftDateValue(activeDate, -1), "Föregående")}
           </button>
 
           <button type="button" className="departureDateTab active">
-            {formatDepartureDateLabel(date)}
+            {formatDepartureDateLabel(activeDate)}
           </button>
 
           <button
             type="button"
             className="departureDateTab"
-            disabled={!date}
-            onClick={() => goToDate(shiftDateValue(date, 1))}
+            disabled={!activeDate}
+            onClick={() => goToDate(shiftDateValue(activeDate, 1))}
           >
-            {formatDepartureDateLabel(shiftDateValue(date, 1), "Nästa")} →
+            {formatDepartureDateLabel(shiftDateValue(activeDate, 1), "Nästa")} →
           </button>
         </div>
 
@@ -590,13 +787,13 @@ return (
             const isOpen = openDepartureId === departure.id;
             const isSelected = selectedDepartureId === departure.id;
             const isDeparted = isDepartureDeparted(
-              date,
+              activeDate,
               displayTime(departure.departureTime),
               departure.status
             );
 
-            const displayFrom = from || departure.from;
-            const displayTo = to || departure.to;
+            const displayFrom = activeFrom || departure.from;
+            const displayTo = activeTo || departure.to;
 
             return (
               <article
@@ -763,9 +960,10 @@ return (
           <button
             type="button"
             className="departureContinue"
-            disabled={!selectedDeparture}
+            disabled={isRoundTrip ? !roundTripReady : !selectedDeparture}
+            onClick={isRoundTrip ? continueRoundTrip : undefined}
           >
-            Fortsätt · {selectedPrice} SEK →
+            {isRoundTrip ? `Fortsätt · ${roundTripTotalPrice} SEK →` : `Fortsätt · ${selectedPrice} SEK →`}
           </button>
         </div>
       </section>
@@ -793,6 +991,13 @@ return (
     </Suspense>
   );
 }
+
+
+
+
+
+
+
 
 
 
