@@ -10861,19 +10861,20 @@ body:has(.timetablePage) header:first-of-type {
 }
 
 
-/* HB Shuttle - hemresa under utresa */
+
+/* HB Shuttle - rubrik för hemresa */
 .roundTripReturnContent {
-  margin-top: 24px !important;
+  margin-top: 34px !important;
 }
 
 .roundTripInlineTitle {
-  max-width: 780px;
-  margin: 0 auto 14px;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 0 16px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
-  padding: 0 4px;
+  gap: 16px;
 }
 
 .roundTripInlineTitle small {

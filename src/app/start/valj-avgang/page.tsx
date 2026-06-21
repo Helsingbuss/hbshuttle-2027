@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import BetaHeader from "../../../components/BetaHeader";
+import SiteFooter from "../../../components/SiteFooter";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Suspense, useEffect, useMemo, useState } from "react";
 
@@ -560,6 +561,14 @@ const params = new URLSearchParams();
 
     router.push(`/start/valj-avgang?${params.toString()}`);
   }
+  function goToReturnDate(nextDate: string) {
+    if (!nextDate) return;
+
+    const params = new URLSearchParams(searchParams.toString());
+    params.set("returnDate", nextDate);
+
+    router.push(`/start/valj-avgang?${params.toString()}`);
+  }
   function goToAddons(departure: Departure, selectedComfort: Comfort) {
     if (isDepartureDeparted(date, displayTime(departure.departureTime), departure.status)) {
       return;
@@ -724,14 +733,7 @@ return (
           </div>
         </div>
       </section>
-
-      {isRoundTrip ? (
-        <div className="roundTripStepNotice">
-          <span className={activeLeg === "outbound" ? "active" : ""}>1. Välj utresa</span>
-          <span className={activeLeg === "return" ? "active" : ""}>2. Välj hemresa</span>
-        </div>
-      ) : null}
-      <section className="departureContent">
+<section className="departureContent">
         <div className="departureDateTabs">
           <button
             type="button"
@@ -951,7 +953,238 @@ return (
             );
           })}
         </div>
+        {isRoundTrip ? (
+          <div className="roundTripReturnContent">
+            <div className="roundTripInlineTitle">
+              <small>Hemresa</small>
+              <strong>{to} → {from}</strong>
+              <span>{returnDate || date}</span>
+            </div>
 
+            <div className="departureDateTabs">
+              <button
+                type="button"
+                className="departureDateTab"
+                disabled={!returnDate && !date}
+                onClick={() => goToReturnDate(shiftDateValue(returnDate || date, -1))}
+              >
+                ← {formatDepartureDateLabel(shiftDateValue(returnDate || date, -1), "Föregående")}
+              </button>
+
+              <button type="button" className="departureDateTab active">
+                {formatDepartureDateLabel(returnDate || date)}
+              </button>
+
+              <button
+                type="button"
+                className="departureDateTab"
+                disabled={!returnDate && !date}
+                onClick={() => goToReturnDate(shiftDateValue(returnDate || date, 1))}
+              >
+                {formatDepartureDateLabel(shiftDateValue(returnDate || date, 1), "Nästa")} →
+              </button>
+            </div>
+
+            {loadingReturnDepartures ? (
+              <div className="departureApiNotice">Hämtar hemresor...</div>
+            ) : null}
+
+            {!loadingReturnDepartures && returnDepartures.length === 0 ? (
+              <div className="departureEmptyState">
+                <div className="departureEmptyIcon">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M7 3v3" />
+                    <path d="M17 3v3" />
+                    <path d="M4.5 8.5h15" />
+                    <path d="M6.5 5h11A2.5 2.5 0 0 1 20 7.5v10A2.5 2.5 0 0 1 17.5 20h-11A2.5 2.5 0 0 1 4 17.5v-10A2.5 2.5 0 0 1 6.5 5Z" />
+                    <path d="M9 13h6" />
+                    <path d="M12 10v6" />
+                  </svg>
+                </div>
+
+                <div>
+                  <h2>Inga hemresor den här dagen</h2>
+                  <p>
+                    Tyvärr finns det inga planerade hemresor för valt datum.
+                    Prova ett annat datum eller håll utkik – fler avgångar kan läggas till.
+                  </p>
+                </div>
+              </div>
+            ) : null}
+
+            <div className="departureList">
+              {returnDepartures.map((departure) => {
+                const isOpen = openReturnDepartureId === departure.id;
+                const isSelected = selectedReturnDepartureId === departure.id;
+                const selectedReturnDate = returnDate || date;
+                const isDeparted = isDepartureDeparted(
+                  selectedReturnDate,
+                  displayTime(departure.departureTime),
+                  departure.status
+                );
+
+                const displayFrom = to || departure.from;
+                const displayTo = from || departure.to;
+
+                return (
+                  <article
+                    key={`return-${departure.id}`}
+                    className={
+                      isDeparted
+                        ? "departureItem departureItemDeparted"
+                        : isOpen
+                          ? "departureItem departureItemOpen"
+                          : "departureItem"
+                    }
+                  >
+                    <button
+                      type="button"
+                      className="departureSummary"
+                      onClick={() =>
+                        setOpenReturnDepartureId(isOpen ? null : departure.id)
+                      }
+                    >
+                      <div className="departureTimes">
+                        <strong>{displayTime(departure.departureTime)}</strong>
+                        <span className="departureTimeArrow">
+                          <svg viewBox="0 0 24 24" fill="none">
+                            <path d="M5 12h14" />
+                            <path d="m13 6 6 6-6 6" />
+                          </svg>
+                        </span>
+                        <strong>{displayTime(departure.arrivalTime)}</strong>
+                      </div>
+
+                      <div className="departureInfo">
+                        <span className="departureBadge">{departure.line}</span>
+                        <span>{departure.vehicle}</span>
+                        <small>{departure.duration}</small>
+                      </div>
+
+                      <div className="departurePrice">
+                        {isDeparted ? (
+                          <span className="departureDeparted">Avgått</span>
+                        ) : (
+                          <>
+                            <small>Från</small>
+                            <strong>{departure.priceEconomy} SEK</strong>
+                          </>
+                        )}
+
+                        <span className={isOpen ? "departureChevron departureChevronOpen" : "departureChevron"}>
+                          <svg viewBox="0 0 24 24" fill="none">
+                            <path d="m7 10 5 5 5-5" />
+                          </svg>
+                        </span>
+                      </div>
+                    </button>
+
+                    {isOpen ? (
+                      <div className="departureDetails">
+                        <div className="departureTimeline">
+                          <div className="timelineStop">
+                            <span />
+                            <div>
+                              <strong>{displayTime(departure.departureTime)}</strong>
+                              <p>{displayFrom}</p>
+                            </div>
+                          </div>
+
+                          <div className="timelineVehicle">
+                            <p className="departureOperatorName">
+                              <img src="/icons/amenities/taxi-bus.svg" alt="" aria-hidden="true" />
+                              <span>{departure.vehicle}</span>
+                            </p>
+
+                            <div className="departureAmenityRow">
+                              <span className="departureAmenityItem">
+                                <img src="/icons/amenities/plug-circle-bolt.svg" alt="" aria-hidden="true" />
+                                <small>Eluttag</small>
+                              </span>
+
+                              <span className="departureAmenityItem">
+                                <img src="/icons/amenities/wifi.svg" alt="" aria-hidden="true" />
+                                <small>Wi-Fi</small>
+                              </span>
+
+                              <span className="departureAmenityItem">
+                                <img src="/icons/amenities/suitcase-alt.svg" alt="" aria-hidden="true" />
+                                <small>Bagage</small>
+                              </span>
+
+                              <span className="departureAmenityItem">
+                                <img src="/icons/amenities/air-conditioner.svg" alt="" aria-hidden="true" />
+                                <small>AC</small>
+                              </span>
+                            </div>
+                          </div>
+
+                          <div className="timelineStop">
+                            <span />
+                            <div>
+                              <strong>{displayTime(departure.arrivalTime)}</strong>
+                              <p>{displayTo}</p>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="comfortPanel">
+                          <h2>Välj biljettyp</h2>
+
+                          <button
+                            type="button"
+                            className={
+                              isSelected && returnComfort === "plus"
+                                ? "comfortOption active"
+                                : "comfortOption"
+                            }
+                            onClick={() => chooseReturnDeparture(departure, "plus")}
+                            disabled={isDeparted}
+                          >
+                            <div className="comfortTop">
+                              <span className="comfortRadio" />
+                              <strong>{comfortTexts.plus.title}</strong>
+                              <b>{departure.pricePlus} SEK</b>
+                            </div>
+
+                            <ul>
+                              {comfortTexts.plus.benefits.map((benefit) => (
+                                <li key={benefit}>{benefit}</li>
+                              ))}
+                            </ul>
+                          </button>
+
+                          <button
+                            type="button"
+                            className={
+                              isSelected && returnComfort === "economy"
+                                ? "comfortOption active"
+                                : "comfortOption"
+                            }
+                            onClick={() => chooseReturnDeparture(departure, "economy")}
+                            disabled={isDeparted}
+                          >
+                            <div className="comfortTop">
+                              <span className="comfortRadio" />
+                              <strong>{comfortTexts.economy.title}</strong>
+                              <b>{departure.priceEconomy} SEK</b>
+                            </div>
+
+                            <ul>
+                              {comfortTexts.economy.benefits.map((benefit) => (
+                                <li key={benefit}>{benefit}</li>
+                              ))}
+                            </ul>
+                          </button>
+                        </div>
+                      </div>
+                    ) : null}
+                  </article>
+                );
+              })}
+            </div>
+          </div>
+        ) : null}
         <div className="departureFooter">
           <Link href="/start" className="departureBack">
             ← Tillbaka till sök
@@ -968,6 +1201,7 @@ return (
         </div>
       </section>
       </main>
+      <SiteFooter />
     </>
   );
 }
@@ -985,12 +1219,21 @@ return (
             </div>
           </section>
         </main>
-      }
+}
     >
       <ChooseDepartureContent />
     </Suspense>
   );
 }
+
+
+
+
+
+
+
+
+
 
 
 
