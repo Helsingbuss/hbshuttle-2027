@@ -244,7 +244,9 @@ export default function BookingSearch() {
   const [stops, setStops] = useState<NormalizedStop[]>([]);
   const [fromStop, setFromStop] = useState("");
   const [toStop, setToStop] = useState("Ängelholm Helsingborg Airport");
+  const [tripType, setTripType] = useState<"oneWay" | "roundTrip">("oneWay");
   const [date, setDate] = useState("");
+  const [returnDate, setReturnDate] = useState("");
   const [passengers, setPassengers] = useState<PassengerCounts>({
     adults: 1,
     children: 0,
@@ -338,7 +340,14 @@ export default function BookingSearch() {
 
     if (fromStop) params.set("from", fromStop);
     if (toStop) params.set("to", toStop);
+
+    params.set("tripType", tripType);
+
     if (date) params.set("date", date);
+
+    if (tripType === "roundTrip" && returnDate) {
+      params.set("returnDate", returnDate);
+    }
 
     params.set("adults", String(passengers.adults));
     params.set("children", String(passengers.children));
@@ -351,6 +360,24 @@ export default function BookingSearch() {
   return (
     <section className="bookingSearchWrap" aria-label="Sök resa">
       <div className="bookingSearchBox">
+        <div className="bookingTripTypeSwitch" aria-label="Välj resetyp">
+          <button
+            type="button"
+            className={tripType === "oneWay" ? "bookingTripTypeButton active" : "bookingTripTypeButton"}
+            onClick={() => setTripType("oneWay")}
+          >
+            Enkel
+          </button>
+
+          <button
+            type="button"
+            className={tripType === "roundTrip" ? "bookingTripTypeButton active" : "bookingTripTypeButton"}
+            onClick={() => setTripType("roundTrip")}
+          >
+            Tur & Retur
+          </button>
+        </div>
+
         <div className="bookingSearchField">
           <label>Från</label>
 
@@ -399,7 +426,7 @@ export default function BookingSearch() {
         </div>
 
         <div className="bookingSearchField">
-          <label>Datum</label>
+          <label>{tripType === "roundTrip" ? "Utresa" : "Datum"}</label>
 
           <div className="bookingSearchInput">
             <span className="bookingSearchIcon">
@@ -425,6 +452,36 @@ export default function BookingSearch() {
             </span>
           </div>
         </div>
+        {tripType === "roundTrip" ? (
+          <div className="bookingSearchField bookingReturnDateField">
+            <label>Hemresa</label>
+
+            <div className="bookingSearchInput">
+              <span className="bookingSearchIcon">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M7 3v4" />
+                  <path d="M17 3v4" />
+                  <path d="M4.5 9h15" />
+                  <path d="M6 5h12a2 2 0 0 1 2 2v11.5a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Z" />
+                </svg>
+              </span>
+
+              <input
+                type="date"
+                value={returnDate}
+                min={date || undefined}
+                onChange={(e) => setReturnDate(e.target.value)}
+                className="bookingDateInput"
+              />
+
+              <span className="bookingSearchArrow">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="m7 10 5 5 5-5" />
+                </svg>
+              </span>
+            </div>
+          </div>
+        ) : null}
 
         <div className="bookingSearchField">
           <label>Antal resenärer</label>
@@ -452,3 +509,4 @@ export default function BookingSearch() {
     </section>
   );
 }
+
