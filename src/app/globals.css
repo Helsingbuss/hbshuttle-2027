@@ -9880,7 +9880,7 @@ body:has(.timetablePage) header:first-of-type {
 }
 
 .checkoutRouteMiddle {
-  width: 1px;
+  width: 24px;
   height: 1.35rem;
   margin: 0.2rem 0 0.2rem 0.36rem;
   background: rgba(0, 119, 100, 0.25);
@@ -10459,12 +10459,12 @@ body:has(.timetablePage) header:first-of-type {
 .checkoutPaymentBadgeImage {
   display: block;
   width: auto;
-  height: 28px;
+  height: 24px;
   object-fit: contain;
 }
 
 .checkoutPaymentBadgeKlarna {
-  height: 34px;
+  height: 24px;
   border-radius: 10px;
 }
 
@@ -10479,7 +10479,7 @@ body:has(.timetablePage) header:first-of-type {
   }
 
   .checkoutPaymentBadgeKlarna {
-    height: 28px;
+    height: 24px;
   }
 }
 
@@ -10500,8 +10500,8 @@ body:has(.timetablePage) header:first-of-type {
 .departureEmptyIcon {
   display: grid;
   place-items: center;
-  width: 54px;
-  height: 54px;
+  width: 24px;
+  height: 24px;
   flex: 0 0 auto;
   border-radius: 20px;
   background: rgba(0, 119, 100, 0.12);
@@ -10509,8 +10509,8 @@ body:has(.timetablePage) header:first-of-type {
 }
 
 .departureEmptyIcon svg {
-  width: 28px;
-  height: 28px;
+  width: 24px;
+  height: 24px;
   stroke: currentColor;
   stroke-width: 1.8;
   stroke-linecap: round;
@@ -10526,7 +10526,7 @@ body:has(.timetablePage) header:first-of-type {
 
 .departureEmptyState p {
   margin: 0;
-  max-width: 620px;
+  max-width: 24px;
   font-size: 14.5px;
   line-height: 1.65;
   color: rgba(26, 84, 95, 0.72);
@@ -10540,8 +10540,8 @@ body:has(.timetablePage) header:first-of-type {
   }
 
   .departureEmptyIcon {
-    width: 46px;
-    height: 46px;
+    width: 24px;
+    height: 24px;
     border-radius: 17px;
   }
 
@@ -10572,7 +10572,7 @@ body:has(.timetablePage) header:first-of-type {
   font-size: 11px;
   font-weight: 700;
   line-height: 1.1;
-  min-width: 48px;
+  min-width: 24px;
   background: transparent !important;
   border: 0 !important;
   box-shadow: none !important;
@@ -10580,8 +10580,8 @@ body:has(.timetablePage) header:first-of-type {
 }
 
 .departureAmenityItem img {
-  width: 34px;
-  height: 34px;
+  width: 24px;
+  height: 24px;
   object-fit: contain;
   display: block;
 }
@@ -10598,12 +10598,14 @@ body:has(.timetablePage) header:first-of-type {
   }
 
   .departureAmenityItem img {
-    width: 30px;
-    height: 30px;
+  width: 24px;
+  height: 24px;
   }
 
   .departureAmenityItem small {
     font-size: 10.5px;
   }
 }
+
+
 
