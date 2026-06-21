@@ -178,6 +178,18 @@ function displayTime(value?: any) {
   return text;
 }
 
+function normalizeShuttleLineKey(value: any) {
+  const text = String(value || "").trim().toLowerCase();
+  const match = text.match(/\d+/);
+  return match ? match[0] : text;
+}
+
+function normalizeShuttleTextKey(value: any) {
+  return String(value || "")
+    .trim()
+    .toLowerCase()
+    .replace(/\s+/g, " ");
+}
 function normalizeStopName(value?: string | null) {
   return String(value || "")
     .trim()
@@ -1225,6 +1237,7 @@ return (
     </Suspense>
   );
 }
+
 
 
 
