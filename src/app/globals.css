@@ -10628,5 +10628,7 @@ body:has(.timetablePage) header:first-of-type {
 
 .departureOperatorName span {
   display: inline-block;
+  font-weight: 800;
 }
+
 
