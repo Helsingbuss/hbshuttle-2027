@@ -10606,6 +10606,27 @@ body:has(.timetablePage) header:first-of-type {
     font-size: 10.5px;
   }
 }
+/* HB Shuttle - operatörsikon före namn */
+.departureOperatorName {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin: 0;
+  font-size: 13px;
+  color: #24324a;
+}
 
+.departureOperatorName img {
+  width: 20px !important;
+  height: 20px !important;
+  max-width: 20px !important;
+  max-height: 20px !important;
+  object-fit: contain;
+  display: block;
+  flex: 0 0 20px;
+}
 
+.departureOperatorName span {
+  display: inline-block;
+}
 
