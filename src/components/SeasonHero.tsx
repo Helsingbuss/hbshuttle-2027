@@ -168,11 +168,17 @@ export default function SeasonHero() {
 
           <Link href={content.secondaryHref} className="seasonHeroCleanSecondary">
             {content.secondaryLabel}
-            <span>▣</span>
+            <img
+              src="/icons/ui/clock-time-tracking.svg"
+              alt=""
+              aria-hidden="true"
+              className="seasonHeroCleanButtonIcon"
+            />
           </Link>
         </div>
       </div>
     </section>
   );
 }
+
 

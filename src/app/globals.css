@@ -10772,3 +10772,64 @@ body:has(.timetablePage) header:first-of-type {
 }
 
 
+
+/* HB Shuttle - sökmodul en rad desktop */
+@media (min-width: 1101px) {
+  .bookingSearchBox.bookingSearchBoxOneWay {
+    grid-template-columns: 190px minmax(220px, 0.95fr) minmax(190px, 0.8fr) minmax(175px, 0.65fr) minmax(190px, 0.7fr) 145px !important;
+    gap: 14px !important;
+    align-items: end !important;
+  }
+
+  .bookingSearchBox.bookingSearchBoxRoundTrip {
+    grid-template-columns: 190px minmax(190px, 0.85fr) minmax(175px, 0.75fr) minmax(150px, 0.55fr) minmax(150px, 0.55fr) minmax(175px, 0.65fr) 135px !important;
+    gap: 12px !important;
+    align-items: end !important;
+  }
+
+  .bookingSearchBox .bookingTripTypeSwitch {
+    grid-column: auto !important;
+    grid-row: auto !important;
+    align-self: end !important;
+    margin-bottom: 0 !important;
+  }
+
+  .bookingSearchBox .bookingSearchButton {
+    grid-column: auto !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    padding: 0 16px !important;
+  }
+
+  .bookingSearchBox .bookingSearchInput {
+    min-width: 0 !important;
+  }
+
+  .bookingSearchBox .bookingDropdownButton,
+  .bookingSearchBox .passengerSelectorButton,
+  .bookingSearchBox .bookingDateInput {
+    font-size: 13px !important;
+  }
+
+  .bookingTripTypeButton {
+    padding: 7px 14px !important;
+    font-size: 12px !important;
+  }
+}
+
+
+/* HB Shuttle - ikon i Se tidtabell-knapp */
+.seasonHeroCleanButtonIcon {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+  display: block;
+  flex: 0 0 18px;
+}
+
+.seasonHeroCleanSecondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
