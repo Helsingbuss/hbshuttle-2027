@@ -292,6 +292,48 @@ function ChooseDepartureContent() {
       ? selectedDeparture.pricePlus
       : selectedDeparture.priceEconomy
     : 0;
+  useEffect(() => {
+    async function loadTicketTypes() {
+      try {
+        const response = await fetch("/api/shuttle/ticket-types", {
+          cache: "no-store",
+        });
+
+        if (!response.ok) {
+          setComfortTexts(defaultComfortTexts);
+          return;
+        }
+
+        const data = await response.json();
+        const ticketTypes = Array.isArray(data.ticketTypes) ? data.ticketTypes : [];
+
+        const plus = ticketTypes.find((item: any) => item.type_key === "plus");
+        const economy = ticketTypes.find((item: any) => item.type_key === "economy");
+
+        setComfortTexts({
+          plus: {
+            title: plus?.title || defaultComfortTexts.plus.title,
+            benefits:
+              Array.isArray(plus?.benefits) && plus.benefits.length > 0
+                ? plus.benefits
+                : defaultComfortTexts.plus.benefits,
+          },
+          economy: {
+            title: economy?.title || defaultComfortTexts.economy.title,
+            benefits:
+              Array.isArray(economy?.benefits) && economy.benefits.length > 0
+                ? economy.benefits
+                : defaultComfortTexts.economy.benefits,
+          },
+        });
+      } catch {
+        setComfortTexts(defaultComfortTexts);
+      }
+    }
+
+    loadTicketTypes();
+  }, []);
+
 
   useEffect(() => {
     async function loadDepartures() {
@@ -766,6 +808,7 @@ return (
     </Suspense>
   );
 }
+
 
 
 
