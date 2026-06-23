@@ -82,17 +82,24 @@ export default function MobileAppPromo() {
         </ul>
 
         <div className="appStoreButtons">
-          <button type="button" className="storeButton">
-            <small>Ladda ned på</small>
-            <strong>App Store</strong>
+          <button type="button" className="appStoreBadgeLink" aria-label="Ladda ner på App Store">
+            <img
+              src="/badges/app-store-badge.png"
+              alt="Ladda ner på App Store"
+              className="appStoreBadgeImage"
+            />
           </button>
 
-          <button type="button" className="storeButton">
-            <small>Hämta den på</small>
-            <strong>Google Play</strong>
+          <button type="button" className="appStoreBadgeLink" aria-label="Hämta den på Google Play">
+            <img
+              src="/badges/google-play-badge.png"
+              alt="Hämta den på Google Play"
+              className="appStoreBadgeImage"
+            />
           </button>
         </div>
       </div>
     </article>
   );
 }
+
