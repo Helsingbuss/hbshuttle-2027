@@ -11039,3 +11039,99 @@ body:has(.timetablePage) header:first-of-type {
   filter: brightness(0) saturate(100%) invert(29%) sepia(55%) saturate(1544%) hue-rotate(145deg) brightness(88%) contrast(95%);
 }
 
+
+/* HB Shuttle - snyggare tomläge för Välj avgång */
+.departureEmptyState {
+  width: 100% !important;
+  max-width: 960px !important;
+  min-height: 170px !important;
+  margin: 0 auto 22px !important;
+  padding: 30px 34px !important;
+  border: 1px solid rgba(0, 119, 100, 0.16) !important;
+  border-radius: 26px !important;
+  background: linear-gradient(135deg, rgba(255,255,255,0.92), rgba(236,247,246,0.72)) !important;
+  display: flex !important;
+  align-items: flex-start !important;
+  justify-content: flex-start !important;
+  gap: 18px !important;
+  box-sizing: border-box !important;
+  box-shadow: 0 18px 48px rgba(12, 38, 55, 0.08) !important;
+}
+
+.departureEmptyIcon,
+.departureEmptyStateIcon {
+  width: 54px !important;
+  height: 54px !important;
+  min-width: 54px !important;
+  border-radius: 18px !important;
+  background: rgba(0, 119, 100, 0.10) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  color: #007764 !important;
+}
+
+.departureEmptyIcon svg,
+.departureEmptyStateIcon img {
+  width: 25px !important;
+  height: 25px !important;
+  display: block !important;
+  object-fit: contain !important;
+}
+
+.departureEmptyStateContent,
+.departureEmptyState > div:last-child {
+  flex: 1 1 auto !important;
+  width: auto !important;
+  min-width: 0 !important;
+  max-width: 720px !important;
+}
+
+.departureEmptyState h2 {
+  margin: 0 0 8px !important;
+  color: #08243b !important;
+  font-size: 22px !important;
+  line-height: 1.25 !important;
+  font-weight: 900 !important;
+  letter-spacing: -0.02em !important;
+}
+
+.departureEmptyState p {
+  margin: 0 !important;
+  width: auto !important;
+  max-width: 680px !important;
+  color: #526f7b !important;
+  font-size: 15.5px !important;
+  line-height: 1.65 !important;
+  white-space: normal !important;
+  word-break: normal !important;
+  overflow-wrap: normal !important;
+  text-wrap: pretty !important;
+}
+
+@media (max-width: 700px) {
+  .departureEmptyState {
+    min-height: auto !important;
+    padding: 22px 20px !important;
+    border-radius: 22px !important;
+    gap: 14px !important;
+  }
+
+  .departureEmptyIcon,
+  .departureEmptyStateIcon {
+    width: 46px !important;
+    height: 46px !important;
+    min-width: 46px !important;
+    border-radius: 15px !important;
+  }
+
+  .departureEmptyState h2 {
+    font-size: 18px !important;
+  }
+
+  .departureEmptyState p {
+    font-size: 14.5px !important;
+    line-height: 1.55 !important;
+  }
+}
+
