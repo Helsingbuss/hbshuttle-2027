@@ -10904,3 +10904,44 @@ body:has(.timetablePage) header:first-of-type {
   }
 }
 
+
+/* HB Shuttle - newsletter bussikon */
+.newsletterBusDecor {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 150px;
+  pointer-events: none;
+}
+
+.newsletterBusSvg {
+  width: 145px;
+  height: auto;
+  display: block;
+}
+
+.newsletterBusTrail {
+  stroke: rgba(255, 255, 255, 0.72);
+  stroke-width: 2.8;
+  stroke-linecap: round;
+  stroke-dasharray: 7 9;
+}
+
+.newsletterBusIcon {
+  stroke: #ffffff;
+  stroke-width: 2.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.95;
+}
+
+@media (max-width: 900px) {
+  .newsletterBusDecor {
+    min-width: 105px;
+  }
+
+  .newsletterBusSvg {
+    width: 112px;
+  }
+}
+
