@@ -81,6 +81,35 @@ function normalizePriceName(value?: string | null) {
     .replace(/\s+/g, " ");
 }
 
+
+function getLineCode(line: any) {
+  const value = String(line || "").trim();
+  const match = value.match(/\d+/);
+  return match ? match[0] : value;
+}
+
+function displayLineName(line: any) {
+  const code = getLineCode(line);
+
+  if (code === "811") return "811 Flygbuss";
+  if (code === "812") return "812 Flygbuss";
+  if (code === "831") return "831 Flygbuss";
+
+  return String(line || "").trim();
+}
+
+function getDepartureDirection(item: any) {
+  return String(
+    item.direction ||
+      item.riktning ||
+      item.routeDirection ||
+      item.tripDirection ||
+      item.departureDirection ||
+      ""
+  )
+    .trim()
+    .toLowerCase();
+}
 function getPriceFromRules(
   rules: any[],
   lineCode: string,
@@ -418,7 +447,21 @@ const params = new URLSearchParams();
         if (Array.isArray(data.departures) && data.departures.length > 0) {
           const apiDepartures = Array.isArray(data.departures) ? data.departures : [];
 
-          const connectedDepartures: Departure[] = apiDepartures.map((item: any, index: number) => ({
+          const outboundDepartures = apiDepartures.filter((item: any) => {
+            const direction = getDepartureDirection(item);
+
+            if (direction) {
+              return direction === "outbound" || direction === "utresa";
+            }
+
+            const stops = getStopsFromItem(item);
+            const fromIndex = stops.findIndex((stop: any) => normalizeStopName(stop.name) === normalizeStopName(activeFrom));
+            const toIndex = stops.findIndex((stop: any) => normalizeStopName(stop.name) === normalizeStopName(activeTo));
+
+            return fromIndex >= 0 && toIndex >= 0 && fromIndex < toIndex;
+          });
+
+          const connectedDepartures: Departure[] = outboundDepartures.map((item: any, index: number) => ({
             id: String(item.id || `departure-${index}`),
             departureTime: getSelectedStopTime(item, activeFrom, "first"),
             arrivalTime: getSelectedStopTime(item, activeTo, "last"),
@@ -430,7 +473,7 @@ const params = new URLSearchParams();
             priceEconomy:
               getPriceFromRules(
                 priceRules,
-                String(item.line || item.lineName || item.lineCode || ""),
+                getLineCode(item.line || item.lineName || item.lineCode || ""),
                 activeFrom,
                 activeTo,
                 "economy"
@@ -438,7 +481,7 @@ const params = new URLSearchParams();
             pricePlus:
               getPriceFromRules(
                 priceRules,
-                String(item.line || item.lineName || item.lineCode || ""),
+                getLineCode(item.line || item.lineName || item.lineCode || ""),
                 activeFrom,
                 activeTo,
                 "plus"
@@ -516,7 +559,21 @@ const params = new URLSearchParams();
         const data = await response.json();
         const apiDepartures = Array.isArray(data.departures) ? data.departures : [];
 
-        const connectedReturnDepartures: Departure[] = apiDepartures.map((item: any, index: number) => ({
+        const inboundDepartures = apiDepartures.filter((item: any) => {
+          const direction = getDepartureDirection(item);
+
+          if (direction) {
+            return direction === "inbound" || direction === "retur" || direction === "return" || direction === "hemresa";
+          }
+
+          const stops = getStopsFromItem(item);
+          const fromIndex = stops.findIndex((stop: any) => normalizeStopName(stop.name) === normalizeStopName(to));
+          const toIndex = stops.findIndex((stop: any) => normalizeStopName(stop.name) === normalizeStopName(from));
+
+          return fromIndex >= 0 && toIndex >= 0 && fromIndex < toIndex;
+        });
+
+        const connectedReturnDepartures: Departure[] = inboundDepartures.map((item: any, index: number) => ({
           id: String(item.id || `return-departure-${index}`),
           departureTime: getSelectedStopTime(item, to, "first"),
           arrivalTime: getSelectedStopTime(item, from, "last"),
@@ -528,7 +585,7 @@ const params = new URLSearchParams();
           priceEconomy:
             getPriceFromRules(
               priceRules,
-              String(item.line || item.lineName || item.lineCode || ""),
+              getLineCode(item.line || item.lineName || item.lineCode || ""),
               to,
               from,
               "economy"
@@ -536,7 +593,7 @@ const params = new URLSearchParams();
           pricePlus:
             getPriceFromRules(
               priceRules,
-              String(item.line || item.lineName || item.lineCode || ""),
+              getLineCode(item.line || item.lineName || item.lineCode || ""),
               to,
               from,
               "plus"
@@ -740,7 +797,7 @@ return (
 
             <div>
               <small>Linje</small>
-              <strong>{departures[0]?.line || "Linje hämtas från avgång"}</strong>
+              <strong>{displayLineName(departures[0]?.line) || "Linje hämtas från avgång"}</strong>
             </div>
           </div>
         </div>
@@ -839,7 +896,7 @@ return (
                   </div>
 
                   <div className="departureInfo">
-                    <span className="departureBadge">{departure.line}</span>
+                    <span className="departureBadge">{displayLineName(departure.line)}</span>
                     <span>{departure.vehicle}</span>
                     <small>{departure.duration}</small>
                   </div>
@@ -1068,7 +1125,7 @@ return (
                       </div>
 
                       <div className="departureInfo">
-                        <span className="departureBadge">{departure.line}</span>
+                        <span className="departureBadge">{displayLineName(departure.line)}</span>
                         <span>{departure.vehicle}</span>
                         <small>{departure.duration}</small>
                       </div>
@@ -1237,6 +1294,11 @@ return (
     </Suspense>
   );
 }
+
+
+
+
+
 
 
 
