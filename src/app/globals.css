@@ -11029,3 +11029,13 @@ body:has(.timetablePage) header:first-of-type {
   }
 }
 
+
+/* HB Shuttle - egna SVG-ikoner i företagskort */
+.businessGroupIconImage {
+  width: 30px;
+  height: 30px;
+  display: block;
+  object-fit: contain;
+  filter: brightness(0) saturate(100%) invert(29%) sepia(55%) saturate(1544%) hue-rotate(145deg) brightness(88%) contrast(95%);
+}
+
