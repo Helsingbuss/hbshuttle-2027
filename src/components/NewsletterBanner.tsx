@@ -37,24 +37,19 @@ export default function NewsletterBanner() {
             fill="none"
           >
             <path
-              d="M10 54C28 40 44 34 62 34C79 34 94 39 108 46"
+              d="M8 54C27 39 45 33 64 34C80 35 94 40 108 47"
               className="newsletterBusTrail"
             />
-
-            <g className="newsletterBusIcon">
-              <rect x="108" y="24" width="46" height="26" rx="8" />
-              <path d="M113 31H147" />
-              <path d="M113 39H154" />
-              <rect x="116" y="30" width="12" height="7" rx="2" />
-              <rect x="132" y="30" width="12" height="7" rx="2" />
-              <rect x="148" y="30" width="6" height="7" rx="2" />
-              <circle cx="120" cy="55" r="5" />
-              <circle cx="145" cy="55" r="5" />
-              <path d="M108 50H154" />
-            </g>
           </svg>
+
+          <img
+            src="/icons/ui/bus.svg"
+            alt=""
+            className="newsletterBusImage"
+          />
         </div>
     </section>
   );
 }
+
 

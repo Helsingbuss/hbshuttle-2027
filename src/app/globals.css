@@ -10945,3 +10945,59 @@ body:has(.timetablePage) header:first-of-type {
   }
 }
 
+
+/* HB Shuttle - newsletter egen bus.svg */
+.newsletterBusDecor {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 150px;
+  height: 78px;
+  pointer-events: none;
+}
+
+.newsletterBusSvg {
+  position: absolute;
+  inset: 0;
+  width: 150px;
+  height: 78px;
+  display: block;
+}
+
+.newsletterBusTrail {
+  stroke: rgba(255, 255, 255, 0.72);
+  stroke-width: 2.6;
+  stroke-linecap: round;
+  stroke-dasharray: 7 9;
+}
+
+.newsletterBusImage {
+  position: absolute;
+  right: 8px;
+  top: 18px;
+  width: 58px;
+  height: auto;
+  display: block;
+  filter: brightness(0) invert(1);
+  opacity: 0.96;
+}
+
+@media (max-width: 900px) {
+  .newsletterBusDecor {
+    min-width: 110px;
+    height: 64px;
+  }
+
+  .newsletterBusSvg {
+    width: 112px;
+    height: 64px;
+  }
+
+  .newsletterBusImage {
+    width: 46px;
+    right: 4px;
+    top: 17px;
+  }
+}
+
