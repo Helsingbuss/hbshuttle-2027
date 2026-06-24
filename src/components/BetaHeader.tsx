@@ -164,15 +164,20 @@ export default function BetaHeader({ sticky = false }: { sticky?: boolean } = {}
   }
 
   function changeLanguage(languageCode: string) {
-    const combo = document.querySelector(".goog-te-combo") as HTMLSelectElement | null;
+    const target = languageCode === "sv" ? "/sv/sv" : "/sv/" + languageCode;
 
-    if (!combo) {
-      return;
-    }
+    const expires = new Date();
+    expires.setFullYear(expires.getFullYear() + 1);
 
-    combo.value = languageCode;
-    combo.dispatchEvent(new Event("change"));
+    document.cookie =
+      "googtrans=" + target + "; expires=" + expires.toUTCString() + "; path=/";
+
+    document.cookie =
+      "googtrans=" + target + "; expires=" + expires.toUTCString() + "; path=/; domain=.hbshuttle.se";
+
     closeMenu();
+
+    window.location.reload();
   }
 
   return (
