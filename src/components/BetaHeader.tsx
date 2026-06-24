@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import MegaMenuFeature from "@/components/MegaMenuFeature";
+import GoogleTranslateLoader from "@/components/GoogleTranslateLoader";
 
 type IconName =
   | "ticket"
@@ -30,11 +31,11 @@ const mainLinks = [
 ];
 
 const languageLinks = [
-  { code: "sv", label: "Svenska", translateCode: "sv" },
-  { code: "gb", label: "English", translateCode: "en" },
-  { code: "dk", label: "Dansk", translateCode: "da" },
-  { code: "no", label: "Norsk", translateCode: "no" },
-  { code: "fi", label: "Suomi", translateCode: "fi" },
+  { label: "Svenska", flagClass: "fi fi-se", code: "sv" },
+  { label: "English", flagClass: "fi fi-gb", code: "en" },
+  { label: "Dansk", flagClass: "fi fi-dk", code: "da" },
+  { label: "Norsk", flagClass: "fi fi-no", code: "no" },
+  { label: "Suomi", flagClass: "fi fi-fi", code: "fi" },
 ];
 
 const megaLinks: MenuLink[] = [
@@ -158,33 +159,25 @@ function MenuIcon({ name }: { name: IconName }) {
 
 export default function BetaHeader({ sticky = false }: { sticky?: boolean } = {}) {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [currentUrl, setCurrentUrl] = useState("https://www.hbshuttle.se/start");
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      setCurrentUrl(window.location.href);
-    }
-  }, []);
-
   function closeMenu() {
     setMenuOpen(false);
   }
 
-  function getLanguageHref(languageCode: string) {
-    if (languageCode === "sv") {
-      return currentUrl;
+  function changeLanguage(languageCode: string) {
+    const combo = document.querySelector(".goog-te-combo") as HTMLSelectElement | null;
+
+    if (!combo) {
+      return;
     }
 
-    return (
-      "https://translate.google.com/translate?sl=sv&tl=" +
-      languageCode +
-      "&u=" +
-      encodeURIComponent(currentUrl)
-    );
+    combo.value = languageCode;
+    combo.dispatchEvent(new Event("change"));
+    closeMenu();
   }
 
   return (
     <>
+      <GoogleTranslateLoader />
       <header className={`${sticky ? "bookingStickyHeader " : ""}${menuOpen ? "betaHeader menuIsOpen" : "betaHeader"}`}>
         <Link href="/start" className="betaLogo" aria-label="HB Shuttle startsida">
           <div className="betaLogoMark">H</div>
@@ -207,22 +200,30 @@ export default function BetaHeader({ sticky = false }: { sticky?: boolean } = {}
 
           <div className="languageDropdown">
             <button type="button" className="languageButton">
-              <span className="languageGlobe">🌐</span>
+              <span className="languageGlobeIcon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z" />
+                  <path d="M3.6 9h16.8" />
+                  <path d="M3.6 15h16.8" />
+                  <path d="M12 3c2.2 2.4 3.2 5.4 3.2 9s-1 6.6-3.2 9" />
+                  <path d="M12 3c-2.2 2.4-3.2 5.4-3.2 9s1 6.6 3.2 9" />
+                </svg>
+              </span>
               Language
               <span className="languageChevron">⌄</span>
             </button>
 
             <div className="languageMenu">
               {languageLinks.map((language) => (
-                <a
+                <button
                   key={language.label}
-                  href={getLanguageHref(language.translateCode)}
+                  type="button"
                   className="languageMenuItem"
-                  onClick={closeMenu}
+                  onClick={() => changeLanguage(language.code)}
                 >
-                  <span className={"languageFlagIcon flag-" + language.code} aria-hidden="true" />
+                  <span className={"languageFlagImage " + language.flagClass} aria-hidden="true" />
                   <span>{language.label}</span>
-                </a>
+                </button>
               ))}
             </div>
           </div>

@@ -1,5 +1,6 @@
 ﻿import type { Metadata } from "next";
 import { Open_Sans } from "next/font/google";
+import "flag-icons/css/flag-icons.min.css";
 import "./globals.css";
 import AppDownloadNotice from "@/components/AppDownloadNotice";
 
@@ -26,4 +27,5 @@ export default function RootLayout({
     </html>
   );
 }
+
 
