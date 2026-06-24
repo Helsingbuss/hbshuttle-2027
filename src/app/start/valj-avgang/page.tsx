@@ -673,6 +673,34 @@ const params = new URLSearchParams();
     router.push(`/start/tillagg?${params.toString()}`);
   }
 
+
+  function goToPeriodPass(departure: Departure) {
+    if (isDepartureDeparted(date, displayTime(departure.departureTime), departure.status)) {
+      return;
+    }
+
+    const passengerTotal = Math.max(1, adults + children + youth + seniors);
+    const periodPassPrice = 1495 * passengerTotal;
+
+    const params = new URLSearchParams(searchParams.toString());
+
+    params.set("from", from || departure.from);
+    params.set("to", to || departure.to);
+    params.set("date", date);
+    params.set("departureId", departure.id);
+    params.set("departureTime", displayTime(departure.departureTime));
+    params.set("arrivalTime", displayTime(departure.arrivalTime));
+    params.set("line", departure.line);
+    params.set("vehicle", departure.vehicle);
+    params.set("comfort", "period");
+    params.set("ticketType", "30-dagars periodkort");
+    params.set("passType", "period_30_days");
+    params.set("periodStartDate", date);
+    params.set("periodValidDays", "30");
+    params.set("ticketPrice", String(periodPassPrice));
+
+    router.push("/start/kassa?" + params.toString());
+  }
   function chooseReturnDeparture(departure: Departure, selectedComfort: Comfort) {
     const selectedReturnDate = returnDate || date;
 
@@ -1013,6 +1041,25 @@ return (
                           {comfortTexts.economy.benefits.map((benefit) => (
                             <li key={benefit}>{benefit}</li>
                           ))}
+                        </ul>
+                      </button>
+
+                      <button
+                        type="button"
+                        className="comfortOption periodPassOption"
+                        onClick={() => goToPeriodPass(departure)}
+                        disabled={isDeparted}
+                      >
+                        <div className="comfortTop">
+                          <span className="comfortRadio" />
+                          <strong>30-dagars periodkort</strong>
+                          <b>1495 SEK / person</b>
+                        </div>
+
+                        <ul>
+                          <li>Gäller i 30 dagar från valt datum</li>
+                          <li>Boka plats senare utan ny betalning</li>
+                          <li>Perfekt för pendling och återkommande resor</li>
                         </ul>
                       </button>
                     </div>

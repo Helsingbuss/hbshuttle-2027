@@ -39,6 +39,19 @@ function getNumber(params: URLSearchParams, key: string, fallback = 0) {
   return Number.isFinite(value) ? value : fallback;
 }
 
+function getPeriodEndDate(startDate: string, days: number) {
+  const start = new Date(startDate + "T00:00:00");
+
+  if (Number.isNaN(start.getTime())) {
+    return "";
+  }
+
+  const end = new Date(start);
+  end.setDate(end.getDate() + days - 1);
+
+  return end.toISOString().slice(0, 10);
+}
+
 function passengerSummary(params: URLSearchParams) {
   const adults = getNumber(params, "adults", 1);
   const children = getNumber(params, "children", 0);
@@ -141,6 +154,11 @@ function CheckoutContent() {
   const line = searchParams.get("line") || "Linje 101";
   const comfort = searchParams.get("comfort") || "economy";
   const ticketType = searchParams.get("ticketType") || "Enkel";
+  const passType = searchParams.get("passType") || "";
+  const isPeriodPass = passType === "period_30_days";
+  const periodStartDate = searchParams.get("periodStartDate") || date;
+  const periodValidDays = getNumber(searchParams, "periodValidDays", 30);
+  const periodValidTo = getPeriodEndDate(periodStartDate, periodValidDays);
 
   const adults = getNumber(searchParams, "adults", 1);
   const children = getNumber(searchParams, "children", 0);
@@ -251,6 +269,10 @@ function CheckoutContent() {
               ticketType,
               comfort,
               ticketPrice,
+              passType,
+              periodStartDate: isPeriodPass ? periodStartDate : null,
+              periodValidDays: isPeriodPass ? periodValidDays : null,
+              periodValidTo: isPeriodPass ? periodValidTo : null,
             },
             addons: {
               extraBaggage,
@@ -470,13 +492,21 @@ function CheckoutContent() {
 
                 <div>
                   <small>Biljett</small>
-                  <strong>{ticketType} · {comfort === "plus" ? "Plus" : "Ekonomi"}</strong>
+                  <strong>{isPeriodPass ? ticketType + " · 30 dagar" : ticketType + " · " + (comfort === "plus" ? "Plus" : "Ekonomi")}</strong>
                 </div>
               </div>
 
+              {isPeriodPass ? (
+                <div className="checkoutPeriodInfo">
+                  <span>Giltighet</span>
+                  <strong>{periodStartDate} - {periodValidTo || "30 dagar"}</strong>
+                  <p>Periodkortet gäller på vald sträcka. Plats bokas separat inför varje resa när funktionen är aktiverad.</p>
+                </div>
+              ) : null}
+
               <div className="checkoutPriceList">
                 <div>
-                  <span>Biljett</span>
+                  <span>{isPeriodPass ? "Periodkort" : "Biljett"}</span>
                   <strong>{money(ticketPrice)}</strong>
                 </div>
 
