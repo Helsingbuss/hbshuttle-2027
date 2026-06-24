@@ -12704,3 +12704,495 @@ body:has(.timetablePage) header:first-of-type {
   }
 }
 
+
+/* HB Shuttle - traffic information page */
+.trafficPage {
+  min-height: 100vh !important;
+  padding: 118px 24px 70px !important;
+  background:
+    radial-gradient(circle at top left, rgba(0, 119, 100, 0.08), transparent 34%),
+    linear-gradient(180deg, #f7fbfa 0%, #eef5f4 100%) !important;
+}
+
+.trafficHero {
+  width: min(1120px, 100%) !important;
+  margin: 0 auto 26px !important;
+  text-align: left !important;
+}
+
+.trafficHero p {
+  margin: 0 0 8px !important;
+  color: #007764 !important;
+  font-size: 13px !important;
+  line-height: 1.4 !important;
+  font-weight: 600 !important;
+}
+
+.trafficHero h1 {
+  margin: 0 !important;
+  color: #08243b !important;
+  font-size: clamp(32px, 4vw, 46px) !important;
+  line-height: 1.08 !important;
+  letter-spacing: -0.035em !important;
+  font-weight: 700 !important;
+}
+
+.trafficHero span {
+  display: block !important;
+  max-width: 690px !important;
+  margin-top: 12px !important;
+  color: #526f7b !important;
+  font-size: 15.5px !important;
+  line-height: 1.6 !important;
+  font-weight: 400 !important;
+}
+
+.trafficShell {
+  width: min(1120px, 100%) !important;
+  margin: 0 auto !important;
+  display: grid !important;
+  grid-template-columns: minmax(300px, 380px) 1fr !important;
+  gap: 24px !important;
+  align-items: start !important;
+}
+
+.trafficPanel,
+.trafficMessagesCard {
+  border-radius: 24px !important;
+  border: 1px solid rgba(6, 53, 71, 0.12) !important;
+  background: rgba(255, 255, 255, 0.98) !important;
+  box-shadow: 0 12px 34px rgba(8, 36, 59, 0.07) !important;
+}
+
+.trafficPanel {
+  padding: 22px 20px 20px !important;
+}
+
+.trafficStatusCard {
+  padding: 16px !important;
+  border-radius: 18px !important;
+  border: 1px solid rgba(0, 119, 100, 0.14) !important;
+  background: rgba(0, 119, 100, 0.06) !important;
+}
+
+.trafficStatusCard small,
+.trafficMessagesHead small {
+  display: block !important;
+  margin-bottom: 5px !important;
+  color: #007764 !important;
+  font-size: 11px !important;
+  line-height: 1 !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.06em !important;
+}
+
+.trafficStatusCard strong {
+  display: block !important;
+  color: #08243b !important;
+  font-size: 18px !important;
+  line-height: 1.25 !important;
+  font-weight: 650 !important;
+}
+
+.trafficStatusCard p {
+  margin: 10px 0 0 !important;
+  color: #526f7b !important;
+  font-size: 14px !important;
+  line-height: 1.55 !important;
+  font-weight: 400 !important;
+}
+
+.trafficFilter {
+  display: block !important;
+  margin-top: 18px !important;
+  color: #08243b !important;
+  font-size: 16px !important;
+  line-height: 1.25 !important;
+  font-weight: 600 !important;
+}
+
+.trafficFilter select {
+  width: 100% !important;
+  min-height: 54px !important;
+  margin-top: 12px !important;
+  padding: 0 16px !important;
+  border: 1px solid rgba(6, 53, 71, 0.16) !important;
+  border-radius: 16px !important;
+  background: #ffffff !important;
+  color: #08243b !important;
+  font-size: 15px !important;
+  font-weight: 500 !important;
+  outline: none !important;
+}
+
+.trafficQuickLinks {
+  display: grid !important;
+  gap: 10px !important;
+  margin-top: 18px !important;
+}
+
+.trafficQuickLinks a {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  min-height: 48px !important;
+  padding: 0 14px !important;
+  border-radius: 15px !important;
+  background: #ffffff !important;
+  border: 1px solid rgba(6, 53, 71, 0.12) !important;
+  color: #007764 !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+}
+
+.trafficMessagesCard {
+  overflow: hidden !important;
+}
+
+.trafficMessagesHead {
+  display: flex !important;
+  justify-content: space-between !important;
+  gap: 18px !important;
+  padding: 22px 24px !important;
+  border-bottom: 1px solid rgba(6, 53, 71, 0.10) !important;
+}
+
+.trafficMessagesHead h2 {
+  margin: 0 !important;
+  color: #08243b !important;
+  font-size: 25px !important;
+  line-height: 1.15 !important;
+  letter-spacing: -0.025em !important;
+  font-weight: 700 !important;
+}
+
+.trafficMessagesHead > span {
+  align-self: flex-start !important;
+  padding: 8px 12px !important;
+  border-radius: 999px !important;
+  background: rgba(0, 119, 100, 0.08) !important;
+  color: #007764 !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+}
+
+.trafficMessageList {
+  display: grid !important;
+  gap: 14px !important;
+  padding: 20px 24px 24px !important;
+}
+
+.trafficMessage,
+.trafficEmpty {
+  padding: 18px !important;
+  border-radius: 18px !important;
+  border: 1px solid rgba(6, 53, 71, 0.11) !important;
+  background: #ffffff !important;
+}
+
+.trafficMessageTop {
+  display: flex !important;
+  justify-content: space-between !important;
+  gap: 14px !important;
+  margin-bottom: 12px !important;
+}
+
+.trafficMessageTop small {
+  color: #6b7f89 !important;
+  font-size: 12.5px !important;
+  font-weight: 400 !important;
+}
+
+.trafficBadge {
+  display: inline-flex !important;
+  align-items: center !important;
+  min-height: 28px !important;
+  padding: 0 10px !important;
+  border-radius: 999px !important;
+  font-size: 12.5px !important;
+  font-weight: 600 !important;
+}
+
+.trafficBadge.normal {
+  background: rgba(0, 119, 100, 0.10) !important;
+  color: #007764 !important;
+}
+
+.trafficBadge.info {
+  background: rgba(26, 84, 95, 0.10) !important;
+  color: #1A545F !important;
+}
+
+.trafficBadge.delay {
+  background: rgba(255, 184, 77, 0.18) !important;
+  color: #8a5600 !important;
+}
+
+.trafficBadge.cancelled {
+  background: rgba(220, 38, 38, 0.10) !important;
+  color: #b91c1c !important;
+}
+
+.trafficMessage h3,
+.trafficEmpty strong {
+  display: block !important;
+  margin: 0 !important;
+  color: #08243b !important;
+  font-size: 18px !important;
+  line-height: 1.25 !important;
+  font-weight: 650 !important;
+}
+
+.trafficMessage p,
+.trafficEmpty p {
+  margin: 9px 0 0 !important;
+  color: #526f7b !important;
+  font-size: 14.5px !important;
+  line-height: 1.6 !important;
+  font-weight: 400 !important;
+}
+
+.trafficMeta {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+  margin-top: 14px !important;
+}
+
+.trafficMeta span {
+  display: inline-flex !important;
+  align-items: center !important;
+  min-height: 30px !important;
+  padding: 0 10px !important;
+  border-radius: 999px !important;
+  background: rgba(8, 36, 59, 0.05) !important;
+  color: #526f7b !important;
+  font-size: 12.5px !important;
+  font-weight: 500 !important;
+}
+
+@media (max-width: 900px) {
+  .trafficPage {
+    padding: 104px 16px 54px !important;
+  }
+
+  .trafficShell {
+    grid-template-columns: 1fr !important;
+  }
+
+  .trafficPanel {
+    padding: 20px 16px 18px !important;
+    border-radius: 22px !important;
+  }
+
+  .trafficHero h1 {
+    font-size: 34px !important;
+  }
+
+  .trafficMessagesHead {
+    flex-direction: column !important;
+    padding: 20px !important;
+  }
+
+  .trafficMessageList {
+    padding: 18px 20px 22px !important;
+  }
+}
+
+
+/* HB Shuttle - customer info page */
+.customerInfoPage {
+  min-height: 100vh !important;
+  padding: 118px 24px 70px !important;
+  background:
+    radial-gradient(circle at top left, rgba(0, 119, 100, 0.08), transparent 34%),
+    linear-gradient(180deg, #f7fbfa 0%, #eef5f4 100%) !important;
+}
+
+.customerInfoHero {
+  width: min(1120px, 100%) !important;
+  margin: 0 auto 26px !important;
+  text-align: left !important;
+}
+
+.customerInfoHero p {
+  margin: 0 0 8px !important;
+  color: #007764 !important;
+  font-size: 13px !important;
+  line-height: 1.4 !important;
+  font-weight: 600 !important;
+}
+
+.customerInfoHero h1 {
+  margin: 0 !important;
+  color: #08243b !important;
+  font-size: clamp(32px, 4vw, 46px) !important;
+  line-height: 1.08 !important;
+  letter-spacing: -0.035em !important;
+  font-weight: 700 !important;
+}
+
+.customerInfoHero span {
+  display: block !important;
+  max-width: 720px !important;
+  margin-top: 12px !important;
+  color: #526f7b !important;
+  font-size: 15.5px !important;
+  line-height: 1.6 !important;
+  font-weight: 400 !important;
+}
+
+.customerInfoLayout {
+  width: min(1120px, 100%) !important;
+  margin: 0 auto !important;
+  display: grid !important;
+  grid-template-columns: minmax(280px, 350px) 1fr !important;
+  gap: 24px !important;
+  align-items: start !important;
+}
+
+.customerInfoIntro,
+.customerInfoCards {
+  min-width: 0 !important;
+}
+
+.customerInfoIntroCard,
+.customerInfoCard {
+  border-radius: 24px !important;
+  border: 1px solid rgba(6, 53, 71, 0.12) !important;
+  background: rgba(255, 255, 255, 0.98) !important;
+  box-shadow: 0 12px 34px rgba(8, 36, 59, 0.07) !important;
+}
+
+.customerInfoIntroCard {
+  padding: 22px 20px !important;
+}
+
+.customerInfoIntroCard small,
+.customerInfoCard small {
+  display: block !important;
+  margin-bottom: 6px !important;
+  color: #007764 !important;
+  font-size: 11px !important;
+  line-height: 1 !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.06em !important;
+}
+
+.customerInfoIntroCard strong {
+  display: block !important;
+  color: #08243b !important;
+  font-size: 19px !important;
+  line-height: 1.25 !important;
+  font-weight: 650 !important;
+}
+
+.customerInfoIntroCard p {
+  margin: 10px 0 0 !important;
+  color: #526f7b !important;
+  font-size: 14.5px !important;
+  line-height: 1.6 !important;
+  font-weight: 400 !important;
+}
+
+.customerInfoLinks {
+  display: grid !important;
+  gap: 10px !important;
+  margin-top: 16px !important;
+}
+
+.customerInfoLinks a {
+  display: flex !important;
+  align-items: center !important;
+  min-height: 48px !important;
+  padding: 0 14px !important;
+  border-radius: 15px !important;
+  background: #ffffff !important;
+  border: 1px solid rgba(6, 53, 71, 0.12) !important;
+  color: #007764 !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+}
+
+.customerInfoCards {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 18px !important;
+}
+
+.customerInfoCard {
+  padding: 22px !important;
+}
+
+.customerInfoCard h2 {
+  margin: 0 !important;
+  color: #08243b !important;
+  font-size: 22px !important;
+  line-height: 1.15 !important;
+  letter-spacing: -0.025em !important;
+  font-weight: 700 !important;
+}
+
+.customerInfoCard p {
+  margin: 10px 0 0 !important;
+  color: #526f7b !important;
+  font-size: 14.5px !important;
+  line-height: 1.6 !important;
+  font-weight: 400 !important;
+}
+
+.customerInfoCard ul {
+  display: grid !important;
+  gap: 8px !important;
+  margin: 18px 0 0 !important;
+  padding: 0 !important;
+  list-style: none !important;
+}
+
+.customerInfoCard li {
+  position: relative !important;
+  padding-left: 20px !important;
+  color: #08243b !important;
+  font-size: 14px !important;
+  line-height: 1.45 !important;
+  font-weight: 500 !important;
+}
+
+.customerInfoCard li::before {
+  content: "" !important;
+  position: absolute !important;
+  left: 0 !important;
+  top: 0.55em !important;
+  width: 8px !important;
+  height: 8px !important;
+  border-radius: 999px !important;
+  background: #007764 !important;
+}
+
+@media (max-width: 900px) {
+  .customerInfoPage {
+    padding: 104px 16px 54px !important;
+  }
+
+  .customerInfoLayout {
+    grid-template-columns: 1fr !important;
+  }
+
+  .customerInfoCards {
+    grid-template-columns: 1fr !important;
+  }
+
+  .customerInfoHero h1 {
+    font-size: 34px !important;
+  }
+
+  .customerInfoCard,
+  .customerInfoIntroCard {
+    border-radius: 22px !important;
+  }
+}
+
