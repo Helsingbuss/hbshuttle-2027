@@ -22,13 +22,83 @@ type NormalizedStop = {
   isAirport: boolean;
 };
 
-const departures = [
-  { departure: "08:40", arrival: "09:15", duration: "35 min" },
-  { departure: "10:10", arrival: "10:45", duration: "35 min" },
-  { departure: "12:40", arrival: "13:15", duration: "35 min" },
-  { departure: "15:10", arrival: "15:45", duration: "35 min" },
-  { departure: "17:40", arrival: "18:15", duration: "35 min" },
-];
+type TimetableDeparture = {
+  id: string;
+  line?: string;
+  direction?: string;
+  departureTime?: string;
+  arrivalTime?: string;
+  durationMinutes?: number;
+  from?: string;
+  to?: string;
+  stops?: Array<{
+    name?: string;
+    time?: string;
+    order?: number;
+  }>;
+};
+
+type TimetableRow = {
+  id: string;
+  line: string;
+  departure: string;
+  arrival: string;
+  duration: string;
+  stops: Array<{
+    name: string;
+    time: string;
+  }>;
+};
+
+function normalizeName(value: any) {
+  return String(value || "")
+    .trim()
+    .toLowerCase()
+    .replace(/\s+/g, " ");
+}
+
+function minutesFromTime(value: string) {
+  const match = String(value || "").match(/^(\d{1,2}):(\d{2})/);
+  if (!match) return 0;
+
+  return Number(match[1]) * 60 + Number(match[2]);
+}
+
+function durationText(fromTime: string, toTime: string, fallbackMinutes?: number) {
+  const fromMinutes = minutesFromTime(fromTime);
+  const toMinutes = minutesFromTime(toTime);
+
+  if (fromMinutes > 0 && toMinutes > 0) {
+    const diff = Math.max(toMinutes - fromMinutes, 0);
+    return diff + " min";
+  }
+
+  if (typeof fallbackMinutes === "number" && Number.isFinite(fallbackMinutes)) {
+    return fallbackMinutes + " min";
+  }
+
+  return "-";
+}
+
+function getTimeAtStop(item: TimetableDeparture, stopName: string) {
+  const stops = Array.isArray(item.stops) ? item.stops : [];
+  const found = stops.find((stop) => normalizeName(stop.name) === normalizeName(stopName));
+  return String(found?.time || "").trim();
+}
+
+function hasRoute(item: TimetableDeparture, fromName: string, toName: string) {
+  const stops = Array.isArray(item.stops) ? item.stops : [];
+
+  const fromIndex = stops.findIndex(
+    (stop) => normalizeName(stop.name) === normalizeName(fromName)
+  );
+
+  const toIndex = stops.findIndex(
+    (stop) => normalizeName(stop.name) === normalizeName(toName)
+  );
+
+  return fromIndex >= 0 && toIndex >= 0 && fromIndex < toIndex;
+}
 
 function normalizeStop(stop: ShuttleStop): NormalizedStop {
   const name = String(stop.name || stop.title || stop.stop_name || "").trim();
@@ -116,9 +186,13 @@ export default function TimetablePage() {
   const [stops, setStops] = useState<NormalizedStop[]>([]);
   const [loadingStops, setLoadingStops] = useState(true);
 
+  const [departures, setDepartures] = useState<TimetableRow[]>([]);
+  const [loadingDepartures, setLoadingDepartures] = useState(false);
+  const [departuresError, setDeparturesError] = useState("");
+
   const [fromStop, setFromStop] = useState("Helsingborg C");
   const [toStop, setToStop] = useState("Ängelholm Helsingborg Airport");
-  const [date, setDate] = useState("2027-01-01");
+  const [date, setDate] = useState("2027-01-02");
   const [time, setTime] = useState("08:00");
 
   useEffect(() => {
@@ -229,6 +303,70 @@ export default function TimetablePage() {
 
     return [fromStop, toStop].filter(Boolean);
   }, [stops, fromStop, toStop]);
+
+  async function loadDepartures() {
+    try {
+      setLoadingDepartures(true);
+      setDeparturesError("");
+      setHasSearched(true);
+
+      const response = await fetch(
+        `/api/shuttle/departures?date=${encodeURIComponent(date)}`,
+        { cache: "no-store" }
+      );
+
+      if (!response.ok) {
+        throw new Error("Could not load departures");
+      }
+
+      const data = await response.json();
+      const items: TimetableDeparture[] = Array.isArray(data.departures)
+        ? data.departures
+        : [];
+
+      const rows = items
+        .filter((item) => hasRoute(item, fromStop, toStop))
+        .map((item) => {
+          const departure = getTimeAtStop(item, fromStop) || item.departureTime || "";
+          const arrival = getTimeAtStop(item, toStop) || item.arrivalTime || "";
+
+          const stopRows = (Array.isArray(item.stops) ? item.stops : [])
+            .filter((stop) => stop.name && stop.time)
+            .map((stop) => ({
+              name: String(stop.name || ""),
+              time: String(stop.time || ""),
+            }));
+
+          return {
+            id: item.id,
+            line: String(item.line || "Flygbuss"),
+            departure,
+            arrival,
+            duration: durationText(departure, arrival, item.durationMinutes),
+            stops: stopRows,
+          };
+        })
+        .filter((item) => item.departure && item.arrival)
+        .filter((item) => {
+          if (!time) return true;
+
+          if (travelMode === "earliest") {
+            return minutesFromTime(item.departure) >= minutesFromTime(time);
+          }
+
+          return minutesFromTime(item.arrival) <= minutesFromTime(time);
+        })
+        .sort((a, b) => minutesFromTime(a.departure) - minutesFromTime(b.departure));
+
+      setDepartures(rows);
+    } catch (error) {
+      console.error(error);
+      setDepartures([]);
+      setDeparturesError("Could not load departures.");
+    } finally {
+      setLoadingDepartures(false);
+    }
+  }
 
   function swapRoute() {
     const currentFrom = fromStop;
@@ -402,7 +540,7 @@ export default function TimetablePage() {
             <button
               type="button"
               className="showTimetableButton"
-              onClick={() => setHasSearched(true)}
+              onClick={loadDepartures}
             >
               Visa tidtabell
             </button>
@@ -449,13 +587,33 @@ export default function TimetablePage() {
                     <span>Restid</span>
                   </div>
 
-                  {departures.map((item) => (
-                    <div className="departureRow" key={item.departure}>
-                      <strong>{item.departure}</strong>
-                      <span>{item.arrival}</span>
-                      <span>{item.duration}</span>
+                  {loadingDepartures ? (
+                    <div className="departureRow">
+                      <strong>Loading</strong>
+                      <span>-</span>
+                      <span>-</span>
                     </div>
-                  ))}
+                  ) : departuresError ? (
+                    <div className="departureRow">
+                      <strong>No data</strong>
+                      <span>{departuresError}</span>
+                      <span>-</span>
+                    </div>
+                  ) : departures.length === 0 ? (
+                    <div className="departureRow">
+                      <strong>No departures</strong>
+                      <span>Try another date or time</span>
+                      <span>-</span>
+                    </div>
+                  ) : (
+                    departures.map((item) => (
+                      <div className="departureRow" key={item.id}>
+                        <strong>{item.departure}</strong>
+                        <span>{item.arrival}</span>
+                        <span>{item.duration}</span>
+                      </div>
+                    ))
+                  )}
                 </div>
 
                 <div className="ticketInfoBox">
