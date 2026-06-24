@@ -278,6 +278,14 @@ export default function TimetablePage() {
     ];
   }, [stops]);
 
+  const fromStops = useMemo(() => {
+    return stops.filter((stop: NormalizedStop) => stop.name !== toStop);
+  }, [stops, toStop]);
+
+  const toStops = useMemo(() => {
+    return stops.filter((stop: NormalizedStop) => stop.name !== fromStop);
+  }, [stops, fromStop]);
+
   const routeStops = useMemo(() => {
     if (stops.length === 0) {
       return [
@@ -398,7 +406,7 @@ export default function TimetablePage() {
               <StopDropdown
                 label="Från"
                 value={fromStop}
-                stops={departureStops}
+                stops={fromStops}
                 placeholder={loadingStops ? "Laddar hållplatser..." : "Välj hållplats"}
                 icon="dot"
                 onChange={(value) => {
@@ -410,7 +418,7 @@ export default function TimetablePage() {
               <StopDropdown
                 label="Till"
                 value={toStop}
-                stops={airportStops}
+                stops={toStops}
                 placeholder={loadingStops ? "Laddar flygplatser..." : "Välj flygplats"}
                 icon="pin"
                 onChange={(value) => {
