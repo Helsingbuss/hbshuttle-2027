@@ -1,6 +1,6 @@
 ﻿"use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import MegaMenuFeature from "@/components/MegaMenuFeature";
 
@@ -27,6 +27,14 @@ const mainLinks = [
   { label: "Tidtabell", href: "/start/tidtabell" },
   { label: "Hållplatser", href: "/start/hallplatser" },
   { label: "Trafikinfo", href: "/start/trafikinfo" },
+];
+
+const languageLinks = [
+  { code: "sv", label: "Svenska", translateCode: "sv" },
+  { code: "gb", label: "English", translateCode: "en" },
+  { code: "dk", label: "Dansk", translateCode: "da" },
+  { code: "no", label: "Norsk", translateCode: "no" },
+  { code: "fi", label: "Suomi", translateCode: "fi" },
 ];
 
 const megaLinks: MenuLink[] = [
@@ -150,9 +158,29 @@ function MenuIcon({ name }: { name: IconName }) {
 
 export default function BetaHeader({ sticky = false }: { sticky?: boolean } = {}) {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [currentUrl, setCurrentUrl] = useState("https://www.hbshuttle.se/start");
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setCurrentUrl(window.location.href);
+    }
+  }, []);
 
   function closeMenu() {
     setMenuOpen(false);
+  }
+
+  function getLanguageHref(languageCode: string) {
+    if (languageCode === "sv") {
+      return currentUrl;
+    }
+
+    return (
+      "https://translate.google.com/translate?sl=sv&tl=" +
+      languageCode +
+      "&u=" +
+      encodeURIComponent(currentUrl)
+    );
   }
 
   return (
@@ -177,9 +205,27 @@ export default function BetaHeader({ sticky = false }: { sticky?: boolean } = {}
             Min biljett
           </Link>
 
-          <button type="button" className="languageButton">
-            Language
-          </button>
+          <div className="languageDropdown">
+            <button type="button" className="languageButton">
+              <span className="languageGlobe">🌐</span>
+              Language
+              <span className="languageChevron">⌄</span>
+            </button>
+
+            <div className="languageMenu">
+              {languageLinks.map((language) => (
+                <a
+                  key={language.label}
+                  href={getLanguageHref(language.translateCode)}
+                  className="languageMenuItem"
+                  onClick={closeMenu}
+                >
+                  <span className={"languageFlagIcon flag-" + language.code} aria-hidden="true" />
+                  <span>{language.label}</span>
+                </a>
+              ))}
+            </div>
+          </div>
 
           <button
             type="button"
