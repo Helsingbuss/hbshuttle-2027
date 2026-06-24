@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useMemo, useState } from "react";
 import BetaHeader from "@/components/BetaHeader";
@@ -48,12 +48,8 @@ export default function TrafficInfoPage() {
         setLoading(true);
         setErrorText("");
 
-        const baseUrl =
-          process.env.NEXT_PUBLIC_PORTAL_API_URL || "https://login.helsingbuss.se";
-
         const url =
-          baseUrl.replace(/\/$/, "") +
-          "/api/public/shuttle/traffic-messages" +
+          "/api/shuttle/traffic-messages" +
           (selectedLine !== "Alla linjer"
             ? "?line=" + encodeURIComponent(selectedLine)
             : "");
@@ -187,3 +183,4 @@ export default function TrafficInfoPage() {
     </>
   );
 }
+
