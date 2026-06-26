@@ -1,37 +1,38 @@
 ﻿"use client";
 
+import Link from "next/link";
 import { useState } from "react";
 
 const faqs = [
   {
-    question: "Hur bokar jag en resa?",
+    question: "Hur tidigt bör jag vara vid hållplatsen?",
     answer:
-      "Du väljer avgångsort, flygplats, datum och antal resenärer. Därefter väljer du avgång och betalar enkelt online.",
+      "Vi rekommenderar att du är på hållplatsen minst 10 minuter före avgång. Då hinner du i lugn och ro hitta rätt plats, ta fram din biljett och kliva ombord utan stress. Bussen avgår enligt tidtabell, så det är viktigt att vara på plats i god tid.",
   },
   {
-    question: "Kan jag ta med mycket bagage?",
+    question: "Vad händer om jag missar bussen?",
     answer:
-      "Ja, du kan ta med normalt resebagage. Mer detaljerade bagageregler kommer att visas i samband med bokningen.",
+      "Om du missar din bokade avgång kan vi inte alltid garantera plats på en senare buss, eftersom varje avgång har ett begränsat antal platser. Kontakta kundservice om något händer, så hjälper vi dig så långt det är möjligt.",
   },
   {
-    question: "Vad händer om mitt flyg är försenat?",
+    question: "Kan jag boka resa åt någon annan?",
     answer:
-      "Vi kommer att ge tydlig information om avgångar, trafikläge och eventuella ändringar så att du kan planera din resa tryggt.",
+      "Ja, det går bra att boka en resa åt någon annan. Du fyller bara i rätt resenärsuppgifter vid bokningen och skickar biljetten till personen som ska resa. Biljetten kan visas digitalt i mobilen vid ombordstigning.",
   },
   {
-    question: "Var hittar jag min biljett?",
+    question: "Kan barn resa med Helsingbuss Airport Shuttle?",
     answer:
-      "Din biljett skickas digitalt och kommer även kunna visas via Mina biljetter när bokningssystemet är aktiverat.",
+      "Ja, barn kan resa med Helsingbuss Airport Shuttle. Barn ska resa tillsammans med vuxen om inget annat anges i bokningsvillkoren. Information om barnbiljetter, åldersgränser och eventuella regler visas tydligt vid bokning.",
   },
   {
-    question: "Kan företag boka konto?",
+    question: "Vad gör jag om jag inte får min biljett?",
     answer:
-      "Ja, vi planerar företagskonto för enklare bokning, samlad fakturering och bättre översikt för återkommande resor.",
+      "Kontrollera först din skräppost eller kampanjmapp, eftersom e-post ibland kan hamna där. Du kommer även att kunna hitta biljetten digitalt via Mina biljetter, appen eller HB Shuttle Club. Om du fortfarande inte hittar biljetten kan du kontakta kundservice.",
   },
   {
-    question: "Är det gratis Wi-Fi ombord?",
+    question: "Vad händer om bussen blir försenad?",
     answer:
-      "Målet är att erbjuda bekväma resor med moderna funktioner. Exakt utrustning kan variera beroende på fordon och avgång.",
+      "Om bussen påverkas av trafik, väder eller andra händelser kommer vi att informera så tydligt som möjligt via våra digitala kanaler. Vi arbetar för att du som resenär ska få bra information och kunna känna dig trygg även om något oväntat händer.",
   },
 ];
 
@@ -68,6 +69,10 @@ export default function FAQSection() {
             </div>
           );
         })}
+      </div>
+
+      <div className="faqMoreLink">
+        <Link href="/start/kundinfo">Fler frågor och svar</Link>
       </div>
     </article>
   );

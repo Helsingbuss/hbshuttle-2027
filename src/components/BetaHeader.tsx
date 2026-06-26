@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import MegaMenuFeature from "@/components/MegaMenuFeature";
 import GoogleTranslateLoader from "@/components/GoogleTranslateLoader";
+import ClubModal from "@/components/ClubModal";
 
 type IconName =
   | "ticket"
@@ -159,8 +160,15 @@ function MenuIcon({ name }: { name: IconName }) {
 
 export default function BetaHeader({ sticky = false }: { sticky?: boolean } = {}) {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [clubModalOpen, setClubModalOpen] = useState(false);
   function closeMenu() {
     setMenuOpen(false);
+  }
+
+  function openClubModal(event?: { preventDefault: () => void }) {
+    event?.preventDefault();
+    setMenuOpen(false);
+    setClubModalOpen(true);
   }
 
   function changeLanguage(languageCode: string) {
@@ -183,6 +191,7 @@ export default function BetaHeader({ sticky = false }: { sticky?: boolean } = {}
   return (
     <>
       <GoogleTranslateLoader />
+      <ClubModal open={clubModalOpen} onClose={() => setClubModalOpen(false)} />
       <header className={`${sticky ? "bookingStickyHeader " : ""}${menuOpen ? "betaHeader menuIsOpen" : "betaHeader"}`}>
         <Link href="/start" className="betaLogo" aria-label="HB Shuttle startsida">
           <div className="betaLogoMark">H</div>
@@ -199,7 +208,7 @@ export default function BetaHeader({ sticky = false }: { sticky?: boolean } = {}
             </Link>
           ))}
 
-          <Link href="/start/club" onClick={closeMenu}>
+          <Link href="/start/club" onClick={openClubModal}>
             Min biljett
           </Link>
 
@@ -251,7 +260,7 @@ export default function BetaHeader({ sticky = false }: { sticky?: boolean } = {}
           </button>
         </nav>
 
-        <Link href="/start/club" className="clubButton" onClick={closeMenu}>
+        <Link href="/start/club" className="clubButton" onClick={openClubModal}>
           <span className="clubButtonIcon">
             <MenuIcon name="club" />
           </span>
@@ -301,7 +310,7 @@ export default function BetaHeader({ sticky = false }: { sticky?: boolean } = {}
 
               <div className="megaLoginLine" />
 
-              <Link href="/start/club" onClick={closeMenu}>
+              <Link href="/start/club" onClick={openClubModal}>
                 <span className="megaIcon">
                   <MenuIcon name="club" />
                 </span>

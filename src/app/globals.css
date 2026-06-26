@@ -13589,3 +13589,887 @@ body {
   font-size: 13px;
   line-height: 1.45;
 }
+
+/* HB Shuttle Club modal */
+.clubModalOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 0 16px 40px;
+}
+
+.clubModalBackdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(5, 20, 28, 0.48);
+  backdrop-filter: blur(4px);
+}
+
+.clubModalCard {
+  position: relative;
+  width: min(570px, 100%);
+  margin-top: 2px;
+  background: #ffffff;
+  border-radius: 8px 8px 0 0;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.28);
+  overflow: hidden;
+}
+
+.clubModalTabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 38px;
+  background: #f3f3f3;
+}
+
+.clubModalTabs button {
+  border: 0;
+  background: #f3f3f3;
+  color: #222;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.clubModalTabs button.active {
+  background: #ffffff;
+}
+
+.clubModalContent {
+  padding: 46px 50px 34px;
+}
+
+.clubModalContent h2 {
+  margin: 0 0 28px;
+  font-size: 25px;
+  line-height: 1.15;
+  font-weight: 700;
+  color: #050505;
+}
+
+.clubModalIntro {
+  margin: -18px 0 18px;
+  color: #111;
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.clubModalField {
+  display: block;
+  margin-bottom: 17px;
+  position: relative;
+}
+
+.clubModalField > span {
+  display: block;
+  margin-bottom: 7px;
+  color: #111;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.clubModalField input,
+.clubModalField select {
+  width: 100%;
+  height: 43px;
+  border: 1px solid #c9c9c9;
+  border-radius: 0;
+  background: #fff;
+  color: #111;
+  font-size: 15px;
+  padding: 0 14px;
+  outline: none;
+}
+
+.clubModalField select {
+  font-weight: 700;
+}
+
+.clubModalField > div {
+  position: relative;
+}
+
+.clubModalField small {
+  position: absolute;
+  right: 22px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 22px;
+  height: 22px;
+  border-radius: 5px;
+  background: #b9bec6;
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  line-height: 1;
+}
+
+.clubModalField.withInfo {
+  padding-right: 44px;
+}
+
+.clubModalField.withInfo i {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #101010;
+  color: #fff;
+  font-style: italic;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.clubModalRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 8px 0 36px;
+}
+
+.clubModalCheck {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  color: #111;
+  font-size: 15px;
+  line-height: 1.45;
+  cursor: pointer;
+}
+
+.clubModalCheck input {
+  display: none;
+}
+
+.clubModalCheck span {
+  width: 25px;
+  height: 25px;
+  min-width: 25px;
+  border: 2px solid #007764;
+  border-radius: 2px;
+  background: #fff;
+}
+
+.registerCheck {
+  align-items: flex-start;
+  margin: 22px 0 46px;
+  font-size: 14px;
+}
+
+.registerCheck span {
+  border-color: #222;
+}
+
+.clubModalTextButton {
+  border: 0;
+  background: transparent;
+  color: #007764;
+  font-size: 15px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.clubModalPrimary {
+  width: 100%;
+  height: 42px;
+  border: 0;
+  border-radius: 999px;
+  background: #007764;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.clubModalClose {
+  display: block;
+  margin: 36px auto 0;
+  border: 0;
+  background: transparent;
+  color: #050505;
+  font-size: 18px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+@media (max-width: 640px) {
+  .clubModalOverlay {
+    padding: 0;
+    align-items: flex-start;
+  }
+
+  .clubModalCard {
+    width: 100%;
+    min-height: 100dvh;
+    border-radius: 0;
+  }
+
+  .clubModalContent {
+    padding: 44px 28px 34px;
+  }
+
+  .clubModalRow {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 18px;
+  }
+}
+
+/* HB Shuttle Club dashboard */
+.clubPage {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 12% 0%, rgba(0, 119, 100, 0.10), transparent 34%),
+    linear-gradient(180deg, #f7faf9 0%, #ffffff 52%);
+  color: #08243b;
+  padding: 110px 24px 80px;
+}
+
+.clubHero {
+  width: min(1120px, 100%);
+  margin: 0 auto 28px;
+}
+
+.clubHero p,
+.clubWelcome p {
+  margin: 0 0 8px;
+  color: #007764;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.clubHero h1 {
+  margin: 0 0 10px;
+  font-size: clamp(34px, 5vw, 58px);
+  line-height: 0.96;
+  letter-spacing: -0.055em;
+  color: #063547;
+}
+
+.clubHero span {
+  display: block;
+  max-width: 650px;
+  color: rgba(8, 36, 59, 0.68);
+  font-size: 16px;
+  line-height: 1.55;
+}
+
+.clubShell {
+  width: min(1120px, 100%);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 270px minmax(0, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+
+.clubSidebar,
+.clubContent > .clubPanel,
+.clubWelcome,
+.clubStatCard,
+.clubQuickPanel,
+.clubInfoPanel {
+  background: rgba(255,255,255,0.92);
+  border: 1px solid rgba(6, 53, 71, 0.10);
+  box-shadow: 0 24px 70px rgba(8, 36, 59, 0.08);
+}
+
+.clubSidebar {
+  border-radius: 28px;
+  padding: 18px;
+  position: sticky;
+  top: 96px;
+}
+
+.clubUserCard {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 10px 18px;
+  border-bottom: 1px solid rgba(6, 53, 71, 0.10);
+  margin-bottom: 12px;
+}
+
+.clubAvatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #007764, #063547);
+  color: white;
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.clubUserCard strong {
+  display: block;
+  color: #063547;
+  font-size: 15px;
+}
+
+.clubUserCard span {
+  display: block;
+  color: rgba(8, 36, 59, 0.58);
+  font-size: 12px;
+  margin-top: 2px;
+}
+
+.clubSideNav {
+  display: grid;
+  gap: 5px;
+}
+
+.clubSideNav button {
+  border: 0;
+  background: transparent;
+  color: rgba(8, 36, 59, 0.78);
+  text-align: left;
+  padding: 12px 13px;
+  border-radius: 15px;
+  font-size: 15px;
+  font-weight: 650;
+  cursor: pointer;
+  transition: 0.18s ease;
+}
+
+.clubSideNav button:hover,
+.clubSideNav button.active {
+  background: rgba(0, 119, 100, 0.10);
+  color: #007764;
+}
+
+.clubSideNav .clubLogout {
+  margin-top: 10px;
+  color: rgba(8, 36, 59, 0.56);
+}
+
+.clubContent {
+  min-width: 0;
+}
+
+.clubBreadcrumb {
+  margin: 0 0 14px;
+  color: rgba(8, 36, 59, 0.55);
+  font-size: 13px;
+  font-weight: 650;
+}
+
+.clubWelcome {
+  border-radius: 30px;
+  padding: 28px;
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.clubWelcome h2,
+.clubPanel h2,
+.clubInfoPanel h3,
+.clubQuickPanel h3 {
+  margin: 0;
+  color: #063547;
+  letter-spacing: -0.035em;
+}
+
+.clubWelcome h2 {
+  font-size: clamp(26px, 4vw, 38px);
+}
+
+.clubWelcome span {
+  display: block;
+  margin-top: 8px;
+  max-width: 590px;
+  color: rgba(8, 36, 59, 0.66);
+  line-height: 1.55;
+}
+
+.clubWelcome button,
+.clubStatCard button,
+.clubQuickPanel button,
+.clubEmptyState button,
+.clubPrimaryAction {
+  border: 0;
+  border-radius: 999px;
+  background: #007764;
+  color: white;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 14px 28px rgba(0, 119, 100, 0.20);
+}
+
+.clubWelcome button {
+  padding: 13px 22px;
+  white-space: nowrap;
+}
+
+.clubDashboardGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.clubStatCard {
+  border-radius: 26px;
+  padding: 22px;
+}
+
+.clubStatCard small {
+  color: #007764;
+  font-weight: 800;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.clubStatCard strong {
+  display: block;
+  margin-top: 10px;
+  color: #063547;
+  font-size: 22px;
+  letter-spacing: -0.035em;
+}
+
+.clubStatCard span {
+  display: block;
+  margin-top: 8px;
+  min-height: 42px;
+  color: rgba(8, 36, 59, 0.62);
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.clubStatCard button {
+  margin-top: 16px;
+  padding: 10px 15px;
+  font-size: 13px;
+}
+
+.clubQuickPanel,
+.clubPanel,
+.clubInfoPanel {
+  border-radius: 28px;
+  padding: 28px;
+}
+
+.clubQuickPanel div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.clubQuickPanel button {
+  padding: 11px 16px;
+  background: rgba(0, 119, 100, 0.10);
+  color: #007764;
+  box-shadow: none;
+}
+
+.clubFormGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 22px;
+}
+
+.clubFormGrid label {
+  display: grid;
+  gap: 7px;
+  color: #063547;
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.clubFormGrid input {
+  height: 46px;
+  border-radius: 15px;
+  border: 1px solid rgba(6, 53, 71, 0.16);
+  padding: 0 14px;
+  outline: none;
+  background: #fff;
+  color: #08243b;
+}
+
+.clubCheckLine {
+  margin-top: 22px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: rgba(8, 36, 59, 0.72);
+  font-size: 14px;
+}
+
+.clubCheckLine input {
+  display: none;
+}
+
+.clubCheckLine span {
+  width: 23px;
+  height: 23px;
+  border-radius: 7px;
+  border: 2px solid #007764;
+  background: white;
+}
+
+.clubPrimaryAction {
+  margin-top: 24px;
+  padding: 13px 24px;
+  font-size: 14px;
+}
+
+.clubEmptyState {
+  margin-top: 20px;
+  padding: 34px;
+  border-radius: 24px;
+  background: rgba(244, 248, 247, 0.95);
+  border: 1px dashed rgba(6, 53, 71, 0.16);
+  text-align: center;
+}
+
+.clubEmptyIcon {
+  width: 52px;
+  height: 52px;
+  border-radius: 20px;
+  margin: 0 auto 14px;
+  display: grid;
+  place-items: center;
+  background: rgba(0, 119, 100, 0.10);
+  color: #007764;
+  font-size: 25px;
+}
+
+.clubEmptyState h3 {
+  margin: 0;
+  color: #063547;
+  font-size: 22px;
+  letter-spacing: -0.035em;
+}
+
+.clubEmptyState p,
+.clubInfoPanel p,
+.clubPanel p {
+  color: rgba(8, 36, 59, 0.65);
+  line-height: 1.55;
+}
+
+.clubEmptyState button {
+  margin-top: 18px;
+  padding: 12px 18px;
+}
+
+.clubInfoPanel {
+  margin-top: 18px;
+  background: rgba(0, 119, 100, 0.07);
+}
+
+.clubBalanceGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.clubBigValue {
+  display: block;
+  margin-top: 20px;
+  color: #007764;
+  font-size: 38px;
+  letter-spacing: -0.055em;
+}
+
+.clubSettingList {
+  display: grid;
+  gap: 14px;
+  margin-top: 22px;
+}
+
+.clubSettingList label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 15px;
+  border-radius: 17px;
+  background: rgba(244, 248, 247, 0.95);
+  color: rgba(8, 36, 59, 0.75);
+  font-weight: 650;
+}
+
+@media (max-width: 900px) {
+  .clubShell {
+    grid-template-columns: 1fr;
+  }
+
+  .clubSidebar {
+    position: static;
+  }
+
+  .clubSideNav {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .clubDashboardGrid,
+  .clubBalanceGrid,
+  .clubFormGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .clubWelcome {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 560px) {
+  .clubPage {
+    padding: 96px 16px 60px;
+  }
+
+  .clubSideNav {
+    grid-template-columns: 1fr;
+  }
+
+  .clubPanel,
+  .clubWelcome,
+  .clubQuickPanel,
+  .clubInfoPanel {
+    padding: 22px;
+    border-radius: 24px;
+  }
+}
+
+/* HB Shuttle Club - compact refinement */
+.clubPage {
+  padding-top: 92px !important;
+  padding-bottom: 56px !important;
+}
+
+.clubHero {
+  width: min(980px, 100%) !important;
+  margin-bottom: 20px !important;
+}
+
+.clubHero h1 {
+  font-size: clamp(30px, 4vw, 46px) !important;
+  letter-spacing: -0.045em !important;
+  font-weight: 700 !important;
+}
+
+.clubHero p,
+.clubWelcome p {
+  font-size: 11.5px !important;
+  font-weight: 700 !important;
+}
+
+.clubHero span {
+  font-size: 14px !important;
+  line-height: 1.5 !important;
+}
+
+.clubShell {
+  width: min(980px, 100%) !important;
+  grid-template-columns: 230px minmax(0, 1fr) !important;
+  gap: 18px !important;
+}
+
+.clubSidebar {
+  border-radius: 22px !important;
+  padding: 14px !important;
+  box-shadow: 0 18px 45px rgba(8, 36, 59, 0.06) !important;
+}
+
+.clubUserCard {
+  padding: 10px 8px 14px !important;
+  gap: 10px !important;
+}
+
+.clubAvatar {
+  width: 38px !important;
+  height: 38px !important;
+  border-radius: 13px !important;
+  font-size: 13px !important;
+}
+
+.clubUserCard strong {
+  font-size: 14px !important;
+  font-weight: 700 !important;
+}
+
+.clubUserCard span {
+  font-size: 11.5px !important;
+}
+
+.clubSideNav button {
+  padding: 10px 11px !important;
+  border-radius: 13px !important;
+  font-size: 13.5px !important;
+  font-weight: 650 !important;
+}
+
+.clubBreadcrumb {
+  font-size: 12px !important;
+  margin-bottom: 10px !important;
+}
+
+.clubWelcome,
+.clubStatCard,
+.clubQuickPanel,
+.clubContent > .clubPanel,
+.clubInfoPanel {
+  box-shadow: 0 18px 45px rgba(8, 36, 59, 0.055) !important;
+  border-color: rgba(6, 53, 71, 0.08) !important;
+}
+
+.clubWelcome {
+  border-radius: 24px !important;
+  padding: 22px !important;
+  margin-bottom: 14px !important;
+}
+
+.clubWelcome h2 {
+  font-size: clamp(24px, 3vw, 32px) !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.04em !important;
+}
+
+.clubWelcome span {
+  font-size: 13.5px !important;
+  line-height: 1.45 !important;
+  margin-top: 6px !important;
+}
+
+.clubWelcome button {
+  padding: 11px 18px !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  box-shadow: 0 10px 22px rgba(0, 119, 100, 0.16) !important;
+}
+
+.clubDashboardGrid {
+  gap: 12px !important;
+  margin-bottom: 14px !important;
+}
+
+.clubStatCard {
+  border-radius: 22px !important;
+  padding: 18px !important;
+}
+
+.clubStatCard small {
+  font-size: 10.5px !important;
+  font-weight: 700 !important;
+}
+
+.clubStatCard strong {
+  margin-top: 8px !important;
+  font-size: 18px !important;
+  font-weight: 700 !important;
+}
+
+.clubStatCard span {
+  margin-top: 6px !important;
+  min-height: 34px !important;
+  font-size: 12.5px !important;
+  line-height: 1.4 !important;
+}
+
+.clubStatCard button {
+  margin-top: 12px !important;
+  padding: 8px 13px !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  box-shadow: 0 8px 18px rgba(0, 119, 100, 0.14) !important;
+}
+
+.clubQuickPanel,
+.clubPanel,
+.clubInfoPanel {
+  border-radius: 24px !important;
+  padding: 22px !important;
+}
+
+.clubQuickPanel h3,
+.clubPanel h2,
+.clubInfoPanel h3 {
+  font-size: 20px !important;
+  font-weight: 700 !important;
+}
+
+.clubQuickPanel div {
+  margin-top: 14px !important;
+  gap: 8px !important;
+}
+
+.clubQuickPanel button {
+  padding: 9px 14px !important;
+  font-size: 12.5px !important;
+  font-weight: 700 !important;
+}
+
+.clubEmptyState {
+  padding: 28px !important;
+  border-radius: 22px !important;
+}
+
+.clubEmptyState h3 {
+  font-size: 19px !important;
+  font-weight: 700 !important;
+}
+
+.clubEmptyState p,
+.clubInfoPanel p,
+.clubPanel p {
+  font-size: 13.5px !important;
+}
+
+.clubBigValue {
+  font-size: 32px !important;
+  font-weight: 700 !important;
+}
+
+@media (max-width: 900px) {
+  .clubShell {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+
+/* FAQ more link */
+.faqMoreLink {
+  margin-top: 18px;
+  display: flex;
+  justify-content: center;
+}
+
+.faqMoreLink a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 0 22px;
+  border-radius: 999px;
+  background: rgba(0, 119, 100, 0.10);
+  color: #007764;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.faqMoreLink a:hover {
+  background: #007764;
+  color: #ffffff;
+}
+
